@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 
 const createStoreWithFirebase = composeEnhancers(
-    applyMiddleware([thunk]),
+    applyMiddleware(thunk),
     reactReduxFirebase(firebaseConfig),
   )(createStore);
 
