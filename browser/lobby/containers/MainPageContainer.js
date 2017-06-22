@@ -12,7 +12,7 @@ class MainPageContainer extends React.Component {
 
   addLobby() {
     const lobbyId = Math.random().toString(36).substr(2, 5);
-    this.props.firebase.update(`/${lobbyId}`, { lobbyId });
+    this.props.firebase.update(`/${lobbyId}`, { lobbyId, started: false });
     browserHistory.push(`play/${lobbyId}`);
   }
 
