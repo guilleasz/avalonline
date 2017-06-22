@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory, indexRoute } from 'react-router';
+import { Router, Route, browserHistory, indexRoute, IndexRedirect } from 'react-router';
 // import store from './store';
 import MainLobby from './lobby/components/MainPage';
+import Navbar from './lobby/components/Navbar';
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/" component={MainLobby} />
+    <Route path="/browser" component={Navbar}>
+      <Route path="Home" component={MainLobby} />
+      <IndexRedirect to="Home" />
+    </Route>
   </Router>, document.getElementById('app'));
