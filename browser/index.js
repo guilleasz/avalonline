@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
 import store from './store';
-import MainPage from './lobby/components/MainPage';
+import MainPageContainer from './lobby/containers/MainPageContainer';
 import Navbar from './lobby/components/Navbar';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/browser" component={Navbar}>
-        <Route path="Home" component={MainPage} />
+      <Route path="/" component={Navbar}>
+        <Route path="Home" component={MainPageContainer} />
         <IndexRedirect to="Home" />
       </Route>
     </Router>

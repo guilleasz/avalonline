@@ -1,10 +1,10 @@
 import React from 'react';
 
-const MainPage = () => (
+const MainPage = ({ addLobby }) => (
   <div className="lobbyhome">
     <div>
       <h3>Welcome to the Spacialon Main Page!~</h3>
-      <button type="button">Create Lobby</button>
+      <button type="button" onClick={addLobby}>Create Lobby</button>
     </div>
   </div>
 );
