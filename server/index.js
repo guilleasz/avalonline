@@ -12,6 +12,7 @@ module.exports = app;
 app
   .use(morgan('dev'))
   .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(path.join(__dirname, 'public/assets')))
   .use(express.static(path.join(__dirname, '..', 'node_modules')))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
