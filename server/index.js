@@ -4,10 +4,21 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const firebase = require('firebase');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 module.exports = app;
+
+const config = {
+    apiKey: 'AIzaSyBElq6GNRBb9jWUN_bo3Z9BO8ylM5QceSo',
+    authDomain: 'spacialon.firebaseapp.com',
+    databaseURL: 'https://spacialon.firebaseio.com',
+    projectId: 'spacialon',
+    storageBucket: 'spacialon.appspot.com',
+    messagingSenderId: '222055391136',
+  };
+firebase.initializeApp(config);
 
 app
   .use(morgan('dev'))
@@ -16,13 +27,18 @@ app
   .use(express.static(path.join(__dirname, '..', 'node_modules')))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .use(passport.initialize())
-  .use(passport.session())
-  .use('/api', require('./api'))
+  .use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  }))
   .use((req, res, next) =>
-    path.extname(req.path).length > 0 ? res.status(404).send('Not found') : next())
-  .use('/mobile', (req, res) =>
+    (path.extname(req.path).length > 0 ? res.status(404).send('Not found') : next()))
+  .use('/mobile', (req, res) => {
+    if(req.session.id)
+
     res.sendFile(path.join(__dirname, 'public/indexMobile.html')))
+  }
   .use('/browser', (req, res) =>
     res.sendFile(path.join(__dirname, 'public/indexBrowser.html')))
   .use((err, req, res, next) => {
