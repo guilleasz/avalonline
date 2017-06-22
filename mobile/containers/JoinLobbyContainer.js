@@ -27,6 +27,7 @@ export default class JoinLobbyContainer extends React.Component {
     return (<JoinLobby
       handleChange={this.handleChange}
       joinLobby={this.joinLobby}
+      lobbyValue={this.state.lobbyValue}
     />);
   }
 }
