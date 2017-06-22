@@ -1,9 +1,11 @@
-
 module.exports = {
-  entry: './browser/index.js',
+  entry: {
+    browser: './browser/index.js',
+    mobile: './mobile/index.js',
+  },
   output: {
     path: __dirname,
-    filename: './server/public/javascript/bundle.js',
+    filename: './server/public/javascript/[name].js',
   },
   devtool: 'source-map',
   module: {
