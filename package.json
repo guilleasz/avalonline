@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-core/register -w specs/**/*.spec.js ",
     "start": "webpack -w & nodemon server"
   },
   "repository": {
@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.1",
     "express-session": "^1.15.3",
     "firebase": "^4.1.3",
+    "jquery": "^3.2.1",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "react": "^15.4.2",
@@ -31,7 +33,7 @@
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^6.2.10",
-    "babel-preset-es2017": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
@@ -43,10 +45,16 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
+    "file-loader": "^0.11.2",
     "mocha": "^3.3.0",
     "node-sass": "^4.5.0",
+    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.0",
+    "sinon": "^2.3.5",
+    "sinon-chai": "^2.11.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.9",
     "webpack": "^2.2.1"
   },
   "author": "",
