@@ -17,8 +17,6 @@ class LobbyContainer extends React.Component {
   setNickname() {
     const lobbyId = this.props.routeParams.lobbyId;
     const name = this.state.name;
-    console.log(name);
-    console.log(lobbyId);
     this.props.firebase.push(`/${lobbyId}/players`, { name });
   }
 

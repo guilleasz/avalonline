@@ -58508,6 +58508,10 @@ var _MainPageContainer = __webpack_require__(304);
 
 var _MainPageContainer2 = _interopRequireDefault(_MainPageContainer);
 
+var _LobbyContainer = __webpack_require__(308);
+
+var _LobbyContainer2 = _interopRequireDefault(_LobbyContainer);
+
 var _Navbar = __webpack_require__(298);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
@@ -58524,6 +58528,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _reactRouter.Route,
       { path: '/', component: _Navbar2.default },
       _react2.default.createElement(_reactRouter.Route, { path: 'Home', component: _MainPageContainer2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'play/:lobbyId', component: _LobbyContainer2.default }),
       _react2.default.createElement(_reactRouter.IndexRedirect, { to: 'Home' })
     )
   )
@@ -58715,7 +58720,7 @@ var MainPageContainer = function (_React$Component) {
     value: function addLobby() {
       var lobbyId = Math.random().toString(36).substr(2, 5);
       this.props.firebase.update('/' + lobbyId, { lobbyId: lobbyId });
-      _reactRouter.browserHistory.push(lobbyId);
+      _reactRouter.browserHistory.push('play/' + lobbyId);
     }
   }, {
     key: 'render',
@@ -58731,6 +58736,110 @@ var MainPageContainer = function (_React$Component) {
 var wrappedMainPageContainer = (0, _reactReduxFirebase.firebaseConnect)()(MainPageContainer);
 
 exports.default = wrappedMainPageContainer;
+
+/***/ }),
+/* 305 */,
+/* 306 */,
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Lobby = function Lobby(_ref) {
+  var players = _ref.players;
+  return _react2.default.createElement(
+    'div',
+    null,
+    players && Object.keys(players).map(function (id) {
+      return _react2.default.createElement(
+        'h1',
+        { key: id },
+        players[id].name
+      );
+    })
+  );
+};
+
+exports.default = Lobby;
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Lobby = __webpack_require__(307);
+
+var _Lobby2 = _interopRequireDefault(_Lobby);
+
+var _reactRedux = __webpack_require__(247);
+
+var _reactReduxFirebase = __webpack_require__(239);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LobbyContainer = function (_React$Component) {
+  _inherits(LobbyContainer, _React$Component);
+
+  function LobbyContainer() {
+    _classCallCheck(this, LobbyContainer);
+
+    return _possibleConstructorReturn(this, (LobbyContainer.__proto__ || Object.getPrototypeOf(LobbyContainer)).apply(this, arguments));
+  }
+
+  _createClass(LobbyContainer, [{
+    key: 'render',
+    value: function render() {
+      var players = this.props.players;
+
+      return _react2.default.createElement(_Lobby2.default, { players: players });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log(this.props);
+    }
+  }]);
+
+  return LobbyContainer;
+}(_react2.default.Component);
+
+var wrappedLobbyContainer = (0, _reactReduxFirebase.firebaseConnect)(['/'])(LobbyContainer);
+
+exports.default = (0, _reactRedux.connect)(function (_ref, ownProps) {
+  var firebase = _ref.firebase;
+  return {
+    players: (0, _reactReduxFirebase.dataToJS)(firebase, ownProps.routeParams.lobbyId + '/players')
+  };
+})(wrappedLobbyContainer);
 
 /***/ })
 /******/ ]);
