@@ -1,7 +1,7 @@
 import React from 'react';
-import Lobby from '../components/Lobby';
-import { firebaseConnect } from 'react-redux-firebase';
+import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import { connect } from 'react-redux';
+import Lobby from '../components/Lobby';
 
 class LobbyContainer extends React.Component {
   constructor(props) {
@@ -18,8 +18,8 @@ class LobbyContainer extends React.Component {
   setNickname() {
     const lobbyId = this.props.routeParams.lobbyId;
     const { name } = this.state;
-    const { currentPlayer } = this.props;
-    this.props.firebase.update(`/${lobbyId}/players/${currentPlayer}`, { name });
+    const { playerId } = this.props;
+    this.props.firebase.update(`/${lobbyId}/players/${playerId}`, { name });
   }
 
   handleChange(name) {
@@ -31,12 +31,14 @@ class LobbyContainer extends React.Component {
       handleChange={this.handleChange}
       setNickname={this.setNickname}
       name={this.state.name}
+      nickname={this.props.playerInfo && this.props.playerInfo.name}
     />);
   }
 }
 
 const wrappedLobbyContainer = firebaseConnect(['/'])(LobbyContainer);
 
-export default connect(({ currentPlayer }) => ({
-  currentPlayer,
+export default connect(({ firebase, currentPlayer }, { params }) => ({
+  playerInfo: dataToJS(firebase, `${params.lobbyId}/players/${currentPlayer}`),
+  playerId: currentPlayer,
 }))(wrappedLobbyContainer);
