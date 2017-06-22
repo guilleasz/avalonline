@@ -58719,7 +58719,7 @@ var MainPageContainer = function (_React$Component) {
     key: 'addLobby',
     value: function addLobby() {
       var lobbyId = Math.random().toString(36).substr(2, 5);
-      this.props.firebase.update('/' + lobbyId, { lobbyId: lobbyId });
+      this.props.firebase.update('/' + lobbyId, { lobbyId: lobbyId, started: false });
       _reactRouter.browserHistory.push('play/' + lobbyId);
     }
   }, {
@@ -58754,20 +58754,70 @@ var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _GameBoardContainer = __webpack_require__(310);
+
+var _GameBoardContainer2 = _interopRequireDefault(_GameBoardContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Lobby = function Lobby(_ref) {
-  var players = _ref.players;
-  return _react2.default.createElement(
+  var players = _ref.players,
+      lobbyId = _ref.lobbyId,
+      startGame = _ref.startGame,
+      started = _ref.started;
+  return !started ? _react2.default.createElement(
     'div',
     null,
-    players && Object.keys(players).map(function (id) {
-      return _react2.default.createElement(
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
         'h1',
-        { key: id },
-        players[id].name
-      );
-    })
+        null,
+        'Visit ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          'TEMPURL/mobile'
+        ),
+        ' and enter code ',
+        _react2.default.createElement(
+          'strong',
+          null,
+          lobbyId
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'h2',
+        null,
+        'Players in Lobby:'
+      ),
+      players && Object.keys(players).map(function (id) {
+        return _react2.default.createElement(
+          'h2',
+          { key: id },
+          players[id].name
+        );
+      })
+    ),
+    _react2.default.createElement(
+      'button',
+      { onClick: startGame },
+      'Start Game!'
+    )
+  ) : _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'GAME STARTED'
+    ),
+    _react2.default.createElement(_GameBoardContainer2.default, { lobbyId: lobbyId })
   );
 };
 
@@ -58812,20 +58862,33 @@ var LobbyContainer = function (_React$Component) {
   function LobbyContainer() {
     _classCallCheck(this, LobbyContainer);
 
-    return _possibleConstructorReturn(this, (LobbyContainer.__proto__ || Object.getPrototypeOf(LobbyContainer)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (LobbyContainer.__proto__ || Object.getPrototypeOf(LobbyContainer)).call(this));
+
+    _this.startGame = _this.startGame.bind(_this);
+    return _this;
   }
 
   _createClass(LobbyContainer, [{
-    key: 'render',
-    value: function render() {
-      var players = this.props.players;
+    key: 'startGame',
+    value: function startGame() {
+      var lobbyId = this.props.lobbyId;
 
-      return _react2.default.createElement(_Lobby2.default, { players: players });
+      this.props.firebase.update('/' + lobbyId + '/', { started: true });
     }
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      console.log(this.props);
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          players = _props.players,
+          lobbyId = _props.lobbyId,
+          started = _props.started;
+
+      return _react2.default.createElement(_Lobby2.default, {
+        started: started,
+        players: players,
+        lobbyId: lobbyId,
+        startGame: this.startGame
+      });
     }
   }]);
 
@@ -58837,9 +58900,112 @@ var wrappedLobbyContainer = (0, _reactReduxFirebase.firebaseConnect)(['/'])(Lobb
 exports.default = (0, _reactRedux.connect)(function (_ref, ownProps) {
   var firebase = _ref.firebase;
   return {
-    players: (0, _reactReduxFirebase.dataToJS)(firebase, ownProps.routeParams.lobbyId + '/players')
+    players: (0, _reactReduxFirebase.dataToJS)(firebase, ownProps.routeParams.lobbyId + '/players'),
+    started: (0, _reactReduxFirebase.dataToJS)(firebase, ownProps.routeParams.lobbyId + '/started'),
+    lobbyId: ownProps.routeParams.lobbyId
   };
 })(wrappedLobbyContainer);
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Lobby = function Lobby(_ref) {
+  var lobbyId = _ref.lobbyId;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'THIS IS THE GAMEBOARD BRUH! FOR LOBBY ',
+      lobbyId
+    )
+  );
+};
+
+exports.default = Lobby;
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _GameBoard = __webpack_require__(309);
+
+var _GameBoard2 = _interopRequireDefault(_GameBoard);
+
+var _reactRedux = __webpack_require__(247);
+
+var _reactReduxFirebase = __webpack_require__(239);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GameBoardContainer = function (_React$Component) {
+  _inherits(GameBoardContainer, _React$Component);
+
+  function GameBoardContainer() {
+    _classCallCheck(this, GameBoardContainer);
+
+    return _possibleConstructorReturn(this, (GameBoardContainer.__proto__ || Object.getPrototypeOf(GameBoardContainer)).apply(this, arguments));
+  }
+
+  _createClass(GameBoardContainer, [{
+    key: 'render',
+
+    // constructor(){
+    //   super();
+    // }
+    value: function render() {
+      var lobbyId = this.props.lobbyId;
+
+      return _react2.default.createElement(_GameBoard2.default, { lobbyId: lobbyId });
+    }
+  }]);
+
+  return GameBoardContainer;
+}(_react2.default.Component);
+
+var wrappedGameBoardContainer = (0, _reactReduxFirebase.firebaseConnect)(['/'])(GameBoardContainer);
+
+exports.default = (0, _reactRedux.connect)(function (_ref, ownProps) {
+  var firebase = _ref.firebase;
+  return {
+    players: (0, _reactReduxFirebase.dataToJS)(firebase, ownProps.lobbyId + '/players'),
+    lobbyId: ownProps.lobbyId
+  };
+})(wrappedGameBoardContainer);
 
 /***/ })
 /******/ ]);
