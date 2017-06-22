@@ -5,5 +5,5 @@ secrets.js
 yarn.lock
 .DS_Store
 npm-debug.log
-server/public/javascript
+server/public/javascript/
 package-lock.json

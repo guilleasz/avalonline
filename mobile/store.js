@@ -1,10 +1,7 @@
-import { createStore, combineReducers, compose } from 'redux';
-import { reactReduxFirebase, firebaseStateReducer } from 'react-redux-firebase';
-
-// Add Firebase to reducers
-const rootReducer = combineReducers({
-  firebase: firebaseStateReducer,
-});
+import { createStore, compose, applyMiddleware } from 'redux';
+import { reactReduxFirebase } from 'react-redux-firebase';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 /* eslint-disable no-underscore-dangle */
 let composeEnhancers;
@@ -28,6 +25,7 @@ const firebaseConfig = {
 
 
 const createStoreWithFirebase = composeEnhancers(
+    applyMiddleware([thunk]),
     reactReduxFirebase(firebaseConfig),
   )(createStore);
 
