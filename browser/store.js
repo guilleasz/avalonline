@@ -25,9 +25,12 @@ const firebaseConfig = {
   messagingSenderId: '222055391136',
 };
 // Add redux Firebase to compose
-const createStoreWithFirebase = composeEnhancers(
-  reactReduxFirebase(firebaseConfig),
-)(createStore);
 
-// Create store with reducers and initial state
+
+const createStoreWithFirebase = composeEnhancers(
+    reactReduxFirebase(firebaseConfig),
+  )(createStore);
+
+  // Create store with reducers and initial state
 export default createStoreWithFirebase(rootReducer);
+

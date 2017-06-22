@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function mainpage () {
-
+export default function MainPage(props) {
   return (
     <div className="lobbyhome">
       <div>
