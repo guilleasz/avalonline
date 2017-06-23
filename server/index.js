@@ -3,7 +3,6 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const passport = require('passport');
 const firebase = require('firebase');
 
 const PORT = process.env.PORT || 8080;
