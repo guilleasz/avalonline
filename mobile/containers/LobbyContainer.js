@@ -32,6 +32,8 @@ class LobbyContainer extends React.Component {
       setNickname={this.setNickname}
       name={this.state.name}
       nickname={this.props.playerInfo && this.props.playerInfo.name}
+      started={this.props.started}
+      params={this.props.params}
     />);
   }
 }
@@ -41,4 +43,5 @@ const wrappedLobbyContainer = firebaseConnect(['/'])(LobbyContainer);
 export default connect(({ firebase, currentPlayer }, { params }) => ({
   playerInfo: dataToJS(firebase, `${params.lobbyId}/players/${currentPlayer}`),
   playerId: currentPlayer,
+  started: dataToJS(firebase, `${params.lobbyId}/started`),
 }))(wrappedLobbyContainer);

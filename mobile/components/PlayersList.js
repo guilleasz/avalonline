@@ -1,9 +1,10 @@
 import React from 'react';
 import PlayerItem from './PlayerItem';
+import firebase from 'firebase';
 
 const PlayerList = ({ players, currentPlayer }) => (
   <div>
-    {players.map(player => (<PlayerItem
+    {players && players.map(player => (<PlayerItem
       player={player}
       currentPlayer={currentPlayer}
       key={player.uid}
