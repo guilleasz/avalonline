@@ -6,15 +6,11 @@ import PlayerDisplayTurn from '../components/PlayerDisplayTurn';
 class PlayerDisplayTurnContainer extends React.Component {
 
   render() {
-    const { players } = this.props;
+    const { players, turnOrder } = this.props;
     return (
       <div>
         <h1>Turn Order</h1>
-        {
-          players && Object.keys(players)
-          .sort((a, b) => players[a].turnIndex - players[b.turnIndex])
-          .map(id => (<PlayerDisplayTurn key={id} player={players[id]} />))
-        }
+        { turnOrder.map(id => <PlayerDisplayTurn key={id} player={players[id]} />) }
       </div>
     );
   }
@@ -24,5 +20,6 @@ const wrappedPlayerDisplayTurnContainer = firebaseConnect(['/'])(PlayerDisplayTu
 
 export default connect(({ firebase }, ownProps) => ({
   players: dataToJS(firebase, `${ownProps.lobbyId}/players`),
+  turnOrder: dataToJS(firebase, `${ownProps.lobbyId}/gameState/turnOrder`),
   lobbyId: ownProps.lobbyId,
 }))(wrappedPlayerDisplayTurnContainer);
