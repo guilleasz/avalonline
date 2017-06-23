@@ -1,6 +1,5 @@
 import React from 'react';
 import PlayerItem from './PlayerItem';
-import firebase from 'firebase';
 
 const PlayerList = ({ players, currentPlayer }) => (
   <div>
