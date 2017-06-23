@@ -1,10 +1,11 @@
 import React from 'react';
-import Lobby from '../components/Lobby';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
+import Lobby from '../components/Lobby';
+
 
 class LobbyContainer extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.startGame = this.startGame.bind(this);
   }
