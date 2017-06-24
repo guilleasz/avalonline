@@ -63,7 +63,7 @@ describe('AddToQuestButton Component', () => {
     />);
     expect(wrapper.find('button').length).to.equal(1);
   });
-  it('should call the addPlayerToQuest function with the id of the player when clicked', () => {
+  it('should call the addToQuest function with the id of the player when clicked', () => {
     const spy = sinon.spy();
     const wrapper = shallow(<AddToQuestButton
       state="choosing"
@@ -72,7 +72,7 @@ describe('AddToQuestButton Component', () => {
       numPlayersOnQuest={3}
       questPlayers={['player2', 'player3']}
       playerId="player1"
-      addPlayerToQuest={spy}
+      addToQuest={spy}
     />);
     wrapper.find('button').simulate('click');
     expect(spy).to.have.been.called; // eslint-disable-line no-unused-expressions
