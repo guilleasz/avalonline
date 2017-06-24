@@ -17,11 +17,33 @@ const getInfo = (playerRole, currentPlayerRole, special, currentPlayerSpecial) =
   if (currentPlayerSpecial === MERLIN) return isMerlin(special, playerRole);
   return 'No Info';
 };
+const isPercivalClass = special =>
+  (special === MERLIN || special === MORGANA ? `percival` : 'noInfo');
 
+const isMerlinClass = (special, playerRole) =>
+  (special !== MORDERED && playerRole === 'bad' ? 'evil' : 'noInfo');
+
+const isEvilClass = (special, currentPlayerSpecial, playerRole) =>
+  ((special !== OBERON && currentPlayerSpecial !== OBERON) && playerRole === 'bad' ?
+    'evil' : 'noInfo');
+
+
+const getClass = (playerRole, currentPlayerRole, special, currentPlayerSpecial) => {
+  if (currentPlayerSpecial === PERCIVAL) return isPercivalClass(special);
+  if (currentPlayerRole === 'bad') return isEvilClass(special, currentPlayerSpecial, playerRole);
+  if (currentPlayerSpecial === MERLIN) return isMerlinClass(special, playerRole);
+  return 'noInfo';
+};
 
 const PlayerExtraInfoItem = ({ playerRole, currentPlayerRole, special, currentPlayerSpecial }) => (
-  <div>
-    <p className="info">{getInfo(playerRole, currentPlayerRole, special, currentPlayerSpecial)}</p>
+  <div className="col-xs-3">
+    <p
+      className={
+        `info ${getClass(playerRole, currentPlayerRole, special, currentPlayerSpecial)}`
+      }
+    >
+      {getInfo(playerRole, currentPlayerRole, special, currentPlayerSpecial)}
+    </p>
   </div>
 );
 

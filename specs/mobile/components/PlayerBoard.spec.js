@@ -17,6 +17,7 @@ describe('PlayerBoard', () => {
     gameState: 'hello',
     removeFromQuest: 'removeFromQuest',
     addToQuest: 'addToQuest',
+    confirmQuest: 'confirmQuest',
   };
   it('should render the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -44,9 +45,10 @@ describe('PlayerBoard', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayersList).prop('gameState')).to.equal('hello');
   });
-  it('should pass the addToQuest and removeFromQuest into the PlayersList', () => {
+  it('should pass the addToQuest, removeFromQuest and confirmQuest into the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayersList).prop('addToQuest')).to.equal('addToQuest');
     expect(wrapper.find(PlayersList).prop('removeFromQuest')).to.equal('removeFromQuest');
+    expect(wrapper.find(PlayersList).prop('confirmQuest')).to.equal('confirmQuest');
   });
 });

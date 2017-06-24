@@ -11,8 +11,8 @@ const RemoveFromQuestButton = ({
   state === 'choosing' &&
   questLeader === currentPlayerId &&
   questPlayers && questPlayers.includes(playerId) ?
-    <div>
-      <button onClick={() => removeFromQuest(playerId)}>x</button>
+    <div className="col-xs-2">
+      <button className="removeFromQuest" onClick={() => removeFromQuest(playerId)}>x</button>
     </div>
     : null
 );

@@ -9,6 +9,7 @@ const PlayerBoard = ({
   gameState,
   addToQuest,
   removeFromQuest,
+  confirmQuest,
 }) => (
   <div>
     <PlayersList
@@ -17,6 +18,7 @@ const PlayerBoard = ({
       gameState={gameState}
       addToQuest={addToQuest}
       removeFromQuest={removeFromQuest}
+      confirmQuest={confirmQuest}
     />
   </div>
 );

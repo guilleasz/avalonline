@@ -9,6 +9,7 @@ class PlayerBoardContainer extends React.Component {
     super(props);
     this.addToQuest = this.addToQuest.bind(this);
     this.removeFromQuest = this.removeFromQuest.bind(this);
+    this.confirmQuest = this.confirmQuest.bind(this);
   }
 
   addToQuest(playerId) {
@@ -20,6 +21,12 @@ class PlayerBoardContainer extends React.Component {
     const { params } = this.props;
     this.props.firebase.remove(`/${params.lobbyId}/gameState/questPlayers/${playerId}`);
   }
+
+  confirmQuest() {
+    const { params } = this.props;
+    this.props.firebase.update(`/${params.lobbyId}/gameState/`, { state: 'voting' });
+  }
+
   render() {
     const { players, turnOrder, currentPlayer, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -30,6 +37,7 @@ class PlayerBoardContainer extends React.Component {
       gameState={gameState}
       addToQuest={this.addToQuest}
       removeFromQuest={this.removeFromQuest}
+      confirmQuest={this.confirmQuest}
     />);
   }
 }

@@ -32,6 +32,15 @@ describe('PlayerItem component', () => {
     const wrapper = shallow(<PlayerItem {...props} />);
     expect(wrapper.find(PlayerNameItem).props().name).to.equal('Guille');
   });
+  it('should pass the questLeader and the playerId as props of PlayerNameItem', () => {
+    const wrapper = shallow(<PlayerItem {...props} />);
+    expect(wrapper.find(PlayerNameItem).props().playerId).to.equal('player1');
+    expect(wrapper.find(PlayerNameItem).props().questLeader).to.equal('player2');
+  });
+  it('should pass the questPlayers as an array to PlayerNameItem', () => {
+    const wrapper = shallow(<PlayerItem {...props} />);
+    expect(wrapper.find(PlayerNameItem).props().questPlayers[0]).to.equal('player1');
+  });
   it('should render the PlayerExtraInfoItem', () => {
     const wrapper = shallow(<PlayerItem {...props} />);
     expect(wrapper.find(PlayerExtraInfoItem).length).to.equal(1);

@@ -16,8 +16,13 @@ const PlayerItem = ({
   addToQuest,
   removeFromQuest,
 }) => (
-  <div>
-    <PlayerNameItem name={player.name} />
+  <div className="row playerItem">
+    <PlayerNameItem
+      name={player.name}
+      playerId={player.uid}
+      questLeader={questLeader}
+      questPlayers={questPlayers && Object.keys(questPlayers)}
+    />
     <PlayerExtraInfoItem
       special={player.special}
       playerRole={player.role}

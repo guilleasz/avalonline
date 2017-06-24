@@ -13,8 +13,8 @@ const AddToQuestButton = ({
   currentPlayerId === questLeader &&
   (!questPlayers || numPlayersOnQuest > questPlayers.length) &&
   (!questPlayers || !questPlayers.includes(playerId)) ?
-    <div>
-      <button onClick={() => addToQuest(playerId)}>+</button>
+    <div className="col-xs-2">
+      <button className="addToQuest" onClick={() => addToQuest(playerId)}>+</button>
     </div>
     : null
 );
