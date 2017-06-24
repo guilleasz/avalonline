@@ -13,6 +13,10 @@ describe('PlayerBoard', () => {
     },
     turnOrder: ['player3', 'player2', 'player1'],
     currentPlayer: { name: 'Guille' },
+    currentPlayerId: 'player1',
+    gameState: 'hello',
+    removeFromQuest: 'removeFromQuest',
+    addToQuest: 'addToQuest',
   };
   it('should render the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -27,5 +31,22 @@ describe('PlayerBoard', () => {
   it('should pass the currentPlayer into the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayersList).prop('currentPlayer').name).to.equal('Guille');
+  });
+  it('should pass the id of the player inside the players array', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayersList).prop('players')[0].uid).to.equal('player3');
+  });
+  it('should pass the id of the currentPlayer inside currentPlayer', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayersList).prop('currentPlayer').uid).to.equal('player1');
+  });
+  it('should pass the gameState into the PlayersList', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayersList).prop('gameState')).to.equal('hello');
+  });
+  it('should pass the addToQuest and removeFromQuest into the PlayersList', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayersList).prop('addToQuest')).to.equal('addToQuest');
+    expect(wrapper.find(PlayersList).prop('removeFromQuest')).to.equal('removeFromQuest');
   });
 });

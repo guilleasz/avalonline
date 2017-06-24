@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddToQuestButton = ({
-  addPlayerToQuest,
+  addToQuest,
   playerId,
   state,
   currentPlayerId,
@@ -11,10 +11,10 @@ const AddToQuestButton = ({
 }) => (
   state === 'choosing' &&
   currentPlayerId === questLeader &&
-  numPlayersOnQuest > questPlayers.length &&
-  !questPlayers.includes(playerId) ?
+  (!questPlayers || numPlayersOnQuest > questPlayers.length) &&
+  (!questPlayers || !questPlayers.includes(playerId)) ?
     <div>
-      <button onClick={() => addPlayerToQuest(playerId)}>+</button>
+      <button onClick={() => addToQuest(playerId)}>+</button>
     </div>
     : null
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 
-const RemoveFromQuestButton = ({ removeFromQuest,
+const RemoveFromQuestButton = ({
+  removeFromQuest,
   playerId,
   state,
   questLeader,
@@ -9,7 +10,7 @@ const RemoveFromQuestButton = ({ removeFromQuest,
 }) => (
   state === 'choosing' &&
   questLeader === currentPlayerId &&
-  questPlayers.includes(playerId) ?
+  questPlayers && questPlayers.includes(playerId) ?
     <div>
       <button onClick={() => removeFromQuest(playerId)}>x</button>
     </div>

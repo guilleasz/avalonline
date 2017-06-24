@@ -1,12 +1,14 @@
 import React from 'react';
 import PlayerItem from './PlayerItem';
-import firebase from 'firebase';
 
-const PlayerList = ({ players, currentPlayer }) => (
+const PlayerList = ({ players, currentPlayer, gameState, addToQuest, removeFromQuest }) => (
   <div>
     {players && players.map(player => (<PlayerItem
       player={player}
       currentPlayer={currentPlayer}
+      gameState={{ ...gameState, questLeader: players[gameState.questLeader].uid }}
+      addToQuest={addToQuest}
+      removeFromQuest={removeFromQuest}
       key={player.uid}
     />))}
   </div>

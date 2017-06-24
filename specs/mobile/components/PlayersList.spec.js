@@ -12,6 +12,9 @@ describe('PlayersList component', () => {
       { uid: 'player3', special: 'Oberon', role: 'bad' },
     ],
     currentPlayer: { special: 'Mordered', role: 'bad' },
+    gameState: 'Hello',
+    addToQuest: 'addToQuest',
+    removeFromQuest: 'removeFromQuest'
   };
   it('should render a PlayerItem for each player', () => {
     const wrapper = shallow(<PlayersList {...props} />);
@@ -28,5 +31,15 @@ describe('PlayersList component', () => {
   it('should give us the key the uid', () => {
     const wrapper = shallow(<PlayersList {...props} />);
     expect(wrapper.find(PlayerItem).first().key()).to.equal('player1');
+  });
+  it('should pass the game state to eache playerItem', () => {
+    const wrapper = shallow(<PlayersList {...props} />);
+    expect(wrapper.find(PlayerItem).first().prop('gameState')).to.equal('Hello');
+  });
+  it('should pass the addToQuest and RemoveFromQuest fn', () => {
+    const wrapper = shallow(<PlayersList {...props} />);
+    expect(wrapper.find(PlayerItem).first().prop('addToQuest')).to.equal('addToQuest');
+    expect(wrapper.find(PlayerItem).first().prop('removeFromQuest')).to.equal('removeFromQuest');
+
   });
 });
