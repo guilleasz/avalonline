@@ -10,7 +10,9 @@ class PlayerDisplayTurnContainer extends React.Component {
     return (
       <div>
         <h1>Turn Order</h1>
-        { turnOrder.map(id => <PlayerDisplayTurn key={id} player={players[id]} />) }
+        <div className="flex-container">
+          { turnOrder.map(id => <PlayerDisplayTurn key={id} player={players[id]} />) }
+        </div>
       </div>
     );
   }
