@@ -103,7 +103,7 @@ class PlayerBoardContainer extends React.Component {
   }
 
   quest(vote) {
-    const { params, firebase, currentPlayerId } = this.props;
+    const { params, firebase, currentPlayerId, players } = this.props;
     firebase.update(
       `/${params.lobbyId}/gameState/questSuccessVote`,
       { [currentPlayerId]: vote },
@@ -114,22 +114,21 @@ class PlayerBoardContainer extends React.Component {
         const {
           questSuccessVote,
           questPlayers,
-          numsOfRejectsNeeded,
+          numOfRejectsNeeded,
           roundHistory,
           voteHistory,
           turnOrder,
           questLeader,
           questApprovalVote,
           lady,
-          players,
         } = snapshot.val();
         if (questSuccessVote &&
            Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
           const result = Object.keys(questSuccessVote)
-          .reduce((total, player) => total + questSuccessVote[player]);
-          const veredict = numsOfRejectsNeeded > result ? 'pass' : 'fail';
+          .reduce((total, player) => total + questSuccessVote[player], 0);
+          const veredict = numOfRejectsNeeded > result ? 'pass' : 'fail';
           const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
-          const voteNum = ((voteHistory && voteHistory.length) || 0) + 1;
+          const voteNum = ((voteHistory && voteHistory.length) || 1);
           firebase.update(
             `${params.lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
             {
@@ -141,7 +140,7 @@ class PlayerBoardContainer extends React.Component {
           );
           const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
           const totalPlayers = Object.keys(players).length;
-          const round = Object.keys(roundHistory).length + 1;
+          const round = (roundHistory && Object.keys(roundHistory).length + 2) || 2;
           firebase.update(
             `/${params.lobbyId}/gameState`,
             {
@@ -149,10 +148,11 @@ class PlayerBoardContainer extends React.Component {
               questLeader: nextTurn,
               roundHistory: [...(roundHistory || []), [veredict, result]],
               numPlayersOnQuest: howManyPlayersOnQuest(totalPlayers, round),
-              numsOfRejectsNeeded: questNeedsTwoFails(totalPlayers, round) ? 2 : 1,
+              numOfRejectsNeeded: questNeedsTwoFails(totalPlayers, round) ? 2 : 1,
               questPlayers: null,
               questApprovalVote: null,
               questSuccessVote: null,
+              voteHistory: null,
             },
           );
         }
