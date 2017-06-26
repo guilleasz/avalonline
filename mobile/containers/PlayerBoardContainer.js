@@ -12,6 +12,8 @@ class PlayerBoardContainer extends React.Component {
     this.confirmQuest = this.confirmQuest.bind(this);
     this.approveQuest = this.approveQuest.bind(this);
     this.rejectQuest = this.rejectQuest.bind(this);
+    this.successQuest = this.successQuest.bind(this);
+    this.failQuest = this.failQuest.bind(this);
   }
 
   addToQuest(playerId) {
@@ -59,7 +61,8 @@ class PlayerBoardContainer extends React.Component {
           turnOrder,
         } = snapshot.val();
 
-        if (Object.keys(questApprovalVote).length === Object.keys(players).length) {
+        if (questApprovalVote &&
+            Object.keys(questApprovalVote).length === Object.keys(players).length) {
           const result = Object.keys(questApprovalVote)
           .reduce((total, player) => total + (questApprovalVote[player] ? 1 : -1), 0);
           if (result > 0) {
@@ -90,6 +93,68 @@ class PlayerBoardContainer extends React.Component {
       });
     });
   }
+
+  successQuest() {
+    this.quest(false);
+  }
+
+  failQuest() {
+    this.quest(true);
+  }
+
+  quest(vote) {
+    const { params, firebase, currentPlayerId } = this.props;
+    firebase.update(
+      `/${params.lobbyId}/gameState/questSuccessVote`,
+      { [currentPlayerId]: vote },
+    )
+    .then(() => {
+      firebase.ref(`/${params.lobbyId}/gameState`)
+      .once('value', (snapshot) => {
+        const {
+          questSuccessVote,
+          questPlayers,
+          numsOfRejectsNeeded,
+          roundHistory,
+          voteHistory,
+          turnOrder,
+          questLeader,
+          questApprovalVote,
+          lady,
+        } = snapshot.val();
+        if (questSuccessVote &&
+           Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
+          const result = Object.keys(questSuccessVote)
+          .reduce((total, player) => total + questSuccessVote[player]);
+          const veredict = numsOfRejectsNeeded > result ? 'pass' : 'fail';
+          const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
+          const voteNum = ((voteHistory && voteHistory.length) || 0) + 1;
+          firebase.update(
+            `${params.lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
+            {
+              questPlayers,
+              questLeader: turnOrder[questLeader],
+              questApprovalVote,
+              questResult: [veredict, result],
+            },
+          );
+          const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
+
+          firebase.update(
+            `/${params.lobbyId}/gameState`,
+            {
+              state: lady && roundHistory ? 'lady' : 'choosing',
+              questLeader: nextTurn,
+              roundHistory: [...(roundHistory || []), [veredict, result]],
+              questPlayers: null,
+              questApprovalVote: null,
+            },
+          );
+        }
+      });
+    });
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -103,6 +168,8 @@ class PlayerBoardContainer extends React.Component {
       confirmQuest={this.confirmQuest}
       approveQuest={this.approveQuest}
       rejectQuest={this.rejectQuest}
+      successQuest={this.successQuest}
+      failQuest={this.failQuest}
     />);
   }
 }
