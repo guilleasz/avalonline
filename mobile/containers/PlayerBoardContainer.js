@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import PlayerBoard from '../components/PlayerBoard';
-
+import { howManyPlayersOnQuest, questNeedsTwoFails } from '../../utils';
 
 class PlayerBoardContainer extends React.Component {
   constructor(props) {
@@ -121,6 +121,7 @@ class PlayerBoardContainer extends React.Component {
           questLeader,
           questApprovalVote,
           lady,
+          players,
         } = snapshot.val();
         if (questSuccessVote &&
            Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
@@ -139,15 +140,19 @@ class PlayerBoardContainer extends React.Component {
             },
           );
           const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
-
+          const totalPlayers = Object.keys(players).length;
+          const round = Object.keys(roundHistory).length + 1;
           firebase.update(
             `/${params.lobbyId}/gameState`,
             {
               state: lady && roundHistory ? 'lady' : 'choosing',
               questLeader: nextTurn,
               roundHistory: [...(roundHistory || []), [veredict, result]],
+              numPlayersOnQuest: howManyPlayersOnQuest(totalPlayers, round),
+              numsOfRejectsNeeded: questNeedsTwoFails(totalPlayers, round) ? 2 : 1,
               questPlayers: null,
               questApprovalVote: null,
+              questSuccessVote: null,
             },
           );
         }

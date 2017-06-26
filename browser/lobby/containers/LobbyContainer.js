@@ -2,17 +2,38 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import Lobby from '../components/Lobby';
-
+import { shuffle, generateChars, generateCharsFromEvent } from '../../../utils';
 
 class LobbyContainer extends React.Component {
   constructor() {
     super();
     this.startGame = this.startGame.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  startGame() {
-    const { lobbyId } = this.props;
-    this.props.firebase.update(`/${lobbyId}/`, { started: true });
+  startGame(goodChars, badChars) {
+    const { lobbyId, players, firebase } = this.props;
+    const playerIds = Object.keys(players);
+    const allChars = generateChars(playerIds.length, goodChars, badChars);
+    playerIds.forEach((playerId, i) => {
+      Object.assign(players[playerId], allChars[i]);
+    });
+    firebase.update(`/${lobbyId}/`, {
+      started: true,
+      gameState: {
+        roundHistory: ['', '', '', '', ''],
+        voteHistory: [''],
+        turnOrder: shuffle(Object.keys(this.props.players)),
+      },
+      players,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const specialChars = generateCharsFromEvent(e);
+    this.startGame(specialChars[0], specialChars[1]);
+    // console.log('handling submit');
   }
 
   render() {
@@ -21,7 +42,7 @@ class LobbyContainer extends React.Component {
       started={started}
       players={players}
       lobbyId={lobbyId}
-      startGame={this.startGame}
+      handleSubmit={this.handleSubmit}
     />);
   }
 }
