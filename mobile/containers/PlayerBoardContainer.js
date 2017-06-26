@@ -25,8 +25,16 @@ class PlayerBoardContainer extends React.Component {
   }
 
   confirmQuest() {
-    const { params, firebase } = this.props;
-    firebase.update(`/${params.lobbyId}/gameState/`, { state: 'voting' });
+    const { params, firebase, gameState } = this.props;
+    const { voteHistory } = gameState;
+
+    if (voteHistory.length === 4) {
+      firebase.update(`/${params.lobbyId}/gameState/`, {
+        state: 'questing',
+        voteHistory: [...voteHistory, 'pass'] });
+    } else {
+      firebase.update(`/${params.lobbyId}/gameState/`, { state: 'voting' });
+    }
   }
   approveQuest() {
     this.voteForQuest(true);
