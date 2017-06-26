@@ -48,6 +48,18 @@ describe('ConfirmButton Component', () => {
     />);
     expect(wrapper.find('button').length).to.equal(0);
   });
+   it('should not display if there are no players on the quest', () => {
+    const gameState = {
+      questLeader: 'player1',
+      numPlayersOnQuest: 3,
+      state: 'choosing',
+    };
+    const wrapper = shallow(<ConfirmButton
+      currentPlayer="player1"
+      gameState={gameState}
+    />);
+    expect(wrapper.find('button').length).to.equal(0);
+  });
   it('should display if all of the above are true', () => {
     const gameState = {
       questLeader: 'player1',
