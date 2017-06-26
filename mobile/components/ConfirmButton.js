@@ -11,6 +11,7 @@ const ConfirmButton = ({
   },
 }) => (
   currentPlayer === questLeader &&
+  questPlayers &&
   questPlayers.length === numPlayersOnQuest &&
   state === 'choosing' ?
     <div>
