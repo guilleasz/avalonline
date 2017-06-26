@@ -10,9 +10,11 @@ class RoundDisplayContainer extends React.Component {
     return (
       <div>
         <h1>Round Pass/Fail</h1>
-        {
-          roundHistory.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
-        }
+        <div className="flex-container">
+          {
+            roundHistory.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
+          }
+        </div>
       </div>
     );
   }
