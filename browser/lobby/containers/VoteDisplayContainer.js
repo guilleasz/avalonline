@@ -15,9 +15,11 @@ class VoteDisplayContainer extends React.Component {
     return (
       <div>
         <h1>Vote Pass/Fail</h1>
-        {
-          votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
-        }
+        <div className="flex-container">
+          {
+            votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
+          }
+        </div>
       </div>
     );
   }
