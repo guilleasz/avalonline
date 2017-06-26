@@ -1,3 +1,5 @@
+import 'bootstrap-loader';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -6,6 +8,9 @@ import store from './store';
 import JoinLobbyContainer from './containers/JoinLobbyContainer';
 import LobbyContainer from './containers/LobbyContainer';
 import { getPlayerId } from './actions';
+
+import './index.scss';
+
 
 const fetchPlayer = (roterState) => {
   store.dispatch(getPlayerId(roterState.params.lobbyId));

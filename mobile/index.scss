@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
+
+
+
+
+//**************************** PLAYER LIST ***********************//
+
+.playerList {
+  background: #104494;
+  border: 1px solid #a1e9f7;
+  border-radius: 15px;
+  margin: 0 10px;
+  color: white;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+
+}
+
+ .info {
+  font-size: 0.4em;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 3px;
+ }
+
+.noInfo {
+  background: grey;
+}
+
+.evil {
+  background: #b33a3a;
+}
+
+.percival {
+  background: #ffcc00;
+  color: white;
+}
+
+.playerItem {
+  border: 1px solid #a1e9f7;
+  padding: 5px 10px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.playerItem:first-child {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.playerItem:last-child {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.turn {
+  font-weight: 800;
+  border: 1px solid;
+  padding: 5px
+}
+.selected {
+  color: green
+}
+
+.addToQuest {
+  color: lightgreen;
+  background: transparent;
+  border-radius: 50px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  border-color: white;
+  padding: 0;
+
+}
+
+.removeFromQuest {
+  color: red;
+  background: transparent;
+  border-radius: 50px;
+  padding-bottom: 0.3em;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  border-color: white;
+  padding: 0;
+}
+
+.confirmQuest {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #66d9ef;
+  color: green;
+}

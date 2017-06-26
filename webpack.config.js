@@ -5,14 +5,10 @@ module.exports = {
     browser: [
       './browser/index.js',
       'jquery/dist/jquery.min.js',
-      'bootstrap/dist/js/bootstrap.min.js',
-      'bootstrap/dist/css/bootstrap.css',
     ],
     mobile: [
       './mobile/index.js',
       'jquery/dist/jquery.min.js',
-      'bootstrap/dist/js/bootstrap.min.js',
-      'bootstrap/dist/css/bootstrap.css',
     ],
   },
   output: {
@@ -33,18 +29,9 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-      },
-      {
-        test: /\.ncss$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000',
-      },
+      { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
+      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' },
     ],
   },
 };
