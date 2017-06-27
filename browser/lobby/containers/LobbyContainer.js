@@ -33,7 +33,6 @@ class LobbyContainer extends React.Component {
     e.preventDefault();
     const specialChars = generateCharsFromEvent(e);
     this.startGame(specialChars[0], specialChars[1]);
-    // console.log('handling submit');
   }
 
   render() {

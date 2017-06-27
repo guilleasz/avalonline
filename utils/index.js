@@ -20,12 +20,10 @@ export const generateChars = (numPlayers, goodChars, badChars) => {
     if (badChars[i]) allChars.push({ role: 'bad', special: badChars[i] });
     else allChars.push({ role: 'bad', special: false });
   }
-
   for (let i = 0; i < numGood; i++) {
     if (goodChars[i]) allChars.push({ role: 'good', special: goodChars[i] });
     else allChars.push({ role: 'good', special: false });
   }
-
   return shuffle(allChars);
 };
 
