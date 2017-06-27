@@ -3,6 +3,7 @@ import PlayerNameItem from './PlayerNameItem';
 import PlayerExtraInfoItem from './PlayerExtraInfoItem';
 import AddToQuestButton from './AddToQuestButton';
 import RemoveFromQuestButton from './RemoveFromQuestButton';
+import ChooseLady from './ChooseLady';
 
 const PlayerItem = ({
   player,
@@ -12,9 +13,11 @@ const PlayerItem = ({
     numPlayersOnQuest,
     state,
     questPlayers,
+    lady,
   },
   addToQuest,
   removeFromQuest,
+  selectLady,
 }) => (
   <div className="row playerItem">
     <PlayerNameItem
@@ -28,6 +31,13 @@ const PlayerItem = ({
       playerRole={player.role}
       currentPlayerSpecial={currentPlayer.special}
       currentPlayerRole={currentPlayer.role}
+    />
+    <ChooseLady
+      player={player.uid}
+      currentPlayer={currentPlayer.uid}
+      lady={lady}
+      state={state}
+      selectLady={selectLady}
     />
     <AddToQuestButton
       playerId={player.uid}

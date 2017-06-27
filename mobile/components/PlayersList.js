@@ -9,6 +9,7 @@ const PlayerList = ({
   addToQuest,
   removeFromQuest,
   confirmQuest,
+  selectLady,
 }) => (
   <div className="playerList">
     <ConfirmButton
@@ -27,6 +28,7 @@ const PlayerList = ({
       addToQuest={addToQuest}
       removeFromQuest={removeFromQuest}
       key={player.uid}
+      selectLady={selectLady}
     />))}
   </div>
 );

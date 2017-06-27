@@ -6,6 +6,7 @@ import PlayerNameItem from '../../../mobile/components/PlayerNameItem';
 import PlayerExtraInfoItem from '../../../mobile/components/PlayerExtraInfoItem';
 import AddToQuestButton from '../../../mobile/components/AddToQuestButton';
 import RemoveFromQuestButton from '../../../mobile/components/RemoveFromQuestButton';
+import ChooseLady from '../../../mobile/components/ChooseLady';
 
 describe('PlayerItem component', () => {
   const props = {
@@ -19,9 +20,11 @@ describe('PlayerItem component', () => {
         player1: true,
         player2: true,
       },
+      lady: 'player1',
     },
     addToQuest() { return 'addToQuest' },
     removeFromQuest() { return 'removeFromQuest' },
+    selectLady() { return 'selectLady'; }
   };
 
   it('should render the PlayerNameItem', () => {
@@ -93,5 +96,20 @@ describe('PlayerItem component', () => {
   it('should pass the removeFromquest Function', () => {
     const wrapper = shallow(<PlayerItem {...props} />);
     expect(wrapper.find(RemoveFromQuestButton).prop('removeFromQuest')()).to.equal('removeFromQuest');
+  });
+  it('should render the ChooseLady button', () => {
+    const wrapper = shallow(<PlayerItem {...props} />);
+    expect(wrapper.find(ChooseLady).length).to.equal(1);
+  });
+  it('should pass the currentPlayerId, lady, playerId, and state props', () => {
+    const wrapper = shallow(<PlayerItem {...props} />);
+    expect(wrapper.find(ChooseLady).prop('lady')).to.equal('player1');
+    expect(wrapper.find(ChooseLady).prop('state')).to.equal('choosing');
+    expect(wrapper.find(ChooseLady).prop('currentPlayer')).to.equal('player2');
+    expect(wrapper.find(ChooseLady).prop('player')).to.equal('player1');
+  });
+  it('should pass the selectLady fn', () => {
+    const wrapper = shallow(<PlayerItem {...props} />);
+    expect(wrapper.find(ChooseLady).prop('selectLady')()).to.equal('selectLady');
   });
 });
