@@ -25,6 +25,8 @@ const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
           <label htmlFor="mordred">Mordred</label>
           <input type="checkbox" id="oberon" name="oberon" value="oberon" />
           <label htmlFor="oberon">Oberon</label>
+          <input type="checkbox" id="lady" name="lady" value="lady" />
+          <label htmlFor="lady">Lady of the Lake</label>
         </div>
         <div>
           <button type="submit">Start Game!</button>
