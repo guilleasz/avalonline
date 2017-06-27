@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import Lobby from '../components/Lobby';
-import { shuffle, generateChars, generateCharsFromEvent } from '../../../utils';
+import { generateCharsFromEvent, setupPlayerRoles, setupInitalGameState } from '../../../utils';
 
 class LobbyContainer extends React.Component {
   constructor() {
@@ -13,19 +13,12 @@ class LobbyContainer extends React.Component {
 
   startGame(goodChars, badChars, lady) {
     const { lobbyId, players, firebase } = this.props;
-    const playerIds = Object.keys(players);
-    const allChars = generateChars(playerIds.length, goodChars, badChars);
-    playerIds.forEach((playerId, i) => {
-      Object.assign(players[playerId], allChars[i]);
-    });
+
+    setupPlayerRoles(players, goodChars, badChars);
+    const gameState = setupInitalGameState(players, lady);
     firebase.update(`/${lobbyId}/`, {
       started: true,
-      gameState: {
-        roundHistory: ['', '', '', '', ''],
-        voteHistory: [''],
-        turnOrder: shuffle(Object.keys(this.props.players)),
-        lady,
-      },
+      gameState,
       players,
     });
   }

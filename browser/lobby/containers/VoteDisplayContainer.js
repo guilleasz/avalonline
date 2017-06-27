@@ -9,7 +9,7 @@ class VoteDisplayContainer extends React.Component {
     const { voteHistory } = this.props;
     const votes = [];
     for (let i = 0; i < 5; i++) {
-      if (voteHistory[i]) votes.push(voteHistory[i]);
+      if (voteHistory && voteHistory[i]) votes.push(voteHistory[i]);
       else votes.push('');
     }
     return (
