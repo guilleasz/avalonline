@@ -21,17 +21,22 @@ class GameBoardContainer extends React.Component {
         lady,
         state,
       } = snapshot.val();
+      // When we are voting and the quest is voted by all the players
       if (state === 'voting' &&
           questApprovalVote &&
           Object.keys(questApprovalVote).length === Object.keys(players).length) {
+        // we get the result by reducing the values
         const result = Object.keys(questApprovalVote)
         .reduce((total, player) => total + (questApprovalVote[player] ? 1 : -1), 0);
+        // positive means that the test was approve 0 or negative is rejected
         if (result > 0) {
+          // if it is approve we go to the questing state and add the pass vote to the voteHistory
           firebase.update(
           `/${lobbyId}/gameState`,
           { state: 'questing', voteHistory: [...(voteHistory || []), 'pass'] },
           );
         } else {
+          // else if it is rejected  we add the vote into the game log and reset the game state back to choosing
           const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
           const voteNum = ((voteHistory && voteHistory.length) || 0) + 1;
           firebase.update(
@@ -51,13 +56,17 @@ class GameBoardContainer extends React.Component {
           );
         }
       }
+      // if all the players in the quest already voted
       if (questSuccessVote &&
          Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
+        // we take the result by reducing the value to the num of fails
         const result = Object.keys(questSuccessVote)
         .reduce((total, player) => total + questSuccessVote[player], 0);
+        // the quest will pass if we have less fails than needed to fail
         const veredict = numOfRejectsNeeded > result ? 'pass' : 'fail';
         const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
         const voteNum = ((voteHistory && voteHistory.length) || 1);
+        // update the gameLog of the game and the new State into a new round
         firebase.update(
           `${lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
           {
