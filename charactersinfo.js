@@ -1,7 +1,7 @@
 import { MERLIN, MORDERED, MORGANA, PERCIVAL, OBERON, ASSASSIN } from './characters';
 
 export const GOOD_GUY = 'Good Guy';
-export const BAD_GUY = 'Bad Guy¡';
+export const BAD_GUY = 'Bad Guy';
 
 export default {
   [MERLIN]: `${MERLIN} knows all the bad guys except for ${MORDERED}. ${MERLIN}'s goal is to keep his identity a secret, or else he will be assassinated!`,
