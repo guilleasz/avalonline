@@ -7,12 +7,17 @@ class RoundDisplayContainer extends React.Component {
 
   render() {
     const { roundHistory } = this.props;
+    const votes = [];
+    for (let i = 0; i < 5; i++) {
+      if (roundHistory && roundHistory[i]) votes.push(roundHistory[i]);
+      else votes.push('');
+    }
     return (
       <div>
         <h1>Round Pass/Fail</h1>
         <div className="flex-container">
           {
-            roundHistory.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
+            votes.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
           }
         </div>
       </div>
