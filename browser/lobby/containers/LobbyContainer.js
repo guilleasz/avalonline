@@ -11,7 +11,7 @@ class LobbyContainer extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  startGame(goodChars, badChars) {
+  startGame(goodChars, badChars, lady) {
     const { lobbyId, players, firebase } = this.props;
     const playerIds = Object.keys(players);
     const allChars = generateChars(playerIds.length, goodChars, badChars);
@@ -24,6 +24,7 @@ class LobbyContainer extends React.Component {
         roundHistory: ['', '', '', '', ''],
         voteHistory: [''],
         turnOrder: shuffle(Object.keys(this.props.players)),
+        lady,
       },
       players,
     });
@@ -32,7 +33,7 @@ class LobbyContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const specialChars = generateCharsFromEvent(e);
-    this.startGame(specialChars[0], specialChars[1]);
+    this.startGame(specialChars[0], specialChars[1], e.target.lady.checked);
   }
 
   render() {
