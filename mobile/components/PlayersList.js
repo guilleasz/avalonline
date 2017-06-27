@@ -12,18 +12,18 @@ const PlayerList = ({
 }) => (
   <div className="playerList">
     <ConfirmButton
-      currentPlayer={currentPlayer.uid}
+      currentPlayer={currentPlayer && currentPlayer.uid}
       confirmQuest={confirmQuest}
       gameState={{
         ...gameState,
-        questLeader: players[gameState.questLeader].uid,
+        questLeader: players && players[gameState.questLeader].uid,
         questPlayers: gameState.questPlayers && Object.keys(gameState.questPlayers),
       }}
     />
     {players && players.map(player => (<PlayerItem
       player={player}
       currentPlayer={currentPlayer}
-      gameState={{ ...gameState, questLeader: players[gameState.questLeader].uid }}
+      gameState={{ ...gameState, questLeader: players && players[gameState.questLeader].uid }}
       addToQuest={addToQuest}
       removeFromQuest={removeFromQuest}
       key={player.uid}

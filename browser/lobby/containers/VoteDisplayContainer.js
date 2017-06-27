@@ -9,15 +9,17 @@ class VoteDisplayContainer extends React.Component {
     const { voteHistory } = this.props;
     const votes = [];
     for (let i = 0; i < 5; i++) {
-      if (voteHistory[i]) votes.push(voteHistory[i]);
+      if (voteHistory && voteHistory[i]) votes.push(voteHistory[i]);
       else votes.push('');
     }
     return (
       <div>
         <h1>Vote Pass/Fail</h1>
-        {
-          votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
-        }
+        <div className="flex-container">
+          {
+            votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
+          }
+        </div>
       </div>
     );
   }

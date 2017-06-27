@@ -1,8 +1,61 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
 
 
+//*************************** Quest Voting Cards *******************//
+
+.questVoteCardContainer {
+    position: absolute;
+    top: 50px;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+}
+
+.questVoteCard {
+  margin: 0 15px;
+  width: 150px;
+  height: 260px;
+}
+
+.successQuest {
+  background: green;
+}
+
+.failQuest {
+  background: red
+}
 
 
+
+//*************************** Voting Cards ************************//
+
+.votingCardsContainer {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.votingCard {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background: white;
+  margin: 30px;
+}
+
+.votingCard[disabled] {
+  border: 1px solid;
+  background-color: #D3D3D3;
+  color: black;
+  cursor: not-allowed;
+}
+
+.approve {
+  color: green;
+}
+
+.reject {
+  color: red;
+}
 //**************************** PLAYER LIST ***********************//
 
 .playerList {

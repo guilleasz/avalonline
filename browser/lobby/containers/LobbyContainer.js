@@ -2,17 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import Lobby from '../components/Lobby';
-
+import { generateCharsFromEvent, setupPlayerRoles, setupInitalGameState } from '../../../utils';
 
 class LobbyContainer extends React.Component {
   constructor() {
     super();
     this.startGame = this.startGame.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  startGame() {
-    const { lobbyId } = this.props;
-    this.props.firebase.update(`/${lobbyId}/`, { started: true });
+  startGame(goodChars, badChars, lady) {
+    const { lobbyId, players, firebase } = this.props;
+
+    setupPlayerRoles(players, goodChars, badChars);
+    const gameState = setupInitalGameState(players, lady);
+    firebase.update(`/${lobbyId}/`, {
+      started: true,
+      gameState,
+      players,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const specialChars = generateCharsFromEvent(e);
+    this.startGame(specialChars[0], specialChars[1], e.target.lady.checked);
   }
 
   render() {
@@ -21,7 +35,7 @@ class LobbyContainer extends React.Component {
       started={started}
       players={players}
       lobbyId={lobbyId}
-      startGame={this.startGame}
+      handleSubmit={this.handleSubmit}
     />);
   }
 }
