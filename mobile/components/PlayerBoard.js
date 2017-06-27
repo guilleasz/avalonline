@@ -2,6 +2,7 @@ import React from 'react';
 import PlayersList from './PlayersList';
 import VotingCards from './VotingCards';
 import QuestVoteCards from './QuestVoteCards';
+import PlayerCard from './PlayerCard';
 
 const PlayerBoard = ({
   players,
@@ -18,6 +19,9 @@ const PlayerBoard = ({
   failQuest,
 }) => (
   <div>
+    <PlayerCard
+      currentPlayer={currentPlayer}
+    />
     <QuestVoteCards
       currentPlayer={currentPlayerId}
       state={gameState.state}
