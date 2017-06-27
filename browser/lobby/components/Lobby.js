@@ -3,7 +3,7 @@ import GameBoardContainer from '../containers/GameBoardContainer';
 
 const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
   !started ?
-    <div className="flex-container">
+    <div>
       <div>
         <h1>Visit <strong>TEMPURL/mobile</strong> and enter code <strong>{lobbyId}</strong></h1>
       </div>
@@ -11,8 +11,7 @@ const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
         <h2>Players in Lobby:</h2>
         { players && Object.keys(players).map(id => (<h2 key={id}>{players[id].name}</h2>))}
       </div>
-      <form onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <legend>Choose Game Options</legend>
         <div>
           <input type="checkbox" id="merlin" name="merlin" value="merlin" />
@@ -25,6 +24,8 @@ const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
           <label htmlFor="mordred">Mordred</label>
           <input type="checkbox" id="oberon" name="oberon" value="oberon" />
           <label htmlFor="oberon">Oberon</label>
+          <input type="checkbox" id="lady" name="lady" value="lady" />
+          <label htmlFor="lady">Lady of the Lake</label>
         </div>
         <div>
           <button type="submit">Start Game!</button>

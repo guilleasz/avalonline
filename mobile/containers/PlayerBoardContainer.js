@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import PlayerBoard from '../components/PlayerBoard';
 
-
 class PlayerBoardContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +11,8 @@ class PlayerBoardContainer extends React.Component {
     this.confirmQuest = this.confirmQuest.bind(this);
     this.approveQuest = this.approveQuest.bind(this);
     this.rejectQuest = this.rejectQuest.bind(this);
+    this.successQuest = this.successQuest.bind(this);
+    this.failQuest = this.failQuest.bind(this);
   }
 
   addToQuest(playerId) {
@@ -27,8 +28,7 @@ class PlayerBoardContainer extends React.Component {
   confirmQuest() {
     const { params, firebase, gameState } = this.props;
     const { voteHistory } = gameState;
-
-    if (voteHistory.length === 4) {
+    if (voteHistory && voteHistory.length === 4) {
       firebase.update(`/${params.lobbyId}/gameState/`, {
         state: 'questing',
         voteHistory: [...voteHistory, 'pass'] });
@@ -43,53 +43,29 @@ class PlayerBoardContainer extends React.Component {
     this.voteForQuest(false);
   }
   voteForQuest(vote) {
-    const { params, currentPlayerId, players, firebase } = this.props;
+    const { params, currentPlayerId, firebase } = this.props;
     firebase.update(
       `/${params.lobbyId}/gameState/questApprovalVote`,
       { [currentPlayerId]: vote },
-    )
-    .then(() => {
-      firebase.ref(`/${params.lobbyId}/gameState`).once('value', (snapshot) => {
-        const {
-          questApprovalVote,
-          voteHistory,
-          roundHistory,
-          questPlayers,
-          questLeader,
-          turnOrder,
-        } = snapshot.val();
-
-        if (Object.keys(questApprovalVote).length === Object.keys(players).length) {
-          const result = Object.keys(questApprovalVote)
-          .reduce((total, player) => total + (questApprovalVote[player] ? 1 : -1), 0);
-          if (result > 0) {
-            firebase.update(
-            `/${params.lobbyId}/gameState`,
-            { state: 'questing', voteHistory: [...(voteHistory || []), 'pass'] },
-            );
-          } else {
-            const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
-            const voteNum = ((voteHistory && voteHistory.length) || 0) + 1;
-            firebase.update(
-              `${params.lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
-              { questPlayers, questLeader: turnOrder[questLeader], questApprovalVote },
-            );
-            const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
-            firebase.update(
-              `/${params.lobbyId}/gameState`,
-              {
-                state: 'choosing',
-                questLeader: nextTurn,
-                voteHistory: [...(voteHistory || []), 'fail'],
-                questPlayers: null,
-                questApprovalVote: null,
-              },
-            );
-          }
-        }
-      });
-    });
+    );
   }
+
+  successQuest() {
+    this.quest(false);
+  }
+
+  failQuest() {
+    this.quest(true);
+  }
+
+  quest(vote) {
+    const { params, firebase, currentPlayerId } = this.props;
+    firebase.update(
+      `/${params.lobbyId}/gameState/questSuccessVote`,
+      { [currentPlayerId]: vote },
+    );
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -103,6 +79,8 @@ class PlayerBoardContainer extends React.Component {
       confirmQuest={this.confirmQuest}
       approveQuest={this.approveQuest}
       rejectQuest={this.rejectQuest}
+      successQuest={this.successQuest}
+      failQuest={this.failQuest}
     />);
   }
 }

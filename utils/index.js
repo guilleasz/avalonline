@@ -20,12 +20,10 @@ export const generateChars = (numPlayers, goodChars, badChars) => {
     if (badChars[i]) allChars.push({ role: 'bad', special: badChars[i] });
     else allChars.push({ role: 'bad', special: false });
   }
-
   for (let i = 0; i < numGood; i++) {
     if (goodChars[i]) allChars.push({ role: 'good', special: goodChars[i] });
     else allChars.push({ role: 'good', special: false });
   }
-
   return shuffle(allChars);
 };
 
@@ -53,3 +51,23 @@ export const howManyPlayersOnQuest = (totalPlayers, round) => {
 };
 
 export const questNeedsTwoFails = (totalPlayers, round) => totalPlayers >= 7 && round === 4;
+
+export const setupInitalGameState = (players, ladyBool) => {
+  const totalPlayers = Object.keys(players).length;
+  const turnOrder = shuffle(Object.keys(players));
+  const state = 'choosing';
+  const numOfRejectsNeeded = 1;
+  const numPlayersOnQuest = howManyPlayersOnQuest(totalPlayers, 1);
+  const questLeader = 0;
+  const lady = ladyBool ? totalPlayers - 1 : false;
+  return { turnOrder, state, numOfRejectsNeeded, numPlayersOnQuest, questLeader, lady };
+};
+
+export const setupPlayerRoles = (players, goodChars, badChars) => {
+  const playerIds = Object.keys(players);
+  const totalPlayers = playerIds.length;
+  const allChars = generateChars(totalPlayers, goodChars, badChars);
+  playerIds.forEach((playerId, i) => {
+    Object.assign(players[playerId], allChars[i]);
+  });
+};

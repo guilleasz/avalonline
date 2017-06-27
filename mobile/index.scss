@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
 
+
+//*************************** Quest Voting Cards *******************//
+
+.questVoteCardContainer {
+    position: absolute;
+    top: 50px;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+}
+
+.questVoteCard {
+  margin: 0 15px;
+  width: 150px;
+  height: 260px;
+}
+
+.successQuest {
+  background: green;
+}
+
+.failQuest {
+  background: red
+}
+
+
+
 //*************************** Voting Cards ************************//
 
 .votingCardsContainer {

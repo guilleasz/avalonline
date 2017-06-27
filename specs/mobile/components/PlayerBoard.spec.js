@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import PlayerBoard from '../../../mobile/components/PlayerBoard';
 import PlayersList from '../../../mobile/components/PlayersList';
 import VotingCards from '../../../mobile/components/VotingCards';
+import QuestVoteCards from '../../../mobile/components/QuestVoteCards';
 
 
 describe('PlayerBoard', () => {
@@ -18,7 +19,13 @@ describe('PlayerBoard', () => {
     currentPlayerId: 'player1',
     gameState: {
       state: 'voting',
+      questPlayers: {
+        player1: true,
+      },
       questApprovalVote: {
+        player1: true,
+      },
+      questSuccessVote: {
         player1: true,
       },
     },
@@ -27,6 +34,8 @@ describe('PlayerBoard', () => {
     confirmQuest: 'confirmQuest',
     approveQuest() { return 'approveQuest'; },
     rejectQuest() { return 'rejectQuest'; },
+    successQuest() { return 'successQuest'; },
+    failQuest() { return 'failQuest'; },
   };
   it('should render the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -74,5 +83,21 @@ describe('PlayerBoard', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(VotingCards).prop('rejectQuest')()).to.equal('rejectQuest');
     expect(wrapper.find(VotingCards).prop('approveQuest')()).to.equal('approveQuest');
+  });
+  it('should render the QuestVoteCards component', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(QuestVoteCards).length).to.equal(1);
+  });
+  it('should pass the currentPlayerId, the state, the questPlayers and the questSuccessVote', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(QuestVoteCards).prop('currentPlayer')).to.equal('player1');
+    expect(wrapper.find(QuestVoteCards).prop('state')).to.equal('voting');
+    expect(wrapper.find(QuestVoteCards).prop('questSuccessVote').player1).to.equal(true);
+    expect(wrapper.find(QuestVoteCards).prop('questPlayers').player1).to.equal(true);
+  });
+  it('should pass the failQuest and successQuest fn', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(QuestVoteCards).prop('failQuest')()).to.equal('failQuest');
+    expect(wrapper.find(QuestVoteCards).prop('successQuest')()).to.equal('successQuest');
   });
 });
