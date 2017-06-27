@@ -1,36 +1,38 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
-import { MORDERED, MERLIN, MORGANA, PERCIVAL, OBERON, ASSASSIN} from '../../characters';
-import charInfo, { GOOD_GUY, BAD_GUY } from '../../charactersinfo';
+import { charInfo, GOOD_GUY, BAD_GUY } from '../../charactersinfo';
 
 const PlayerCard = ({
   currentPlayer,
 }) => (
-  <div>
-    <h1>{
-      currentPlayer && currentPlayer.special
-      ?
-      currentPlayer.special
-      :
-        currentPlayer.role === 'bad'
+  currentPlayer ?
+    <div>
+      <h1>{
+        currentPlayer && currentPlayer.special
         ?
-        BAD_GUY
+        currentPlayer.special
         :
-        GOOD_GUY
-      }
-    </h1>
-    <h3>{
-      currentPlayer && currentPlayer.special
-      ?
-      charInfo[currentPlayer.special]
-      :
-        currentPlayer.role === 'bad'
+          currentPlayer.role === 'bad'
+          ?
+          BAD_GUY
+          :
+          GOOD_GUY
+        }
+      </h1>
+      <h3>{
+        currentPlayer && currentPlayer.special
         ?
-        charInfo[BAD_GUY]
+        charInfo[currentPlayer.special]
         :
-        charInfo[GOOD_GUY]
-      }
-    </h3>
-  </div>
+          currentPlayer.role === 'bad'
+          ?
+          charInfo[BAD_GUY]
+          :
+          charInfo[GOOD_GUY]
+        }
+      </h3>
+    </div>
+    : null
 );
 
 export default PlayerCard;

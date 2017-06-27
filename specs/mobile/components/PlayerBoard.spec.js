@@ -5,6 +5,7 @@ import PlayerBoard from '../../../mobile/components/PlayerBoard';
 import PlayersList from '../../../mobile/components/PlayersList';
 import VotingCards from '../../../mobile/components/VotingCards';
 import QuestVoteCards from '../../../mobile/components/QuestVoteCards';
+import PlayerCard from '../../../mobile/components/PlayerCard';
 
 
 describe('PlayerBoard', () => {
@@ -99,5 +100,13 @@ describe('PlayerBoard', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(QuestVoteCards).prop('failQuest')()).to.equal('failQuest');
     expect(wrapper.find(QuestVoteCards).prop('successQuest')()).to.equal('successQuest');
+  });
+  it('should render the PlayerCard', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayerCard).length).to.equal(1);
+  });
+  it('should pass the currentPlayer info as a prop', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(PlayerCard).prop('currentPlayer').name).to.equal('Guille');
   });
 });
