@@ -8,5 +8,5 @@ import GameBoard from '../../../browser/lobby/components/Gameboard';
 chai.use(sinonChai);
 
 describe('Game Board component', () => {
-  it('should render a message ')
-})
+  it('should render a message ');
+});

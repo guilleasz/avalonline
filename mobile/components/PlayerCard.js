@@ -1,6 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
-import { MORDERED, MERLIN, MORGANA, PERCIVAL, OBERON, ASSASSIN} from '../../characters';
-import charInfo, { GOOD_GUY, BAD_GUY } from '../../charactersinfo';
+import { charInfo, GOOD_GUY, BAD_GUY } from '../../charactersinfo';
 
 const PlayerCard = ({
   currentPlayer,
