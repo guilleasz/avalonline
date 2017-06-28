@@ -4,33 +4,65 @@ import GameBoardContainer from '../containers/GameBoardContainer';
 const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
   !started ?
     <div>
-      <div>
-        <h1>Visit <strong>TEMPURL/mobile</strong> and enter code <strong>{lobbyId}</strong></h1>
-      </div>
-      <div>
-        <h2>Players in Lobby:</h2>
-        { players && Object.keys(players).map(id => (<h2 key={id}>{players[id].name}</h2>))}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <legend>Choose Game Options</legend>
-        <div>
-          <input type="checkbox" id="merlin" name="merlin" value="merlin" />
-          <label htmlFor="merlin">Merlin and Assassin</label>
-          <input type="checkbox" id="percival" name="percival" value="percival" />
-          <label htmlFor="percival">Percival</label>
-          <input type="checkbox" id="morgana" name="morgana" value="morgana" />
-          <label htmlFor="morgana">Morgana</label>
-          <input type="checkbox" id="mordred" name="mordred" value="mordred" />
-          <label htmlFor="mordred">Mordred</label>
-          <input type="checkbox" id="oberon" name="oberon" value="oberon" />
-          <label htmlFor="oberon">Oberon</label>
-          <input type="checkbox" id="lady" name="lady" value="lady" />
-          <label htmlFor="lady">Lady of the Lake</label>
+      <div className="col-sm-8 col-md-offset-2">
+        <div className="page-header">
+          <h1 className="cursive together">Visit&nbsp;</h1>
+          <h1 className="cursive bold together">TEMPURL/mobile&nbsp;</h1>
+          <h1 className="cursive together">and enter code:&nbsp;</h1>
+          <h1 className="cursive bold together">{lobbyId}</h1>
         </div>
         <div>
-          <button type="submit">Start Game!</button>
+          <h2 className="player-name">Players in Lobby:</h2>
+          <div className="col-sm-6">
+            { players && Object.keys(players).map((id, i) => {
+              if (i % 2 === 0) return (<h2 className="player-name" key={id}>{players[id].name}</h2>);
+              return null;
+            })}
+          </div>
+          <div className="col-sm-6">
+            { players && Object.keys(players).map((id, i) => {
+              if (i % 2) return (<h2 className="player-name" key={id}>{players[id].name}</h2>);
+              return null;
+            })}
+          </div>
         </div>
-      </form>
+        <form onSubmit={handleSubmit} className="cursive game-options">
+          <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button>
+          <legend className="legend">Choose Game Options</legend>
+          <div className="col-sm-4 col-md-offset-4">
+            <div className="input-group">
+              <span className="input-group-addon">
+                <input type="checkbox" id="percival" name="percival" value="percival" />
+                <label className="game-options" htmlFor="percival">Percival</label>
+              </span>
+            </div>
+            <div className="input-group">
+              <span className="input-group-addon">
+                <input type="checkbox" id="morgana" name="morgana" value="morgana" />
+                <label className="game-options" htmlFor="morgana">Morgana</label>
+              </span>
+            </div>
+            <div className="input-group">
+              <span className="input-group-addon">
+                <input type="checkbox" id="mordred" name="mordred" value="mordred" />
+                <label className="game-options" htmlFor="mordred">Mordred</label>
+              </span>
+            </div>
+            <div className="input-group">
+              <span className="input-group-addon">
+                <input type="checkbox" id="oberon" name="oberon" value="oberon" />
+                <label className="game-options" htmlFor="oberon">Oberon</label>
+              </span>
+            </div>
+            <div className="input-group">
+              <span className="input-group-addon">
+                <input type="checkbox" id="lady" name="lady" value="lady" />
+                <label className="game-options" htmlFor="lady">Lady of the Lake</label>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
     :
     <GameBoardContainer lobbyId={lobbyId} />
