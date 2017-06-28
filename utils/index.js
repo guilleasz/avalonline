@@ -30,7 +30,8 @@ export const generateChars = (numPlayers, goodChars, badChars) => {
 export const generateCharsFromEvent = (e) => {
   const goodChars = [];
   const badChars = [];
-  if (e.target.merlin.checked) { goodChars.push('Merlin'); badChars.push('Assassin'); }
+  goodChars.push('Merlin');
+  badChars.push('Assassin');
   if (e.target.percival.checked) goodChars.push('Percival');
   if (e.target.morgana.checked) badChars.push('Morgana');
   if (e.target.mordred.checked) badChars.push('Mordred');

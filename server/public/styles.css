@@ -16,3 +16,62 @@
   font-size: 3em;
   text-align: center;
 }
+
+.player-name {
+  font-family: fantasy;
+  font-size: 3em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cursive {
+  font-family: cursive;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.together {
+  display: inline
+}
+
+.game-options {
+  font-size: 2em;
+}
+
+.input-group-addon {
+  padding: 12px 6px 6px 6px;
+  background-color: inherit;
+  border: none;
+}
+
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+input[type='checkbox']:checked {
+    background: black;
+}
+
+.form-actions {
+  text-align: center;
+}
+.legend {
+  text-align: center;
+  font-size: 1.25em;
+}
+.start-game {
+  font-size: 1em;
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+.quest-leader {
+  color: blue;
+  border: 2px solid yellow;
+}
