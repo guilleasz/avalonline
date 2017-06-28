@@ -36,7 +36,8 @@ class GameBoardContainer extends React.Component {
           { state: 'questing', voteHistory: [...(voteHistory || []), 'pass'] },
           );
         } else {
-          // else if it is rejected  we add the vote into the game log and reset the game state back to choosing
+          // else if it is rejected
+          //   we add the vote into the game log and reset the game state back to choosing
           const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
           const voteNum = ((voteHistory && voteHistory.length) || 0) + 1;
           firebase.update(
@@ -93,6 +94,25 @@ class GameBoardContainer extends React.Component {
             voteHistory: null,
           },
         );
+      }
+    });
+    // listening for each round that passes
+    firebase.ref(`/${lobbyId}/gameState/roundHistory`)
+    .on('value', (snapshot) => {
+      let pass = 0;
+      let fail = 0;
+      // counting the results of the rounds
+      snapshot.val().forEach((round) => { round[0] === 'pass' ? pass += 1 : fail += 1; });
+      // when there are three fails evil wins
+      if (fail === 3) {
+        firebase.update(`/${lobbyId}/gameState/`, {
+          state: 'end',
+          result: 'Evil Wins!',
+        });
+      } else if (pass === 3) { // good wins, the evil has one last chance to guess who merlin is
+        firebase.update(`/${lobbyId}/gameState`, {
+          state: 'assassinate',
+        });
       }
     });
   }

@@ -5,6 +5,7 @@ import QuestVoteCards from './QuestVoteCards';
 import PlayerCard from './PlayerCard';
 import ConfirmLady from './ConfirmLady';
 import Lady from './Lady';
+import Assassinate from './Assassinate';
 
 const PlayerBoard = ({
   players,
@@ -25,8 +26,18 @@ const PlayerBoard = ({
   showLady,
   ladyWindow,
   closeLady,
+  assassinate,
 }) => (
   <div>
+    <Assassinate
+      currentPlayer={currentPlayer}
+      state={gameState.state}
+      goodPlayers={Object.keys(players)
+        .filter(uid => players[uid].role === 'good')
+        .map(uid => ({ uid, ...players[uid] }))
+      }
+      assassinate={assassinate}
+    />
     <PlayerCard
       currentPlayer={currentPlayer}
     />
