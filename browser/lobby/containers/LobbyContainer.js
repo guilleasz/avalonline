@@ -7,8 +7,12 @@ import { generateCharsFromEvent, setupPlayerRoles, setupInitalGameState } from '
 class LobbyContainer extends React.Component {
   constructor() {
     super();
+    this.state = {
+      selectedChar: '',
+    };
     this.startGame = this.startGame.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.selectChar = this.selectChar.bind(this);
   }
 
   startGame(goodChars, badChars, lady) {
@@ -29,13 +33,21 @@ class LobbyContainer extends React.Component {
     this.startGame(specialChars[0], specialChars[1], e.target.lady.checked);
   }
 
+  selectChar(selectedChar) {
+    if (this.state.selectedChar === selectedChar) this.setState({ selectedChar: '' });
+    else this.setState({ selectedChar });
+  }
+
   render() {
     const { players, lobbyId, started } = this.props;
+    const { selectedChar } = this.state;
     return (<Lobby
       started={started}
       players={players}
       lobbyId={lobbyId}
       handleSubmit={this.handleSubmit}
+      selectedChar={selectedChar}
+      selectChar={this.selectChar}
     />);
   }
 }
