@@ -44,6 +44,7 @@
   padding: 12px 6px 6px 6px;
   background-color: inherit;
   border: none;
+  text-align: left;
 }
 
 input[type='checkbox'] {
@@ -74,4 +75,12 @@ input[type='checkbox']:checked {
 .quest-leader {
   color: blue;
   border: 2px solid yellow;
+}
+
+.glyphicon {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  vertical-align: bottom;
+  text-align: left;
 }
