@@ -1,5 +1,6 @@
 import React from 'react';
 import GameBoardContainer from '../containers/GameBoardContainer';
+import Anime from 'react-anime'
 
 const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
   !started ?
@@ -15,13 +16,30 @@ const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
           <h2 className="player-name">Players in Lobby:</h2>
           <div className="col-sm-6">
             { players && Object.keys(players).map((id, i) => {
-              if (i % 2 === 0) return (<h2 className="player-name" key={id}>{players[id].name}</h2>);
+              if (i % 2 === 0) {
+                return (
+                  <Anime
+                    easing="easeInCubic"
+                    translateX={[-300, 0]}
+                  >
+                    <h2 className="player-name" key={id}>{players[id].name}</h2>
+                  </Anime>);
+              }
               return null;
             })}
           </div>
           <div className="col-sm-6">
             { players && Object.keys(players).map((id, i) => {
-              if (i % 2) return (<h2 className="player-name" key={id}>{players[id].name}</h2>);
+              if (i % 2) {
+                return (
+                  <Anime
+                    easing="easeInCubic"
+                    translateX={[300, 0]}
+
+                  >
+                    <h2 className="player-name" key={id}>{players[id].name}</h2>
+                  </Anime>);
+              }
               return null;
             })}
           </div>
