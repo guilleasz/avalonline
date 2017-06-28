@@ -6,6 +6,8 @@ import PlayersList from '../../../mobile/components/PlayersList';
 import VotingCards from '../../../mobile/components/VotingCards';
 import QuestVoteCards from '../../../mobile/components/QuestVoteCards';
 import PlayerCard from '../../../mobile/components/PlayerCard';
+import ConfirmLady from '../../../mobile/components/ConfirmLady';
+import Lady from '../../../mobile/components/Lady';
 
 
 describe('PlayerBoard', () => {
@@ -29,7 +31,10 @@ describe('PlayerBoard', () => {
       questSuccessVote: {
         player1: true,
       },
+      lady: 'player1',
     },
+    confirmLadyWindow: true,
+    ladyWindow: true,
     removeFromQuest: 'removeFromQuest',
     addToQuest: 'addToQuest',
     confirmQuest: 'confirmQuest',
@@ -37,6 +42,10 @@ describe('PlayerBoard', () => {
     rejectQuest() { return 'rejectQuest'; },
     successQuest() { return 'successQuest'; },
     failQuest() { return 'failQuest'; },
+    selectLady() { return 'selectLady'; },
+    showLady() { return 'showLady'; },
+    cancelLady() { return 'cancelLady'; },
+    closeLady() { return 'closeLady'; },
   };
   it('should render the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -64,11 +73,12 @@ describe('PlayerBoard', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayersList).prop('gameState').state).to.equal('voting');
   });
-  it('should pass the addToQuest, removeFromQuest and confirmQuest into the PlayersList', () => {
+  it('should pass the addToQuest, removeFromQuest and confirmQuest, selectLady into the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayersList).prop('addToQuest')).to.equal('addToQuest');
     expect(wrapper.find(PlayersList).prop('removeFromQuest')).to.equal('removeFromQuest');
     expect(wrapper.find(PlayersList).prop('confirmQuest')).to.equal('confirmQuest');
+    expect(wrapper.find(PlayersList).prop('selectLady')()).to.equal('selectLady');
   });
   it('should render the VotingCards component', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -108,5 +118,38 @@ describe('PlayerBoard', () => {
   it('should pass the currentPlayer info as a prop', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(PlayerCard).prop('currentPlayer').name).to.equal('Guille');
+  });
+  it('should render the ConfirmLady component', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(ConfirmLady).length).to.equal(1);
+  });
+  it('should pass the display prop with the confirmLadyWindow value', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(ConfirmLady).prop('display')).to.equal(true);
+  });
+  it('should pass the player name who is the lady', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(ConfirmLady).prop('player')).to.equal('Guille');
+  });
+  it('should pass the showLady and cancelLady functions', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(ConfirmLady).prop('showLady')()).to.equal('showLady');
+    expect(wrapper.find(ConfirmLady).prop('cancelLady')()).to.equal('cancelLady');
+  });
+  it('should render the Lady component', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Lady).length).to.equal(1);
+  });
+  it('should pass the display prop with the ladyWindow value', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Lady).prop('display')).to.equal(true);
+  });
+  it('should pass the player info who is the lady', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Lady).prop('player').name).to.equal('Guille');
+  });
+  it('should pass the closeLady functions', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Lady).prop('closeLady')()).to.equal('closeLady');
   });
 });

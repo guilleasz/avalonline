@@ -17,6 +17,7 @@ describe('PlayersList component', () => {
     addToQuest: 'addToQuest',
     removeFromQuest: 'removeFromQuest',
     confirmQuest() { return 'confirmQuest'; },
+    selectLady: 'selectLady',
   };
   it('should render a PlayerItem for each player', () => {
     const wrapper = shallow(<PlayersList {...props} />);
@@ -42,10 +43,11 @@ describe('PlayersList component', () => {
     const wrapper = shallow(<PlayersList {...props} />);
     expect(wrapper.find(PlayerItem).first().prop('gameState').questLeader).to.equal('player1');
   });
-  it('should pass the addToQuest and RemoveFromQuest fn', () => {
+  it('should pass the addToQuest, RemoveFromQuest and selectLady fn', () => {
     const wrapper = shallow(<PlayersList {...props} />);
     expect(wrapper.find(PlayerItem).first().prop('addToQuest')).to.equal('addToQuest');
     expect(wrapper.find(PlayerItem).first().prop('removeFromQuest')).to.equal('removeFromQuest');
+    expect(wrapper.find(PlayerItem).first().prop('selectLady')).to.equal('selectLady');
   });
   it('should render the confirm button', () => {
     const wrapper = shallow(<PlayersList {...props} />);
@@ -71,4 +73,5 @@ describe('PlayersList component', () => {
     const wrapper = shallow(<PlayersList {...props} />);
     expect(wrapper.find(ConfirmButton).prop('confirmQuest')()).to.equal('confirmQuest');
   });
+
 });

@@ -3,6 +3,8 @@ import PlayersList from './PlayersList';
 import VotingCards from './VotingCards';
 import QuestVoteCards from './QuestVoteCards';
 import PlayerCard from './PlayerCard';
+import ConfirmLady from './ConfirmLady';
+import Lady from './Lady';
 
 const PlayerBoard = ({
   players,
@@ -17,6 +19,12 @@ const PlayerBoard = ({
   approveQuest,
   successQuest,
   failQuest,
+  selectLady,
+  confirmLadyWindow,
+  cancelLady,
+  showLady,
+  ladyWindow,
+  closeLady,
 }) => (
   <div>
     <PlayerCard
@@ -44,6 +52,18 @@ const PlayerBoard = ({
       addToQuest={addToQuest}
       removeFromQuest={removeFromQuest}
       confirmQuest={confirmQuest}
+      selectLady={selectLady}
+    />
+    <ConfirmLady
+      display={confirmLadyWindow}
+      player={players && players[gameState.lady].name}
+      cancelLady={cancelLady}
+      showLady={showLady}
+    />
+    <Lady
+      display={ladyWindow}
+      player={players[gameState.lady]}
+      closeLady={closeLady}
     />
   </div>
 );

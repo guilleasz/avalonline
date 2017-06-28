@@ -6,6 +6,7 @@ import PlayerBoard from '../components/PlayerBoard';
 class PlayerBoardContainer extends React.Component {
   constructor(props) {
     super(props);
+
     this.addToQuest = this.addToQuest.bind(this);
     this.removeFromQuest = this.removeFromQuest.bind(this);
     this.confirmQuest = this.confirmQuest.bind(this);
@@ -13,6 +14,14 @@ class PlayerBoardContainer extends React.Component {
     this.rejectQuest = this.rejectQuest.bind(this);
     this.successQuest = this.successQuest.bind(this);
     this.failQuest = this.failQuest.bind(this);
+    this.selectLady = this.selectLady.bind(this);
+    this.showLady = this.showLady.bind(this);
+    this.cancelLady = this.cancelLady.bind(this);
+    this.closeLady = this.closeLady.bind(this);
+  }
+  state = {
+    confirmLadyWindow: false,
+    ladyWindow: false,
   }
 
   addToQuest(playerId) {
@@ -66,6 +75,44 @@ class PlayerBoardContainer extends React.Component {
     );
   }
 
+  selectLady(playerId) {
+    const { params, firebase } = this.props;
+    firebase.update(`/${params.lobbyId}/gameState`, {
+      state: 'pre-choosing',
+      lady: playerId,
+    });
+    this.setState({
+      confirmLadyWindow: true,
+    });
+  }
+  showLady() {
+    const { params, firebase } = this.props;
+    firebase.update(`/${params.lobbyId}/gameState`, {
+      state: 'choosing',
+    });
+    this.setState({
+      confirmLadyWindow: false,
+      ladyWindow: true,
+    });
+  }
+
+  cancelLady() {
+    const { params, firebase, currentPlayerId } = this.props;
+    firebase.update(`/${params.lobbyId}/gameState`, {
+      state: 'lady',
+      lady: currentPlayerId,
+    });
+    this.setState({
+      confirmLadyWindow: false,
+    });
+  }
+
+  closeLady() {
+    this.setState({
+      ladyWindow: false,
+    });
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -81,6 +128,12 @@ class PlayerBoardContainer extends React.Component {
       rejectQuest={this.rejectQuest}
       successQuest={this.successQuest}
       failQuest={this.failQuest}
+      confirmLadyWindow={this.state.confirmLadyWindow}
+      ladyWindow={this.state.ladyWindow}
+      selectLady={this.selectLady}
+      showLady={this.showLady}
+      cancelLady={this.cancelLady}
+      closeLady={this.closeLady}
     />);
   }
 }

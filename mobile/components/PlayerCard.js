@@ -6,11 +6,11 @@ import { charInfo, GOOD_GUY, BAD_GUY } from '../../charactersinfo';
 const PlayerCard = ({
   currentPlayer,
 }) => (
-  <Anime
-    easing="easeOutElastic"
-    translateY={[-500, 0]}
-  >
-    currentPlayer ?
+  currentPlayer ?
+    <Anime
+      easing="easeInQuad"
+      translateY={[-500, 0]}
+    >
       <div>
         <h1>{
           currentPlayer && currentPlayer.special
@@ -37,8 +37,8 @@ const PlayerCard = ({
           }
         </h3>
       </div>
-      : null
-  </Anime>
+    </Anime>
+    : null
 );
 
 export default PlayerCard;
