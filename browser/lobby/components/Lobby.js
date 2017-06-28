@@ -1,7 +1,9 @@
 import React from 'react';
 import GameBoardContainer from '../containers/GameBoardContainer';
+import { charInfo } from '../../../charactersinfo';
+import { MORDERED, MORGANA, PERCIVAL, OBERON, LADY } from '../../../characters';
 
-const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
+const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar }) => (
   !started ?
     <div>
       <div className="col-sm-8 col-md-offset-2">
@@ -28,36 +30,39 @@ const Lobby = ({ players, lobbyId, handleSubmit, started }) => (
         </div>
         <form onSubmit={handleSubmit} className="cursive game-options">
           <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button>
-          <legend className="legend">Choose Game Options</legend>
-          <div className="col-sm-4 col-md-offset-4">
-            <div className="input-group">
+          <legend className="legend">Choose Game Options </legend>
+          <div className="col-xs-4">
+            {selectedChar ? <h2>{charInfo[selectedChar]}</h2> : null}
+          </div>
+          <div className="col-xs-4">
+            <div className="input-group popup">
               <span className="input-group-addon">
+                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(PERCIVAL)} /> &nbsp;Percival  &nbsp; </label>
                 <input type="checkbox" id="percival" name="percival" value="percival" />
-                <label className="game-options" htmlFor="percival">Percival</label>
               </span>
             </div>
             <div className="input-group">
               <span className="input-group-addon">
+                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(MORGANA)}/> &nbsp;Morgana  &nbsp; </label>
                 <input type="checkbox" id="morgana" name="morgana" value="morgana" />
-                <label className="game-options" htmlFor="morgana">Morgana</label>
               </span>
             </div>
             <div className="input-group">
               <span className="input-group-addon">
+                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(MORDERED)} /> &nbsp;Mordred &nbsp; </label>
                 <input type="checkbox" id="mordred" name="mordred" value="mordred" />
-                <label className="game-options" htmlFor="mordred">Mordred</label>
               </span>
             </div>
             <div className="input-group">
               <span className="input-group-addon">
+                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(OBERON)} /> &nbsp;Oberon &nbsp; </label>
                 <input type="checkbox" id="oberon" name="oberon" value="oberon" />
-                <label className="game-options" htmlFor="oberon">Oberon</label>
               </span>
             </div>
             <div className="input-group">
               <span className="input-group-addon">
+                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
                 <input type="checkbox" id="lady" name="lady" value="lady" />
-                <label className="game-options" htmlFor="lady">Lady of the Lake</label>
               </span>
             </div>
           </div>
