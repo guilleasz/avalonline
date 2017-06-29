@@ -10,11 +10,11 @@ chai.use(sinonChai);
 describe('Lady Component', () => {
   it('should not render if the display porperty is set to false', () => {
     const wrapper = shallow(<Lady display={false} />);
-    expect(wrapper.find('.card').length).to.equal(0);
+    expect(wrapper.find('.ladyCard').length).to.equal(0);
   });
   it('should render if the display property is set to true', () => {
     const wrapper = shallow(<Lady display />);
-    expect(wrapper.find('.card').length).to.equal(1);
+    expect(wrapper.find('.ladyCard').length).to.equal(1);
   });
   it('should render the name of the player', () => {
     const wrapper = shallow(<Lady display player={{ name: 'Guille' }} />);

@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
 
+//*************************** Assassin *****************************//
+
+.assassinContainer {
+  position: absolute;
+  width: 90%;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background-color: #C9B89E;
+  color: white;
+}
+
+.assassinContainer .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.goodPlayerCard{
+  height: 150px;
+  border: 1px solid #63513f;
+}
+
+
 //*************************** Lady *********************************//
 
 .ladyCardContainer {

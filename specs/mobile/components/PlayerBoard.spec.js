@@ -8,14 +8,15 @@ import QuestVoteCards from '../../../mobile/components/QuestVoteCards';
 import PlayerCard from '../../../mobile/components/PlayerCard';
 import ConfirmLady from '../../../mobile/components/ConfirmLady';
 import Lady from '../../../mobile/components/Lady';
+import Assassinate from '../../../mobile/components/Assassinate';
 
 
 describe('PlayerBoard', () => {
   const props = {
     players: {
-      player1: { name: 'Guille' },
-      player2: { name: 'Yimin' },
-      player3: { name: 'Jacob' },
+      player1: { name: 'Guille', role: 'good' },
+      player2: { name: 'Yimin', role: 'good' },
+      player3: { name: 'Jacob', role: 'bad' },
     },
     turnOrder: ['player3', 'player2', 'player1'],
     currentPlayer: { name: 'Guille' },
@@ -46,6 +47,7 @@ describe('PlayerBoard', () => {
     showLady() { return 'showLady'; },
     cancelLady() { return 'cancelLady'; },
     closeLady() { return 'closeLady'; },
+    assassinate() { return 'assassinate'; },
   };
   it('should render the PlayersList', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
@@ -151,5 +153,24 @@ describe('PlayerBoard', () => {
   it('should pass the closeLady functions', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(Lady).prop('closeLady')()).to.equal('closeLady');
+  });
+  it('should render the Assassinate compoenent', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Assassinate).length).to.equal(1);
+  });
+  it('should pass the prop of goodPlayers as an array of only the good players', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Assassinate).prop('goodPlayers').length).to.equal(2);
+    expect(wrapper.find(Assassinate).prop('goodPlayers')[0].name).to.equal('Guille');
+    expect(wrapper.find(Assassinate).prop('goodPlayers')[1].name).to.equal('Yimin');
+  });
+  it('should pass the currentPlayer and the state of the game', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Assassinate).prop('currentPlayer').name).to.equal('Guille');
+    expect(wrapper.find(Assassinate).prop('state')).to.equal('voting');
+  });
+  it('should pass the assassinate fn', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(Assassinate).prop('assassinate')()).to.equal('assassinate');
   });
 });

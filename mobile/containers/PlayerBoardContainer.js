@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import PlayerBoard from '../components/PlayerBoard';
+import { MERLIN } from '../../characters';
 
 class PlayerBoardContainer extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class PlayerBoardContainer extends React.Component {
     this.showLady = this.showLady.bind(this);
     this.cancelLady = this.cancelLady.bind(this);
     this.closeLady = this.closeLady.bind(this);
+    this.assassinate = this.assassinate.bind(this);
   }
   state = {
     confirmLadyWindow: false,
@@ -112,6 +114,20 @@ class PlayerBoardContainer extends React.Component {
       ladyWindow: false,
     });
   }
+  assassinate(player) {
+    const { firebase, params } = this.props;
+    if (player.special === MERLIN) {
+      firebase.update(`/${params.lobbyId}/gameState`, {
+        state: 'end',
+        result: `The Assassin picked ${player.name}. Evil Wins!`,
+      });
+    } else {
+      firebase.update(`/${params.lobbyId}/gameState`, {
+        state: 'end',
+        result: `The Assassin picked ${player.name}. Good Wins!`,
+      });
+    }
+  }
 
   render() {
     const { players, currentPlayerId, gameState } = this.props;
@@ -134,6 +150,7 @@ class PlayerBoardContainer extends React.Component {
       showLady={this.showLady}
       cancelLady={this.cancelLady}
       closeLady={this.closeLady}
+      assassinate={this.assassinate}
     />);
   }
 }
