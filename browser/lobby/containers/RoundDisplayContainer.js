@@ -15,9 +15,11 @@ class RoundDisplayContainer extends React.Component {
     return (
       <div className="round-display-container">
         <div className="flex-container">
+          <div className="buffer-round" />
           {
             votes.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
           }
+          <div className="buffer-round" />
         </div>
       </div>
     );
