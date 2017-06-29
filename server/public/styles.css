@@ -1,16 +1,11 @@
 .flex-container {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .flex-item {
   background: transparent;
-  padding: 5px;
-  width: 200px;
-  height: 150px;
-  margin-top: 10px;
-
-  line-height: 150px;
   color: red;
   font-weight: bold;
   font-size: 3em;
@@ -83,4 +78,42 @@ input[type='checkbox']:checked {
   -ms-user-select: none; /* IE10+ */
   vertical-align: bottom;
   text-align: left;
+}
+
+.game_board_7 {
+  max-width: 1487px;
+  max-height: 1089px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_7.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.player-card-container {
+  height: 33%;
+  border: 2px solid black;
+}
+
+.round-display-container {
+  height: 40%;
+  border: 2px solid black;
+}
+
+.round-display {
+  border: 2px solid red;
+  height: 100%;
+  width: 20%;
+}
+
+.buffer-round {
+  width: 2%;
+}
+
+.round-display-token {
+  position: relative;
+  left: 43%;
+  top: 60%;
+  width: 30%;
+  height: auto;
 }

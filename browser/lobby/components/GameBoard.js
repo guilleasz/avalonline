@@ -3,14 +3,15 @@ import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
 
-const Lobby = ({ lobbyId }) => (
+// <img alt={`game_board_${Object.keys(players).length}.png`}
+// src={`/game_board_${Object.keys(players).length}.png`} />
 
-  <div>
-    <h1>THIS IS THE GAMEBOARD BRUH! FOR LOBBY {lobbyId}</h1>
+const Gameboard = ({ lobbyId, players }) => (
+  <div className={`game_board_${Object.keys(players).length}`} >
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
     <VoteDisplayContainer lobbyId={lobbyId} />
   </div>
 );
 
-export default Lobby;
+export default Gameboard;

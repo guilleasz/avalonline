@@ -13,8 +13,7 @@ class VoteDisplayContainer extends React.Component {
       else votes.push('');
     }
     return (
-      <div>
-        <h1>Vote Pass/Fail</h1>
+      <div className="vote-display">
         <div className="flex-container">
           {
             votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
