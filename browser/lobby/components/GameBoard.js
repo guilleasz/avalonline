@@ -2,6 +2,7 @@ import React from 'react';
 import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer';
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
+import Anime from 'react-anime';
 import QuestResultAnimation from './QuestResultAnimation';
 // <img alt={`game_board_${Object.keys(players).length}.png`}
 // src={`/game_board_${Object.keys(players).length}.png`} />
@@ -9,13 +10,23 @@ import QuestResultAnimation from './QuestResultAnimation';
 const Gameboard = ({
   lobbyId,
   players,
+  result,
   isFlipped,
   startFlipping,
   shuffle,
   startShuffling,
-  questResult
+  questResult,
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
+    <Anime
+      easing="easeInQuint"
+      translateY={[-1000, 400]}
+      duration={1500}
+    >
+      <div className="endGame">
+        {result || null}
+      </div>
+    </Anime>
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
     <VoteDisplayContainer lobbyId={lobbyId} />

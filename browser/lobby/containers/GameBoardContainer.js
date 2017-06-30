@@ -65,7 +65,7 @@ class GameBoardContainer extends React.Component {
       }
       // if all the players in the quest already voted
       if (questSuccessVote &&
-         Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
+      Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
         this.setState({
           startShuffling: true,
           shuffle: true,
@@ -169,7 +169,7 @@ class GameBoardContainer extends React.Component {
     return false;
   }
   render() {
-    const { lobbyId, players, gameState } = this.props;
+    const { lobbyId, players, gameState, result } = this.props;
     const { shuffle, isFlipped, startShuffling } = this.state;
     return (<GameBoard
       lobbyId={lobbyId}
@@ -179,6 +179,7 @@ class GameBoardContainer extends React.Component {
       startFlipping={this.startFlipping}
       startShuffling={startShuffling}
       questResult={gameState.questSuccessVote}
+      result={result}
     />);
   }
 }
@@ -189,4 +190,5 @@ export default connect(({ firebase }, ownProps) => ({
   players: dataToJS(firebase, `${ownProps.lobbyId}/players`),
   gameState: dataToJS(firebase, `${ownProps.lobbyId}/gameState`),
   lobbyId: ownProps.lobbyId,
+  result: dataToJS(firebase, `${ownProps.lobbyId}/gameState/result`),
 }))(wrappedGameBoardContainer);
