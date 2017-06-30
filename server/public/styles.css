@@ -80,12 +80,62 @@ input[type='checkbox']:checked {
   text-align: left;
 }
 
+.game_board_5 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_5.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_6 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_6.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .game_board_7 {
   max-width: 1400px;
   max-height: 1025px;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_7.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_8 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_8.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_9 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_9.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_10 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_10.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
