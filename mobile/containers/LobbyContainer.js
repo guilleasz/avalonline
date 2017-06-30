@@ -9,10 +9,29 @@ class LobbyContainer extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.setNickname = this.setNickname.bind(this);
+    this.onUploadFile = this.onUploadFile.bind(this);
   }
 
   state = {
     name: '',
+  }
+
+  onUploadFile(e) {
+    const { firebase, playerId } = this.props;
+    const lobbyId = this.props.routeParams.lobbyId;
+    const file = e.target.files[0];
+    const storageRef = firebase.storage().ref('images/' + file.name);
+    const metadata = {
+      contentType: 'image/jpeg',
+    };
+    const uploadTask = storageRef.put(file, metadata);
+
+    uploadTask.on('state_changed', () => {}, (error) => {
+      console.log(error);
+    }, () => {
+      const downloadURL = uploadTask.snapshot.downloadURL;
+      firebase.update(`/${lobbyId}/players/${playerId}`, { downloadURL });
+    });
   }
 
   setNickname() {
@@ -30,6 +49,7 @@ class LobbyContainer extends React.Component {
     return (<Lobby
       handleChange={this.handleChange}
       setNickname={this.setNickname}
+      onUploadFile={this.onUploadFile}
       name={this.state.name}
       nickname={this.props.playerInfo && this.props.playerInfo.name}
       started={this.props.started}
