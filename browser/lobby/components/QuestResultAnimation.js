@@ -3,7 +3,7 @@ import QuestCard from './QuestCard';
 
 const QuestResultAnimation = ({ isFlipped, startFlipping, shuffle, startShuffling, questResult }) => (
   startShuffling ?
-    <div style={{ position: 'absolute', top: 0, width: '100%' }}>
+    <div className="questCardResult">
       {Object.keys(questResult).map((id, i) => (
         <QuestCard
           isFlipped={isFlipped}

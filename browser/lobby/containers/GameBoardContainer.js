@@ -153,6 +153,7 @@ class GameBoardContainer extends React.Component {
     });
     const arr = [0, 1, 2, 3, 4];
     const interval = setInterval(() => {
+      debugger;
       this.setState({
         isFlipped: [...this.state.isFlipped, true],
       });
