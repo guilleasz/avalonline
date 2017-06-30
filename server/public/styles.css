@@ -6,6 +6,29 @@
 .flex-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.ant-card-bordered {
+  border: 1px solid #e9e9e9;
+}
+
+.ant-card {
+  background: transparent;
+  border-radius: 4px;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.custom-card {
+  padding: 10px 16px;
+}
+
+.custom-image img {
+  display: block;
   height: 100%;
 }
 
@@ -14,6 +37,19 @@
   color: red;
   font-weight: bold;
   font-size: 3em;
+  text-align: center;
+}
+
+.player-card {
+  background: transparent;
+  padding: 5px;
+  /*width: 200px;
+  margin-top: 10px;
+  line-height: 150px;*/
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  font-family: fantasy;
   text-align: center;
 }
 
@@ -72,9 +108,14 @@ input[type='checkbox']:checked {
   margin-bottom: 0.4em;
 }
 
-.quest-leader {
-  color: blue;
-  border: 2px solid yellow;
+.quest-leader .ant-card:before {
+    content: " ";
+    background: url(/assets/quest_leader.png) no-repeat;
+    background-size: contain;
+    display: block;
+    width: 100%;
+    height: 64px;
+    position: absolute;
 }
 
 .glyphicon {
@@ -90,8 +131,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_5 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_5.png");
@@ -100,8 +141,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_6 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_6.png");
@@ -110,8 +151,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_7 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_7.png");
@@ -120,8 +161,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_8 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_8.png");
@@ -130,8 +171,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_9 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_9.png");
@@ -140,8 +181,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_10 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_10.png");
@@ -187,8 +228,11 @@ input[type='checkbox']:checked {
   height: auto;
 }
 
-.buffer-round {
+.buffer-round-left {
   width: 3%;
+}
+.buffer-round-right {
+  width: 3.4%;
 }
 
 .buffer-vote-left {
