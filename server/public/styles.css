@@ -16,15 +16,24 @@
   position: relative;
   overflow: hidden;
   transition: all .3s;
+  height: 100%;
+  width: 100%;
+}
+
+.font-consistent {
+  font-size: 2em;
 }
 
 .custom-card {
   padding: 10px 16px;
+  width: 100%;
+  height: 100%;
 }
 
 .custom-image img {
   display: block;
   height: 100%;
+  width: 100%
 }
 
 .flex-item {
@@ -38,14 +47,12 @@
 .player-card {
   background: transparent;
   padding: 5px;
-  /*width: 200px;
-  margin-top: 10px;
-  line-height: 150px;*/
   color: white;
   font-weight: bold;
   font-size: 3em;
   font-family: fantasy;
   text-align: center;
+  width: 13vh;
 }
 
 .player-name {
@@ -90,6 +97,17 @@ input[type='checkbox']:checked {
     background: black;
 }
 
+.endGame {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-family: fantasy;
+  font-weight: bold;
+  font-size: 900%;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
 .form-actions {
   text-align: center;
 }
@@ -103,7 +121,7 @@ input[type='checkbox']:checked {
   margin-bottom: 0.4em;
 }
 
-.quest-leader .ant-card:before {
+.quest-leader .ant-card:after {
     content: " ";
     background: url(/assets/quest_leader.png) no-repeat;
     background-size: contain;
@@ -111,7 +129,19 @@ input[type='checkbox']:checked {
     width: 100%;
     height: 64px;
     position: absolute;
+    top: 0;
 }
+
+.on-quest .ant-card:before {
+  content: " ";
+  background: url(/assets/quest_player.png) no-repeat;
+  background-size: contain;
+  background-position: right;
+  display: block;
+  width: 100%;
+  height: 42px;
+  position: absolute;
+  }
 
 .glyphicon {
   -webkit-user-select: none; /* Chrome/Safari */

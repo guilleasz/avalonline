@@ -59,7 +59,7 @@ class GameBoardContainer extends React.Component {
       }
       // if all the players in the quest already voted
       if (questSuccessVote &&
-         Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
+        Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
         // we take the result by reducing the value to the num of fails
         const result = Object.keys(questSuccessVote)
         .reduce((total, player) => total + questSuccessVote[player], 0);
@@ -117,8 +117,8 @@ class GameBoardContainer extends React.Component {
     });
   }
   render() {
-    const { lobbyId, players } = this.props;
-    return (<GameBoard lobbyId={lobbyId} players={players} />);
+    const { lobbyId, players, result } = this.props;
+    return (<GameBoard lobbyId={lobbyId} players={players} result={result} />);
   }
 }
 
@@ -127,4 +127,5 @@ const wrappedGameBoardContainer = firebaseConnect(['/'])(GameBoardContainer);
 export default connect(({ firebase }, ownProps) => ({
   players: dataToJS(firebase, `${ownProps.lobbyId}/players`),
   lobbyId: ownProps.lobbyId,
+  result: dataToJS(firebase, `${ownProps.lobbyId}/gameState/result`),
 }))(wrappedGameBoardContainer);
