@@ -2,13 +2,21 @@ import React from 'react';
 
 const Lady = ({ display, player, closeLady }) => (
   display ?
-    <div className="ladyCard">
+    <div
+      style={{
+        backgroundImage: `url(${player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.jpg'})`,
+      }}
+      className="ladyCard"
+    >
       <p>
-        <span className="name">{player && player.name}</span> is
-        <span className="role">{(player && player.role === 'bad') ? 'Evil' : 'Good'}</span>
+        <span className="name">{player && player.name}</span>
       </p>
       <div>
-        <img alt={player && player.role} />
+        <img
+          src={player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.jpg'}
+          alt={player && player.role}
+          className="img-responsive"
+        />
       </div>
       <button onClick={closeLady} className="closeLady">OK</button>
     </div>

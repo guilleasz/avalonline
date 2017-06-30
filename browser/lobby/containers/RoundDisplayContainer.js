@@ -9,16 +9,17 @@ class RoundDisplayContainer extends React.Component {
     const { roundHistory } = this.props;
     const votes = [];
     for (let i = 0; i < 5; i++) {
-      if (roundHistory && roundHistory[i]) votes.push(roundHistory[i]);
+      if (roundHistory && roundHistory[i]) votes.push(roundHistory[i][0]);
       else votes.push('');
     }
     return (
-      <div>
-        <h1>Round Pass/Fail</h1>
+      <div className="round-display-container">
         <div className="flex-container">
+          <div className="buffer-round" />
           {
             votes.map((info, i) => (<RoundDisplay key={i} roundNumber={i + 1} roundInfo={info} />))
           }
+          <div className="buffer-round" />
         </div>
       </div>
     );

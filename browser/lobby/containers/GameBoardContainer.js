@@ -117,8 +117,8 @@ class GameBoardContainer extends React.Component {
     });
   }
   render() {
-    const { lobbyId } = this.props;
-    return (<GameBoard lobbyId={lobbyId} />);
+    const { lobbyId, players } = this.props;
+    return (<GameBoard lobbyId={lobbyId} players={players} />);
   }
 }
 

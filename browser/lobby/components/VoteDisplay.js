@@ -1,8 +1,8 @@
 import React from 'react';
 
-const VoteDisplay = ({ voteInfo, voteNumber }) => (
-  <div className="flex-item">
-    <h1>{voteInfo === '' ? voteNumber : voteInfo}</h1>
+const VoteDisplay = ({ voteInfo }) => (
+  <div className="flex-item vote-display">
+    {voteInfo ? <img className="vote-display-token" src="/vote_counter.png" alt="vote_counter" /> : null}
   </div>
 );
 

@@ -53,7 +53,7 @@ describe('ChooseLady Component', () => {
       currentPlayer="player1"
       player="player4"
     />);
-    wrapper.find('img').simulate('click');
+    wrapper.find('button').simulate('click');
     expect(spy).to.have.been.called; // eslint-disable-line no-unused-expressions
   });
   it('should execute the selectLady with the player selected as arguement', () => {
@@ -65,7 +65,7 @@ describe('ChooseLady Component', () => {
       currentPlayer="player1"
       player="player4"
     />);
-    wrapper.find('img').simulate('click');
+    wrapper.find('button').simulate('click');
     expect(spy).to.have.been.calledWith('player4');
   });
 });

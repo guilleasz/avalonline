@@ -18,11 +18,11 @@ export const generateChars = (numPlayers, goodChars, badChars) => {
   const allChars = [];
   for (let i = 0; i < numBad; i++) {
     if (badChars[i]) allChars.push({ role: 'bad', special: badChars[i] });
-    else allChars.push({ role: 'bad', special: false });
+    else allChars.push({ role: 'bad', special: false, charIndex: i - (badChars.length - 1) });
   }
   for (let i = 0; i < numGood; i++) {
     if (goodChars[i]) allChars.push({ role: 'good', special: goodChars[i] });
-    else allChars.push({ role: 'good', special: false });
+    else allChars.push({ role: 'good', special: false, charIndex: i - (goodChars.length - 1) });
   }
   return shuffle(allChars);
 };
@@ -61,7 +61,8 @@ export const setupInitalGameState = (players, ladyBool) => {
   const numPlayersOnQuest = howManyPlayersOnQuest(totalPlayers, 1);
   const questLeader = 0;
   const lady = ladyBool ? totalPlayers - 1 : false;
-  return { turnOrder, state, numOfRejectsNeeded, numPlayersOnQuest, questLeader, lady };
+  const voteFails = 0;
+  return { turnOrder, state, numOfRejectsNeeded, numPlayersOnQuest, questLeader, lady, voteFails };
 };
 
 export const setupPlayerRoles = (players, goodChars, badChars) => {

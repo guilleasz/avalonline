@@ -12,8 +12,12 @@ const QuestVoteCards = ({
   questPlayers[currentPlayer] &&
   (!questSuccessVote || !Object.hasOwnProperty.call(questSuccessVote, currentPlayer)) ?
     <div className="questVoteCardContainer">
-      <button onClick={successQuest} className="questVoteCard successQuest">Success</button>
-      <button onClick={failQuest} className="questVoteCard failQuest">Fail</button>
+      <button onClick={successQuest} className="questVoteCard successQuest">
+        <img alt="success" className="img-responsive" src="/assets/quest_success.jpg" />
+      </button>
+      <button onClick={failQuest} className="questVoteCard failQuest">
+        <img alt="approve" className="img-responsive" src="/assets/quest_fail.jpg" />
+      </button>
     </div>
     : null
 );

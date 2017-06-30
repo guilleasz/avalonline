@@ -25,6 +25,7 @@ const PlayerItem = ({
       playerId={player.uid}
       questLeader={questLeader}
       questPlayers={questPlayers && Object.keys(questPlayers)}
+      isLady={player.uid === lady}
     />
     <PlayerExtraInfoItem
       special={player.special}

@@ -7,6 +7,7 @@ import ConfirmLady from './ConfirmLady';
 import Lady from './Lady';
 import Assassinate from './Assassinate';
 
+
 const PlayerBoard = ({
   players,
   currentPlayer,
@@ -27,8 +28,17 @@ const PlayerBoard = ({
   ladyWindow,
   closeLady,
   assassinate,
+  seeCard,
+  toggleCard,
+  animateCard,
+  cardHasAnimate,
 }) => (
   <div>
+    <div className="showPlayerCard">
+      <button onClick={toggleCard}>
+        Show Card
+      </button>
+    </div>
     <Assassinate
       currentPlayer={currentPlayer}
       state={gameState.state}
@@ -39,7 +49,11 @@ const PlayerBoard = ({
       assassinate={assassinate}
     />
     <PlayerCard
+      animateCard={animateCard}
       currentPlayer={currentPlayer}
+      seeCard={seeCard}
+      toggleCard={toggleCard}
+      cardHasAnimate={cardHasAnimate}
     />
     <QuestVoteCards
       currentPlayer={currentPlayerId}
@@ -67,7 +81,7 @@ const PlayerBoard = ({
     />
     <ConfirmLady
       display={confirmLadyWindow}
-      player={players && players[gameState.lady].name}
+      player={players && gameState.lady && players[gameState.lady].name}
       cancelLady={cancelLady}
       showLady={showLady}
     />

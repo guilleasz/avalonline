@@ -20,10 +20,14 @@ class PlayerBoardContainer extends React.Component {
     this.cancelLady = this.cancelLady.bind(this);
     this.closeLady = this.closeLady.bind(this);
     this.assassinate = this.assassinate.bind(this);
+    this.toggleCard = this.toggleCard.bind(this);
+    this.cardHasAnimate = this.cardHasAnimate.bind(this);
   }
   state = {
     confirmLadyWindow: false,
     ladyWindow: false,
+    seeCard: true,
+    animateCard: true,
   }
 
   addToQuest(playerId) {
@@ -129,6 +133,18 @@ class PlayerBoardContainer extends React.Component {
     }
   }
 
+  cardHasAnimate() {
+    this.setState({
+      animateCard: false,
+    });
+  }
+  toggleCard() {
+    this.setState({
+      seeCard: !this.state.seeCard,
+      animateCard: true,
+    });
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -151,6 +167,10 @@ class PlayerBoardContainer extends React.Component {
       cancelLady={this.cancelLady}
       closeLady={this.closeLady}
       assassinate={this.assassinate}
+      toggleCard={this.toggleCard}
+      seeCard={this.state.seeCard}
+      animateCard={this.state.animateCard}
+      cardHasAnimate={this.cardHasAnimate}
     />);
   }
 }

@@ -1,7 +1,8 @@
 .flex-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  height: 100%;
 }
 
 .ant-card-bordered {
@@ -9,7 +10,7 @@
 }
 
 .ant-card {
-  background: #fff;
+  background: transparent;
   border-radius: 4px;
   font-size: 12px;
   position: relative;
@@ -23,16 +24,24 @@
 
 .custom-image img {
   display: block;
+  height: 100%;
 }
 
 .flex-item {
   background: transparent;
-  padding: 5px;
-  width: 200px;
-  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
 
-  line-height: 150px;
-  color: black;
+.player-card {
+  background: transparent;
+  padding: 5px;
+  /*width: 200px;
+  margin-top: 10px;
+  line-height: 150px;*/
+  color: white;
   font-weight: bold;
   font-size: 3em;
   font-family: fantasy;
@@ -110,4 +119,114 @@ input[type='checkbox']:checked {
   -ms-user-select: none; /* IE10+ */
   vertical-align: bottom;
   text-align: left;
+}
+
+.game_board_5 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_5.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_6 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_6.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_7 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_7.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_8 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_8.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_9 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_9.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.game_board_10 {
+  max-width: 1400px;
+  max-height: 1025px;
+  width: 100vw;
+  height: calc(100vw / 1.365);
+  background-image: url("game_board_10.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.player-card-container {
+  height: 33%;
+  border: 2px solid black;
+}
+
+.round-display-container {
+  height: 40%;
+}
+
+.round-display {
+  height: 100%;
+  width: 20%;
+}
+
+.round-display-token {
+  position: relative;
+  left: 33%;
+  top: 61%;
+  width: 38%;
+  height: auto;
+}
+
+.vote-display-container {
+  height: 27%;
+}
+
+.vote-display {
+  width: 20%;
+  height: 100%;
+}
+
+.vote-display-token {
+  position: relative;
+  top: 19%;
+  width: 80%;
+  height: auto;
+}
+
+.buffer-round {
+  width: 3%;
+}
+
+.buffer-vote-left {
+  width: 6%;
+}
+
+.buffer-vote-right {
+  width: 40%;
 }
