@@ -150,8 +150,7 @@
 
 .votingCard {
   text-align: center;
-  width: 100px;
-  height: 100px;
+  width: 140px;
   margin: 30px;
   border: 0;
   background: transparent;
@@ -159,6 +158,7 @@
 }
 
 .votingCard[disabled] {
+  width: 90px;
   cursor: not-allowed;
   opacity: 0.6
 }
