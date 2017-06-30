@@ -11,7 +11,6 @@ const Lobby = ({ handleChange, setNickname, name, nickname, started, params, onU
       <div>
         <h4>Upload a Selfie!</h4>
         <input type="file" accept="image/*" onChange={onUploadFile}/>
-        <button name="selfie" className="btn btn-primary">Upload</button>
       </div>
       <p>Waiting to Start...</p>
     </div> : <PlayerBoardContainer params={params} />
