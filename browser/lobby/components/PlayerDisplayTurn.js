@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlayerDisplayTurn = ({ player, isQuestLeader }) => (
+const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest }) => (
   <div className={isQuestLeader ? 'flex-item player-card quest-leader' : 'flex-item player-card'}>
     <div className="ant-card ant-card-bordered">
       <div className="ant-card-body">

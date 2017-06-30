@@ -6,7 +6,7 @@ import PlayerDisplayTurn from '../components/PlayerDisplayTurn';
 class PlayerDisplayTurnContainer extends React.Component {
 
   render() {
-    const { players, turnOrder, questLeader } = this.props;
+    const { players, turnOrder, questLeader, questPlayers } = this.props;
     return (
       <div className="player-card-container">
         <div className="flex-container">
@@ -14,6 +14,7 @@ class PlayerDisplayTurnContainer extends React.Component {
             key={id}
             player={players[id]}
             isQuestLeader={questLeader === i}
+            onQuest={Object.keys(questPlayers).indexOf(id) >= 0}
           />))}
         </div>
       </div>
@@ -27,5 +28,6 @@ export default connect(({ firebase }, ownProps) => ({
   players: dataToJS(firebase, `${ownProps.lobbyId}/players`),
   turnOrder: dataToJS(firebase, `${ownProps.lobbyId}/gameState/turnOrder`),
   questLeader: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questLeader`),
+  questPlayers: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questPlayers`),
   lobbyId: ownProps.lobbyId,
 }))(wrappedPlayerDisplayTurnContainer);
