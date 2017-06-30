@@ -3,6 +3,11 @@
   width: 100%
 }
 
+.questCardResult {
+  top: 0;
+  position: absolute;
+  width: calc(100vh * 1.365);}
+
 .flex-container {
   display: flex;
   flex-direction: row;
