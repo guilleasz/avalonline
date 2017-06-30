@@ -9,10 +9,18 @@ class LobbyContainer extends React.Component {
     super();
     this.state = {
       selectedChar: '',
+      animatedPlayers: [],
     };
     this.startGame = this.startGame.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.selectChar = this.selectChar.bind(this);
+    this.addPlayer = this.addPlayer.bind(this);
+  }
+
+  addPlayer(player) {
+    this.setState({
+      animatedPlayers: [...this.state.animatedPlayers, player],
+    });
   }
 
   startGame(goodChars, badChars, lady) {
@@ -48,6 +56,8 @@ class LobbyContainer extends React.Component {
       handleSubmit={this.handleSubmit}
       selectedChar={selectedChar}
       selectChar={this.selectChar}
+      animatedPlayers={this.state.animatedPlayers}
+      addPlayer={this.addPlayer}
     />);
   }
 }
