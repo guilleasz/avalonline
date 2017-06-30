@@ -1,13 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import chai, { expect } from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
+import { expect } from 'chai';
 import PlayerCard from '../../../mobile/components/PlayerCard';
 import * as characters from '../../../characters';
 import { charInfo } from '../../../charactersinfo';
 
-chai.use(sinonChai);
 
 describe('Player Card component', () => {
   it('should render a character card for a Player', () => {

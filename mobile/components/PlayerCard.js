@@ -13,7 +13,7 @@ const PlayerCard = ({
   currentPlayer ?
     <Anime
       easing="easeInQuad"
-      translateY={seeCard ? [-550, 0] : [0, -550]}
+      translateY={seeCard ? [-2000, 0] : [0, -2000]}
       autoplay={animateCard}
       complete={cardHasAnimate}
     >
