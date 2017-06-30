@@ -122,8 +122,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_5 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_5.png");
@@ -132,8 +132,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_6 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_6.png");
@@ -142,8 +142,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_7 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_7.png");
@@ -152,8 +152,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_8 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_8.png");
@@ -162,8 +162,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_9 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_9.png");
@@ -172,8 +172,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_10 {
-  max-width: 1400px;
-  max-height: 1025px;
+  max-width: calc(100vh * 1.365);
+  max-height: 100vh;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_10.png");
@@ -219,8 +219,11 @@ input[type='checkbox']:checked {
   height: auto;
 }
 
-.buffer-round {
+.buffer-round-left {
   width: 3%;
+}
+.buffer-round-right {
+  width: 3.4%;
 }
 
 .buffer-vote-left {
