@@ -14,7 +14,7 @@ class PlayerDisplayTurnContainer extends React.Component {
             key={id}
             player={players[id]}
             isQuestLeader={questLeader === i}
-            onQuest={Object.keys(questPlayers).indexOf(id) >= 0}
+            onQuest={questPlayers && Object.keys(questPlayers).indexOf(id) >= 0}
           />))}
         </div>
       </div>
