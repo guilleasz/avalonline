@@ -10,6 +10,7 @@ class RoundDisplayContainer extends React.Component {
     const votes = [];
     for (let i = 0; i < 5; i++) {
       if (roundHistory && roundHistory[i]) votes.push(roundHistory[i][0]);
+      else if (i === roundHistory.length) votes.push('current');
       else votes.push('');
     }
     return (
