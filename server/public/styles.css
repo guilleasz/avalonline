@@ -81,8 +81,8 @@ input[type='checkbox']:checked {
 }
 
 .game_board_7 {
-  max-width: 1487px;
-  max-height: 1089px;
+  max-width: 1400px;
+  max-height: 1025px;
   width: 100vw;
   height: calc(100vw / 1.365);
   background-image: url("game_board_7.png");
@@ -97,23 +97,45 @@ input[type='checkbox']:checked {
 
 .round-display-container {
   height: 40%;
-  border: 2px solid black;
 }
 
 .round-display {
-  border: 2px solid red;
   height: 100%;
   width: 20%;
 }
 
-.buffer-round {
-  width: 2%;
-}
-
 .round-display-token {
   position: relative;
-  left: 43%;
-  top: 60%;
-  width: 30%;
+  left: 33%;
+  top: 61%;
+  width: 38%;
   height: auto;
+}
+
+.vote-display-container {
+  height: 27%;
+}
+
+.vote-display {
+  width: 20%;
+  height: 100%;
+}
+
+.vote-display-token {
+  position: relative;
+  top: 19%;
+  width: 80%;
+  height: auto;
+}
+
+.buffer-round {
+  width: 3%;
+}
+
+.buffer-vote-left {
+  width: 6%;
+}
+
+.buffer-vote-right {
+  width: 40%;
 }

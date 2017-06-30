@@ -6,18 +6,20 @@ import VoteDisplay from '../components/VoteDisplay';
 class VoteDisplayContainer extends React.Component {
 
   render() {
-    const { voteHistory } = this.props;
+    const { voteFails } = this.props;
     const votes = [];
     for (let i = 0; i < 5; i++) {
-      if (voteHistory && voteHistory[i]) votes.push(voteHistory[i]);
-      else votes.push('');
+      if (i < voteFails) votes.push(true);
+      else votes.push(false);
     }
     return (
-      <div className="vote-display">
+      <div className="vote-display-container">
         <div className="flex-container">
+          <div className="buffer-vote-left" />
           {
             votes.map((vote, i) => (<VoteDisplay key={i} voteNumber={i + 1} voteInfo={vote} />))
           }
+          <div className="buffer-vote-right" />
         </div>
       </div>
     );
@@ -27,5 +29,5 @@ class VoteDisplayContainer extends React.Component {
 const wrappedVoteDisplayContainer = firebaseConnect(['/'])(VoteDisplayContainer);
 
 export default connect(({ firebase }, ownProps) => ({
-  voteHistory: dataToJS(firebase, `${ownProps.lobbyId}/gameState/voteHistory`),
+  voteFails: dataToJS(firebase, `${ownProps.lobbyId}/gameState/voteFails`),
 }))(wrappedVoteDisplayContainer);
