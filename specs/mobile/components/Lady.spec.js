@@ -22,11 +22,11 @@ describe('Lady Component', () => {
   });
   it('should render Good if the role of player is good', () => {
     const wrapper = shallow(<Lady display player={{ role: 'good' }} />);
-    expect(wrapper.find('.role').text()).to.equal('Good');
+    expect(wrapper.find('img').prop('src')).to.equal('/assets/good_card_back.jpg');
   });
   it('should render Evil if the role of player is bad', () => {
     const wrapper = shallow(<Lady display player={{ role: 'bad' }} />);
-    expect(wrapper.find('.role').text()).to.equal('Evil');
+    expect(wrapper.find('img').prop('src')).to.equal('/assets/evil-card.png');
   });
   it('should execute the closeLady fn when .closeLady btn is clicked', () => {
     const spy = sinon.spy();
