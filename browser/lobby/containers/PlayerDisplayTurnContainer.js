@@ -7,10 +7,8 @@ class PlayerDisplayTurnContainer extends React.Component {
 
   render() {
     const { players, turnOrder, questLeader } = this.props;
-    console.log(questLeader === 0);
     return (
-      <div>
-        <h1>Turn Order</h1>
+      <div className="player-card-container">
         <div className="flex-container">
           { turnOrder.map((id, i) => (<PlayerDisplayTurn
             key={id}
