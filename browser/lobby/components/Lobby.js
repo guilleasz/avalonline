@@ -4,8 +4,9 @@ import Anime from 'react-anime';
 import { charInfo } from '../../../charactersinfo';
 import { MORDERED, MORGANA, PERCIVAL, OBERON, LADY } from '../../../characters';
 
+const autoNameCheck = true;
 
-const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar }) => (
+const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer }) => (
   !started ?
     <div>
       <div className="col-sm-8 col-md-offset-2">
@@ -24,6 +25,14 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
                   <Anime
                     easing="easeInCubic"
                     translateX={[-300, 0]}
+                    autoplay={(() => {
+                      if (animatedPlayers.find(pId => id === pId)) {
+                        return false;
+                      }
+                      addPlayer(id);
+                      return true;
+                    })()
+                    }
                   >
                     <h2 className="player-name" key={id}>{players[id].name}</h2>
                   </Anime>);
@@ -38,6 +47,14 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
                   <Anime
                     easing="easeInCubic"
                     translateX={[300, 0]}
+                    autoplay={(() => {
+                      if (animatedPlayers.find(pId => id === pId)) {
+                        return false;
+                      }
+                      addPlayer(id);
+                      return true;
+                    })()
+                    }
 
                   >
                     <h2 className="player-name" key={id}>{players[id].name}</h2>

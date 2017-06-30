@@ -1,19 +1,41 @@
 .flex-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ant-card-bordered {
+  border: 1px solid #e9e9e9;
+}
+
+.ant-card {
+  background: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.custom-card {
+  padding: 10px 16px;
+}
+
+.custom-image img {
+  display: block;
 }
 
 .flex-item {
   background: transparent;
   padding: 5px;
   width: 200px;
-  height: 150px;
   margin-top: 10px;
 
   line-height: 150px;
-  color: red;
+  color: black;
   font-weight: bold;
   font-size: 3em;
+  font-family: fantasy;
   text-align: center;
 }
 
@@ -72,9 +94,14 @@ input[type='checkbox']:checked {
   margin-bottom: 0.4em;
 }
 
-.quest-leader {
-  color: blue;
-  border: 2px solid yellow;
+.quest-leader .ant-card:before {
+    content: " ";
+    background: url(/assets/quest_leader.png) no-repeat;
+    background-size: contain;
+    display: block;
+    width: 100%;
+    height: 64px;
+    position: absolute;
 }
 
 .glyphicon {
