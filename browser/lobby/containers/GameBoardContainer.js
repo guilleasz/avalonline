@@ -180,6 +180,7 @@ class GameBoardContainer extends React.Component {
       startShuffling={startShuffling}
       questResult={gameState.questSuccessVote}
       result={result}
+      gameState={gameState}
     />);
   }
 }

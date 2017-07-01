@@ -6,7 +6,8 @@ import RoundDisplay from '../components/RoundDisplay';
 class RoundDisplayContainer extends React.Component {
 
   render() {
-    const { roundHistory } = this.props;
+    let { roundHistory } = this.props;
+    if (!roundHistory) roundHistory = [];
     const votes = [];
     for (let i = 0; i < 5; i++) {
       if (roundHistory && roundHistory[i]) votes.push(roundHistory[i][0]);
