@@ -92,9 +92,10 @@ class PlayerBoardContainer extends React.Component {
     });
   }
   showLady() {
-    const { params, firebase } = this.props;
+    const { params, firebase, players, currentPlayerId, gameState } = this.props;
     firebase.update(`/${params.lobbyId}/gameState`, {
       state: 'choosing',
+      pickLady: `${players[currentPlayerId].name} picked ${players[gameState.lady].name} to lady`,
     });
     this.setState({
       confirmLadyWindow: false,
@@ -114,6 +115,10 @@ class PlayerBoardContainer extends React.Component {
   }
 
   closeLady() {
+    const { params, firebase } = this.props;
+    firebase.update(`/${params.lobbyId}/gameState`, {
+      pickLady: null,
+    });
     this.setState({
       ladyWindow: false,
     });

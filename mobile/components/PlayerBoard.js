@@ -7,6 +7,7 @@ import ConfirmLady from './ConfirmLady';
 import Lady from './Lady';
 import Assassinate from './Assassinate';
 import OnQuest from './OnQuest';
+import LadysPick from './LadysPick';
 
 
 const PlayerBoard = ({
@@ -96,6 +97,10 @@ const PlayerBoard = ({
       players={players}
       state={gameState.state}
       questPlayers={gameState.questPlayers}
+    />
+    <LadysPick
+      pickLady={gameState.pickLady}
+      ladyWindow={ladyWindow}
     />
   </div>
 );
