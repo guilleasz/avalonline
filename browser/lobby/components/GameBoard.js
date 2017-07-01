@@ -1,8 +1,8 @@
 import React from 'react';
+import Anime from 'react-anime';
 import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer';
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
-import Anime from 'react-anime';
 import QuestResultAnimation from './QuestResultAnimation';
 // <img alt={`game_board_${Object.keys(players).length}.png`}
 // src={`/game_board_${Object.keys(players).length}.png`} />
@@ -16,6 +16,7 @@ const Gameboard = ({
   shuffle,
   startShuffling,
   questResult,
+  gameState,
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
     <div className="endGame">
@@ -26,6 +27,13 @@ const Gameboard = ({
       >
         <div>
           {result || null}
+        </div>
+        <div className="gameState">
+          {
+            gameState.state === 'choosing' ?
+              <h4>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h4>
+            : null
+          }
         </div>
       </Anime>
     </div>

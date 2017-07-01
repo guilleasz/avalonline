@@ -6,6 +6,7 @@ import PlayerCard from './PlayerCard';
 import ConfirmLady from './ConfirmLady';
 import Lady from './Lady';
 import Assassinate from './Assassinate';
+import OnQuest from './OnQuest';
 
 
 const PlayerBoard = ({
@@ -89,6 +90,12 @@ const PlayerBoard = ({
       display={ladyWindow}
       player={players[gameState.lady]}
       closeLady={closeLady}
+    />
+    <OnQuest
+      currentPlayer={currentPlayerId}
+      players={players}
+      state={gameState.state}
+      questPlayers={gameState.questPlayers}
     />
   </div>
 );

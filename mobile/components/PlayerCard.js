@@ -23,12 +23,12 @@ const PlayerCard = ({
             <img
               className="img-responsive"
               alt={currentPlayer.special}
-              src={`/assets/${currentPlayer.special}.jpg`}
+              src={`/assets/${currentPlayer.special}.png`}
             /> :
               <img
                 className="img-responsive"
                 alt={currentPlayer.special}
-                src={`/assets/${currentPlayer.role}-guy_${currentPlayer.charIndex}.jpg`}
+                src={`/assets/${currentPlayer.role}-guy_${currentPlayer.charIndex}.png`}
               />
           }
           <p>{
