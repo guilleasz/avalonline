@@ -9,7 +9,7 @@ import { charInfo } from '../../../charactersinfo';
 describe('Player Card component', () => {
   it('should render a character card for a Player', () => {
     const wrapper = shallow(<PlayerCard currentPlayer={{ special: characters.MORDERED }} />);
-    expect(wrapper.find('img').prop('src')).to.equal(`/assets/${characters.MORDERED}.jpg`);
+    expect(wrapper.find('img').prop('src')).to.equal(`/assets/${characters.MORDERED}.png`);
   });
   it("should display the character's info", () => {
     const wrapper = shallow(<PlayerCard currentPlayer={{ special: characters.MERLIN }} />);
