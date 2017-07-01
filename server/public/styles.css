@@ -6,8 +6,8 @@
 .questCardResult {
   top: 30%;
   position: absolute;
-  width: calc(100vh * 1.365);
   transform: translateY(-50%);
+  width: 100%
 }
 
 .flex-container {
@@ -176,6 +176,10 @@ input[type='checkbox']:checked {
   -ms-user-select: none; /* IE10+ */
   vertical-align: bottom;
   text-align: left;
+}
+
+.game_board: {
+  position: relative;
 }
 
 .game_board_5 {

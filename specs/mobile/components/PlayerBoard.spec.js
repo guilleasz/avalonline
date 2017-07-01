@@ -10,6 +10,7 @@ import ConfirmLady from '../../../mobile/components/ConfirmLady';
 import Lady from '../../../mobile/components/Lady';
 import Assassinate from '../../../mobile/components/Assassinate';
 import OnQuest from '../../../mobile/components/OnQuest';
+import LadysPick from '../../../mobile/components/LadysPick';
 
 
 describe('PlayerBoard', () => {
@@ -34,6 +35,7 @@ describe('PlayerBoard', () => {
         player1: true,
       },
       lady: 'player1',
+      pickLady: 'Hello',
     },
     confirmLadyWindow: true,
     ladyWindow: true,
@@ -184,5 +186,14 @@ describe('PlayerBoard', () => {
     expect(wrapper.find(OnQuest).prop('players').player1.name).to.equal('Guille');
     expect(wrapper.find(OnQuest).prop('questPlayers').player1).to.equal(true);
     expect(wrapper.find(OnQuest).prop('state')).to.equal('voting');
+  });
+  it('should render the LadysPick component', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(LadysPick).length).to.equal(1);
+  });
+  it('should pass the pickLady and ladyWindow prop', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(LadysPick).prop('pickLady')).to.equal('Hello');
+    expect(wrapper.find(LadysPick).prop('ladyWindow')).to.equal(true);
   });
 });
