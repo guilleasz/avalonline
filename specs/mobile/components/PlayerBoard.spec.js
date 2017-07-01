@@ -9,6 +9,7 @@ import PlayerCard from '../../../mobile/components/PlayerCard';
 import ConfirmLady from '../../../mobile/components/ConfirmLady';
 import Lady from '../../../mobile/components/Lady';
 import Assassinate from '../../../mobile/components/Assassinate';
+import OnQuest from '../../../mobile/components/OnQuest';
 
 
 describe('PlayerBoard', () => {
@@ -172,5 +173,16 @@ describe('PlayerBoard', () => {
   it('should pass the assassinate fn', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
     expect(wrapper.find(Assassinate).prop('assassinate')()).to.equal('assassinate');
+  });
+  it('should render the OnQuest component', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(OnQuest).length).to.equal(1);
+  });
+  it('should pass the currentPlayerId, the list of players, the players on the quest and the state', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(OnQuest).prop('currentPlayer')).to.equal('player1');
+    expect(wrapper.find(OnQuest).prop('players').player1.name).to.equal('Guille');
+    expect(wrapper.find(OnQuest).prop('questPlayers').player1).to.equal(true);
+    expect(wrapper.find(OnQuest).prop('state')).to.equal('voting');
   });
 });

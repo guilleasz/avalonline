@@ -281,3 +281,20 @@
   background: #66d9ef;
   color: green;
 }
+
+//**************************** On Quest ***********************//
+
+.onQuest {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  width: 50%;
+  border: 5px dashed white;
+  padding: 30px 10px;
+  text-align: center;
+  font-size: 21px;
+  font-family: cursive;
+}

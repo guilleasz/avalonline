@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import Assassinate from '../../../mobile/components/Assassinate';
 import GoodPlayerCard from '../../../mobile/components/GoodPlayerCard';
-import { Assassin} from '../../../characters';
+import { Assassin } from '../../../characters';
 
 
 describe('Assassinate Component', () => {
