@@ -71,6 +71,31 @@
   font-weight: bold;
 }
 
+.quest-leader .player-picture:after {
+    content: " ";
+    background: url(/assets/quest_leader.png) no-repeat;
+    background-size: contain;
+    display: block;
+    border-radius: 10px;
+    width: 7vh;
+    height: 7vh;
+    position: absolute;
+    top: 10px;
+}
+
+.on-quest .player-picture:before {
+  content: " ";
+  background: url(/assets/quest_player.png) no-repeat;
+  background-size: contain;
+  background-position: right;
+  display: block;
+  border-radius: 10px;
+  height: 7vh;
+  width: 9%;
+  position: absolute;
+  top: 10px;
+  }
+
 .cursive {
   font-family: cursive;
 }
@@ -140,28 +165,6 @@ input[type='checkbox']:checked {
   margin-top: 0.6em;
   margin-bottom: 0.4em;
 }
-
-.quest-leader .ant-card:after {
-    content: " ";
-    background: url(/assets/quest_leader.png) no-repeat;
-    background-size: contain;
-    display: block;
-    width: 100%;
-    height: 64px;
-    position: absolute;
-    top: 0;
-}
-
-.on-quest .ant-card:before {
-  content: " ";
-  background: url(/assets/quest_player.png) no-repeat;
-  background-size: contain;
-  background-position: right;
-  display: block;
-  width: 100%;
-  height: 42px;
-  position: absolute;
-  }
 
 .glyphicon {
   -webkit-user-select: none; /* Chrome/Safari */
