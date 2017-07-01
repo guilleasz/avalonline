@@ -5,7 +5,9 @@
   "main": "server/app.js",
   "scripts": {
     "test": "mocha --repoter doc --compilers js:babel-core/register -w \"specs/**/*.spec.js\" ",
-    "start": "webpack -w & node server"
+    "build": "webpack",
+    "postinstall": "npm run build",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
