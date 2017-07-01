@@ -4,9 +4,11 @@
 }
 
 .questCardResult {
-  top: 0;
+  top: 30%;
   position: absolute;
-  width: calc(100vh * 1.365);}
+  width: calc(100vh * 1.365);
+  transform: translateY(-50%);
+}
 
 .flex-container {
   display: flex;
