@@ -4,6 +4,7 @@ import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
 import QuestResultAnimation from './QuestResultAnimation';
+import { default as Fade } from 'react-fade';
 // <img alt={`game_board_${Object.keys(players).length}.png`}
 // src={`/game_board_${Object.keys(players).length}.png`} />
 
@@ -20,10 +21,9 @@ const Gameboard = ({
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
     <div className="endGame">
-      <Anime
-        easing="easeInSine"
-        translateY={[-500, 300]}
-        duration={1500}
+      <Fade
+        duration="1"
+        style={{ visibility: 'visible' }}
       >
         <div>
           {result || null}
@@ -35,7 +35,7 @@ const Gameboard = ({
             : null
           }
         </div>
-      </Anime>
+      </Fade>
     </div>
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
