@@ -109,11 +109,12 @@ input[type='checkbox']:checked {
 
 .endGame {
   position: absolute;
+  max-width: inherit;
+  width: 100vw;
   text-align: center;
-  width: 100%;
   font-family: fantasy;
   font-weight: bold;
-  font-size: 900%;
+  font-size: 300%;
   color: white;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
@@ -159,10 +160,6 @@ input[type='checkbox']:checked {
   -ms-user-select: none; /* IE10+ */
   vertical-align: bottom;
   text-align: left;
-}
-
-.game_board: {
-  position: realtive;
 }
 
 .game_board_5 {

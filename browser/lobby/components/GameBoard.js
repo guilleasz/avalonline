@@ -18,15 +18,17 @@ const Gameboard = ({
   questResult,
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
-    <Anime
-      easing="easeInQuint"
-      translateY={[-1000, 400]}
-      duration={1500}
-    >
-      <div className="endGame">
-        {result || null}
-      </div>
-    </Anime>
+    <div className="endGame">
+      <Anime
+        easing="easeInSine"
+        translateY={[-500, 300]}
+        duration={1500}
+      >
+        <div>
+          {result || null}
+        </div>
+      </Anime>
+    </div>
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
     <VoteDisplayContainer lobbyId={lobbyId} />
