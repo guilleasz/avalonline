@@ -1,11 +1,9 @@
 import React from 'react';
-import Anime from 'react-anime';
+import Fade from 'react-fade';
 import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer';
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
 import QuestResultAnimation from './QuestResultAnimation';
-import SnackBar from 'react-material-snackbar';
-import { default as Fade } from 'react-fade';
 
 const Gameboard = ({
   lobbyId,

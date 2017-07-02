@@ -12,8 +12,8 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
       <div className="col-sm-8 col-sm-offset-2">
         <div className="page-header">
           <h1 className="cursive together">Visit&nbsp;</h1>
-          <h1 className="cursive bold together">avalon-online.herokuapp.com/mobile/&nbsp;</h1>
-          <h1 className="cursive together">and enter code:&nbsp;</h1>
+          <h1 className="cursive bold together">http://bit.ly/2tBHjsN&nbsp;</h1>
+          <h1 className="cursive together">on your phone and enter code:&nbsp;</h1>
           <h1 className="cursive bold together">{lobbyId}</h1>
         </div>
         <div>
