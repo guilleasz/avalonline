@@ -36,7 +36,7 @@ const Gameboard = ({
       >
         {
           gameState.state === 'choosing' ?
-            <h3>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h3>
+            <h2>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h2>
           : null
         }
       </Fade>
