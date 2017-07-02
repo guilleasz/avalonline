@@ -14,6 +14,8 @@ class GameBoardContainer extends React.Component {
     shuffle: true,
     startShuffling: false,
   }
+
+
   componentWillMount() {
     const { lobbyId, firebase, players } = this.props;
     firebase.ref(`/${lobbyId}/gameState`)
@@ -93,6 +95,10 @@ class GameBoardContainer extends React.Component {
         }
       }
     });
+  }
+
+  componentDidMount() {
+    const w = window;
   }
 
   postQuestResult() {
