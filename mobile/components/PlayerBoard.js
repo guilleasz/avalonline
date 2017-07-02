@@ -34,6 +34,8 @@ const PlayerBoard = ({
   toggleCard,
   animateCard,
   cardHasAnimate,
+  hideInfo,
+  toggleInfo,
 }) => (
   <div>
     <div className="showPlayerCard">
@@ -80,6 +82,8 @@ const PlayerBoard = ({
       removeFromQuest={removeFromQuest}
       confirmQuest={confirmQuest}
       selectLady={selectLady}
+      hideInfo={hideInfo}
+      toggleInfo={toggleInfo}
     />
     <ConfirmLady
       display={confirmLadyWindow}

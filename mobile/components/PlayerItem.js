@@ -18,6 +18,7 @@ const PlayerItem = ({
   addToQuest,
   removeFromQuest,
   selectLady,
+  hideInfo,
 }) => (
   <div className="row playerItem">
     <PlayerNameItem
@@ -28,6 +29,7 @@ const PlayerItem = ({
       isLady={player.uid === lady}
     />
     <PlayerExtraInfoItem
+      hideInfo={hideInfo}
       special={player.special}
       playerRole={player.role}
       currentPlayerSpecial={currentPlayer.special}

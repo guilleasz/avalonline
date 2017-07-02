@@ -35,16 +35,24 @@ const getClass = (playerRole, currentPlayerRole, special, currentPlayerSpecial) 
   return 'noInfo';
 };
 
-const PlayerExtraInfoItem = ({ playerRole, currentPlayerRole, special, currentPlayerSpecial }) => (
-  <div className="col-xs-3">
-    <p
-      className={
-        `info ${getClass(playerRole, currentPlayerRole, special, currentPlayerSpecial)}`
-      }
-    >
-      {getInfo(playerRole, currentPlayerRole, special, currentPlayerSpecial)}
-    </p>
-  </div>
+const PlayerExtraInfoItem = ({
+  playerRole,
+  currentPlayerRole,
+  special,
+  currentPlayerSpecial,
+  hideInfo,
+}) => (
+  !hideInfo ?
+    <div className="col-xs-3">
+      <p
+        className={
+          `info ${getClass(playerRole, currentPlayerRole, special, currentPlayerSpecial)}`
+        }
+      >
+        {getInfo(playerRole, currentPlayerRole, special, currentPlayerSpecial)}
+      </p>
+    </div>
+    : null
 );
 
 export default PlayerExtraInfoItem;
