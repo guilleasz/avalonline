@@ -13,9 +13,10 @@ const PlayerCard = ({
   currentPlayer ?
     <Anime
       easing="easeInQuad"
-      translateY={seeCard ? [-2000, 0] : [0, -2000]}
+      translateY={seeCard ? [-1000, 0] : [0, -2000]}
       autoplay={animateCard}
       complete={cardHasAnimate}
+      duration={500}
     >
       <div className="playerCardContainer">
         <div className="playerCard">
