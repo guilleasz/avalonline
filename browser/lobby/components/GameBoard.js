@@ -22,7 +22,7 @@ const Gameboard = ({
   <div className={`game_board game_board_${Object.keys(players).length}`} >
     <div className="endGame">
       <Fade
-        duration="1"
+        duration={1}
         style={{ visibility: 'visible' }}
       >
         <div>
