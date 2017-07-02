@@ -34,11 +34,21 @@ const Gameboard = ({
         duration="1"
         style={{ visibility: 'visible' }}
       >
-        {
-          gameState.state === 'choosing' ?
-            <h2>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h2>
-          : null
-        }
+        { gameState.state === 'choosing' ?
+          <h2>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h2>
+          : null }
+        { gameState.state === 'voting' ?
+          <h2>Everyone vote! Either accept or reject the quest!</h2>
+          : null }
+        { gameState.state === 'questing' ?
+          <h2>Players are on the quest! Good luck!</h2>
+          : null }
+        { gameState.state === 'lady' ?
+          <h2>Choose whether or not to use the Lady Token!</h2>
+          : null }
+        { gameState.state === 'pre-choosing' ?
+          <h2>The Lady is revealing the allegiance of a player!</h2>
+          : null }
       </Fade>
     </div>
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
