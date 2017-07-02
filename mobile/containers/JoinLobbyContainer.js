@@ -15,12 +15,12 @@ export default class JoinLobbyContainer extends React.Component {
   }
 
   handleChange(lobbyValue) {
-    this.setState({ lobbyValue });
+    this.setState({ lobbyValue: lobbyValue.toLowerCase() });
   }
 
   joinLobby() {
     const lobbyId = this.state.lobbyValue;
-    browserHistory.push(`/mobile/play/${lobbyId}`);
+    browserHistory.push(`/mobile/play/${lobbyId.toLowerCase()}`);
   }
 
   render() {

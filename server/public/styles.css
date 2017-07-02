@@ -1,3 +1,14 @@
+
+.lobby-background {
+  height: 100vh;
+  background-image: url("/browser-background.png");
+}
+
+.mobile-background {
+  height: 100vh;
+  background: url("/mobile-background.png");
+}
+
 .voteCard {
   position: absolute;
   z-index: 9999;
@@ -75,8 +86,10 @@
 }
 
 .player-name {
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   font-family: fantasy;
   font-size: 3em;
+  color: white;
   text-align: center;
   font-weight: bold;
 }
@@ -108,6 +121,8 @@
 
 .cursive {
   font-family: cursive;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .bold {
@@ -120,6 +135,8 @@
 
 .game-options {
   font-size: 2em;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .input-group-addon {
@@ -170,6 +187,8 @@ input[type='checkbox']:checked {
   text-align: center;
 }
 .legend {
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  color: white;
   text-align: center;
   font-size: 1.25em;
 }
