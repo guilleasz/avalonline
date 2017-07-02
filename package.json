@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/app.js",
   "scripts": {
-    "test": "mocha --repoter doc --compilers js:babel-core/register -w \"specs/**/*.spec.js\" ",
+    "test": "mocha --require specs/setup.js --compilers js:babel-core/register -w \"specs/**/*.spec.js\" ",
     "build": "webpack",
     "postinstall": "npm run build",
     "start": "node server"
@@ -31,6 +31,7 @@
     "firebase": "^4.1.3",
     "inline-style-prefixer": "^3.0.6",
     "jquery": "^3.2.1",
+    "jsdom": "^11.0.0",
     "morgan": "^1.8.1",
     "node-sass": "^4.5.3",
     "passport": "^0.3.2",

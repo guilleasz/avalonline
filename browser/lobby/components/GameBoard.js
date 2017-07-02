@@ -18,6 +18,7 @@ const Gameboard = ({
   startShuffling,
   questResult,
   gameState,
+  showCard,
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
     <div className="endGame">
@@ -37,7 +38,7 @@ const Gameboard = ({
         </div>
       </Fade>
     </div>
-    <PlayerDisplayTurnContainer lobbyId={lobbyId} />
+    <PlayerDisplayTurnContainer showCard={showCard} lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
     <VoteDisplayContainer lobbyId={lobbyId} />
     <QuestResultAnimation

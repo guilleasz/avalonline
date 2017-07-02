@@ -1,3 +1,10 @@
+.voteCard {
+  position: absolute;
+  z-index: 9999;
+  bottom: 42%;
+  right: 0;
+  width: 50%;
+}
 
 .ReactFlipCard {
   width: 100%
@@ -31,6 +38,7 @@
   border: 2px solid #e9e9e9;
   margin: 5px;
   border-radius: 4px;
+  position: relative;
 }
 
 .player-card-name {
