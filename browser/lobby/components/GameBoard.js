@@ -27,13 +27,18 @@ const Gameboard = ({
         <div>
           {result || null}
         </div>
-        <div className="gameState">
-          {
-            gameState.state === 'choosing' ?
-              <h4>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h4>
-            : null
-          }
-        </div>
+      </Fade>
+    </div>
+    <div className="gameState">
+      <Fade
+        duration="1"
+        style={{ visibility: 'visible' }}
+      >
+        {
+          gameState.state === 'choosing' ?
+            <h3>{players[gameState.turnOrder[gameState.questLeader]].name} will choose the players for the quest</h3>
+          : null
+        }
       </Fade>
     </div>
     <PlayerDisplayTurnContainer lobbyId={lobbyId} />
