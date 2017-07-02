@@ -22,12 +22,14 @@ class PlayerBoardContainer extends React.Component {
     this.assassinate = this.assassinate.bind(this);
     this.toggleCard = this.toggleCard.bind(this);
     this.cardHasAnimate = this.cardHasAnimate.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
   state = {
     confirmLadyWindow: false,
     ladyWindow: false,
     seeCard: true,
     animateCard: true,
+    hide: false,
   }
 
   addToQuest(playerId) {
@@ -150,6 +152,12 @@ class PlayerBoardContainer extends React.Component {
     });
   }
 
+  toggleInfo() {
+    this.setState({
+      hideInfo: !this.state.hideInfo,
+    });
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -176,6 +184,8 @@ class PlayerBoardContainer extends React.Component {
       seeCard={this.state.seeCard}
       animateCard={this.state.animateCard}
       cardHasAnimate={this.cardHasAnimate}
+      hideInfo={this.state.hideInfo}
+      toggleInfo={this.toggleInfo}
     />);
   }
 }

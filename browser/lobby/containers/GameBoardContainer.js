@@ -13,6 +13,7 @@ class GameBoardContainer extends React.Component {
     isFlipped: [],
     shuffle: true,
     startShuffling: false,
+    showCard: false,
   }
 
 
@@ -23,10 +24,6 @@ class GameBoardContainer extends React.Component {
       const {
         questSuccessVote,
         questPlayers,
-        roundHistory,
-        voteFails,
-        turnOrder,
-        questLeader,
         questApprovalVote,
         state,
       } = snapshot.val();
@@ -34,40 +31,14 @@ class GameBoardContainer extends React.Component {
       if (state === 'voting' &&
           questApprovalVote &&
           Object.keys(questApprovalVote).length === Object.keys(players).length) {
-        // we get the result by reducing the values
-        const result = Object.keys(questApprovalVote)
-        .reduce((total, player) => total + (questApprovalVote[player] ? 1 : -1), 0);
-        // positive means that the test was approve 0 or negative is rejected
-        if (result > 0) {
-          firebase.update(
-          `/${lobbyId}/gameState`,
-          { state: 'questing' },
-          );
-        } else {
-          // else if it is rejected
-          //   we add the vote into the game log and reset the game state back to choosing
-          const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
-          const voteNum = voteFails + 1;
-          firebase.update(
-            `${lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
-            { questPlayers, questLeader: turnOrder[questLeader], questApprovalVote },
-          );
-          const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
-          firebase.update(
-            `/${lobbyId}/gameState`,
-            {
-              state: 'choosing',
-              questLeader: nextTurn,
-              voteFails: voteFails + 1,
-              questPlayers: null,
-              questApprovalVote: null,
-            },
-          );
-        }
+        this.setState({
+          showCard: true,
+        });
+        setTimeout(() => this.analizeVote(), 2000);
       }
       // if all the players in the quest already voted
       if (questSuccessVote &&
-      Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
+          Object.keys(questSuccessVote).length === Object.keys(questPlayers).length) {
         this.setState({
           startShuffling: true,
           shuffle: true,
@@ -115,6 +86,9 @@ class GameBoardContainer extends React.Component {
         lady,
       } = gameState;
 
+    this.setState({
+      showCard: false,
+    });
     // we take the result by reducing the value to the num of fails
     const result = Object.keys(questSuccessVote)
     .reduce((total, player) => total + questSuccessVote[player], 0);
@@ -151,7 +125,6 @@ class GameBoardContainer extends React.Component {
     );
   }
 
-
   startFlipping() {
     if (!this.state.shuffle) return false;
     this.setState({
@@ -173,9 +146,56 @@ class GameBoardContainer extends React.Component {
     }, 1000);
     return false;
   }
+
+  analizeVote() {
+    const { firebase, gameState, lobbyId } = this.props;
+    const {
+      questApprovalVote,
+      turnOrder,
+      questLeader,
+      roundHistory,
+      voteFails,
+      questPlayers,
+    } = gameState;
+
+    // we get the result by reducing the values
+    const result = Object.keys(questApprovalVote)
+    .reduce((total, player) => total + (questApprovalVote[player] ? 1 : -1), 0);
+    // positive means that the test was approve 0 or negative is rejected
+    if (result > 0) {
+      firebase.update(
+      `/${lobbyId}/gameState`,
+      { state: 'questing' },
+      );
+    } else {
+      // else if it is rejected
+      this.setState({
+        showCard: false,
+      });
+      //   we add the vote into the game log and reset the game state back to choosing
+      const roundNum = ((roundHistory && roundHistory.length) || 0) + 1;
+      const voteNum = voteFails + 1;
+      firebase.update(
+        `${lobbyId}/gameLog/round${roundNum}/quest${voteNum}`,
+        { questPlayers, questLeader: turnOrder[questLeader], questApprovalVote },
+      );
+      const nextTurn = questLeader < turnOrder.length - 1 ? questLeader + 1 : 0;
+      firebase.update(
+        `/${lobbyId}/gameState`,
+        {
+          state: 'choosing',
+          questLeader: nextTurn,
+          voteFails: voteFails + 1,
+          questPlayers: null,
+          questApprovalVote: null,
+        },
+      );
+    }
+  }
+
   render() {
     const { lobbyId, players, gameState, result } = this.props;
-    const { shuffle, isFlipped, startShuffling } = this.state;
+    const { shuffle, isFlipped, startShuffling, showCard } = this.state;
     return (<GameBoard
       lobbyId={lobbyId}
       players={players}
@@ -186,6 +206,7 @@ class GameBoardContainer extends React.Component {
       questResult={gameState.questSuccessVote}
       result={result}
       gameState={gameState}
+      showCard={showCard}
     />);
   }
 }
