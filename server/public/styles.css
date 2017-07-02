@@ -148,13 +148,15 @@ input[type='checkbox']:checked {
 
 .gameState {
   position: absolute;
-  text-align: center;
   width: 100%;
+  max-width: 1400px;
   font-family: fantasy;
   font-weight: bold;
-  font-size: 4em;
+  font-size: 10%;
   color: white;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  top: 35%;
+  left: 20%;
 }
 
 .form-actions {
@@ -244,7 +246,6 @@ input[type='checkbox']:checked {
 
 .player-card-container {
   height: 33%;
-  border: 2px solid black;
 }
 
 .round-display-container {
@@ -254,7 +255,6 @@ input[type='checkbox']:checked {
 .round-display {
   height: 100%;
   width: 20%;
-  border: 2px solid black;
 }
 
 .round-display-token {

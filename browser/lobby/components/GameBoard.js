@@ -4,9 +4,8 @@ import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
 import QuestResultAnimation from './QuestResultAnimation';
+import SnackBar from 'react-material-snackbar';
 import { default as Fade } from 'react-fade';
-// <img alt={`game_board_${Object.keys(players).length}.png`}
-// src={`/game_board_${Object.keys(players).length}.png`} />
 
 const Gameboard = ({
   lobbyId,
