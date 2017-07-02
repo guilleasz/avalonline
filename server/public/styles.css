@@ -46,6 +46,11 @@
   width: 100%;
 }
 
+.player-picture * {
+  height: 100%;
+  width: 100%;
+}
+
 .players_5 {
   max-width: 13%;
 }
@@ -59,10 +64,10 @@
   max-width: 13%;
 }
 .players_9 {
-  max-width: calc(100% / 9);
+  max-width: calc(100% / 9.1);
 }
 .players_10 {
-  max-width: 10%;
+  max-width: 9.93%;
 }
 
 .player-name {
