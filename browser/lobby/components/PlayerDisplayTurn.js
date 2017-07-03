@@ -1,8 +1,9 @@
 import React from 'react';
+import VoteCard from './VoteCard';
 import loadImage from 'blueimp-load-image';
 
 
-const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest, numPlayers }) => {
+const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest, numPlayers, questApprovalVote, showCard  }) => {
   let playerPicture = null;
   let loaded = false;
   return (
@@ -27,6 +28,10 @@ const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest, numPlayers }) => {
           <img alt="Player" width="100%" src="/assets/card_back_player.png" />
         }
       </div>
+      <VoteCard
+        questApprovalVote={questApprovalVote}
+        showCard={showCard}
+      />
       <div className="player-card-name">
         <div>{player.name}</div>
       </div>

@@ -1,11 +1,9 @@
 import React from 'react';
-import Anime from 'react-anime';
+import Fade from 'react-fade';
 import PlayerDisplayTurnContainer from '../containers/PlayerDisplayTurnContainer';
 import RoundDisplayContainer from '../containers/RoundDisplayContainer';
 import VoteDisplayContainer from '../containers/VoteDisplayContainer';
 import QuestResultAnimation from './QuestResultAnimation';
-import SnackBar from 'react-material-snackbar';
-import { default as Fade } from 'react-fade';
 
 const Gameboard = ({
   lobbyId,
@@ -17,11 +15,12 @@ const Gameboard = ({
   startShuffling,
   questResult,
   gameState,
+  showCard,
 }) => (
   <div className={`game_board game_board_${Object.keys(players).length}`} >
     <div className="endGame">
       <Fade
-        duration="1"
+        duration={1}
         style={{ visibility: 'visible' }}
       >
         <div>
@@ -51,7 +50,7 @@ const Gameboard = ({
           : null }
       </Fade>
     </div>
-    <PlayerDisplayTurnContainer lobbyId={lobbyId} />
+    <PlayerDisplayTurnContainer showCard={showCard} lobbyId={lobbyId} />
     <RoundDisplayContainer lobbyId={lobbyId} />
     <VoteDisplayContainer lobbyId={lobbyId} />
     <QuestResultAnimation

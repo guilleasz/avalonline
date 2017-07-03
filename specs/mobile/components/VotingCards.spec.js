@@ -10,10 +10,16 @@ chai.use(sinonChai);
 
 describe('VotingCards Component', () => {
   it('should render two voting cards', () => {
-    const wrapper = shallow(<VotingCards />);
+    const wrapper = shallow(<VotingCards
+      state="voting"
+      currentPlayer="player1"
+      questApprovalVote={{
+        player2: true,
+      }}
+    />);
     expect(wrapper.find('.votingCard').length).to.equal(2);
   });
-  it('should have the buttons disabled if we are not in a voting state', () => {
+  it('should have the buttons hidden if we are not in a voting state', () => {
     const wrapper = shallow(<VotingCards
       state="choosing"
       currentPlayer="player1"
@@ -21,8 +27,7 @@ describe('VotingCards Component', () => {
         player2: true,
       }}
     />);
-    expect(wrapper.find('.approve').prop('disabled')).to.equal(true);
-    expect(wrapper.find('.reject').prop('disabled')).to.equal(true);
+    expect(wrapper.find('.approve').length).to.equal(0);
   });
   it('should have the buttons disabled if the player already voted', () => {
     const wrapper = shallow(<VotingCards
@@ -32,8 +37,7 @@ describe('VotingCards Component', () => {
         player1: true,
       }}
     />);
-    expect(wrapper.find('.approve').prop('disabled')).to.equal(true);
-    expect(wrapper.find('.reject').prop('disabled')).to.equal(true);
+    expect(wrapper.find('.approve').length).to.equal(0);
   });
   it('should be enable if we are voting and the player didn\'t vote yet', () => {
     const wrapper = shallow(<VotingCards
@@ -43,16 +47,14 @@ describe('VotingCards Component', () => {
         player2: true,
       }}
     />);
-    expect(wrapper.find('.approve').prop('disabled')).to.equal(false);
-    expect(wrapper.find('.reject').prop('disabled')).to.equal(false);
+    expect(wrapper.find('.approve').length).to.equal(1);
   });
   it('should be enable if we are voting and there is not any vote yet', () => {
     const wrapper = shallow(<VotingCards
       state="voting"
       currentPlayer="player1"
     />);
-    expect(wrapper.find('.approve').prop('disabled')).to.equal(false);
-    expect(wrapper.find('.reject').prop('disabled')).to.equal(false);
+    expect(wrapper.find('.approve').length).to.equal(1);
   });
   it('should execute the approveQuest fn when the approve button is clicked', () => {
     const spy = sinon.spy();

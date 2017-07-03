@@ -8,12 +8,12 @@ const autoNameCheck = true;
 
 const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer }) => (
   !started ?
-    <div>
-      <div className="col-sm-8 col-md-offset-2">
+    <div className="row lobby-background">
+      <div className="col-sm-8 col-sm-offset-2">
         <div className="page-header">
           <h1 className="cursive together">Visit&nbsp;</h1>
-          <h1 className="cursive bold together">TEMPURL/mobile&nbsp;</h1>
-          <h1 className="cursive together">and enter code:&nbsp;</h1>
+          <h1 className="cursive bold together">http://bit.ly/2tBHjsN&nbsp;</h1>
+          <h1 className="cursive together">on your phone and enter code:&nbsp;</h1>
           <h1 className="cursive bold together">{lobbyId}</h1>
         </div>
         <div>

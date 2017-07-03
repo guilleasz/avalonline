@@ -10,6 +10,8 @@ const PlayerList = ({
   removeFromQuest,
   confirmQuest,
   selectLady,
+  hideInfo,
+  toggleInfo,
 }) => (
   <div className="playerList">
     <ConfirmButton
@@ -21,6 +23,12 @@ const PlayerList = ({
         questPlayers: gameState.questPlayers && Object.keys(gameState.questPlayers),
       }}
     />
+    <button
+      className="toggleInfo"
+      onClick={toggleInfo}
+    >
+    {hideInfo ? 'Show Info' : 'Hide Info'}
+    </button>
     {players && players.map(player => (<PlayerItem
       player={player}
       currentPlayer={currentPlayer}
@@ -29,6 +37,7 @@ const PlayerList = ({
       removeFromQuest={removeFromQuest}
       key={player.uid}
       selectLady={selectLady}
+      hideInfo={hideInfo}
     />))}
   </div>
 );
