@@ -3,7 +3,7 @@ import VoteCard from './VoteCard';
 import loadImage from 'blueimp-load-image';
 
 
-const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest, numPlayers, questApprovalVote, showCard  }) => {
+const PlayerDisplayTurn = ({ player, isQuestLeader, onQuest, numPlayers, questApprovalVote, showCard }) => {
   let playerPicture = null;
   let loaded = false;
   return (
