@@ -17,7 +17,6 @@ class MainPageContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <MainPage addLobby={this.addLobby} />
     );

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "blueimp-load-image": "^2.12.2",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "bootstrap-loader": "^2.1.0",
