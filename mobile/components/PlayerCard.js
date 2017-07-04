@@ -28,8 +28,8 @@ const PlayerCard = ({
             /> :
               <img
                 className="img-responsive"
-                alt={currentPlayer.special}
-                src={`/assets/${currentPlayer.role}-guy_${currentPlayer.charIndex}.png`}
+                alt={currentPlayer.role}
+                src={`/assets/${currentPlayer.role}_guy_${currentPlayer.charIndex}.png`}
               />
           }
           <p>{
