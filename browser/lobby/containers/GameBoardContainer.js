@@ -68,10 +68,6 @@ class GameBoardContainer extends React.Component {
     });
   }
 
-  componentDidMount() {
-    const w = window;
-  }
-
   postQuestResult() {
     const { firebase, gameState, lobbyId, players } = this.props;
     const {

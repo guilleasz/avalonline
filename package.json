@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --require specs/setup.js --compilers js:babel-core/register -w \"specs/**/*.spec.js\" ",
     "build": "webpack",
-    "postinstall": "npm run build",
+    "postinstall": "npm run buld",
     "start": "node server"
   },
   "repository": {

@@ -11,7 +11,7 @@ const VoteCard = ({ questApprovalVote, showCard }) => (
         <img className="img-responsive" alt="back vote card" src="/assets/card_back_vote.png" />
         <img
           className="img-responsive"
-          alt="approve vote card"
+          alt={`${questApprovalVote ? 'approve' : 'reject'} vote card`}
           src={questApprovalVote ? '/assets/vote_approve.png' : '/assets/vote_reject.png'}
         />
       </FlipCard>

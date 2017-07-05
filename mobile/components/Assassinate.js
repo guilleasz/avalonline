@@ -1,5 +1,6 @@
 import React from 'react';
 import GoodPlayerCard from './GoodPlayerCard';
+import { ASSASSIN } from '../../characters';
 
 const Assassinate = ({ state, goodPlayers, currentPlayer, assassinate }) => (
   state === 'assassinate' ?

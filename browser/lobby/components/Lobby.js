@@ -6,7 +6,7 @@ import { MORDERED, MORGANA, PERCIVAL, OBERON, LADY } from '../../../characters';
 
 const autoNameCheck = true;
 
-const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer }) => (
+const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer, error }) => (
   !started ?
     <div className="row lobby-background">
       <div className="col-sm-8 col-sm-offset-2">
@@ -65,8 +65,8 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
           </div>
         </div>
         <form onSubmit={handleSubmit} className="cursive game-options">
-          <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button>
-          <legend className="legend">Choose Game Options </legend>
+          {players && Object.keys(players).length > 4 ? <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button> : null}
+          <legend className="legend">Choose Game Options</legend>
           <div className="col-xs-4">
             {selectedChar ? <h2>{charInfo[selectedChar]}</h2> : null}
           </div>
@@ -97,7 +97,7 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
             </div>
             <div className="input-group">
               <span className="input-group-addon">
-                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
+                <label htmlFor="lady" className="game-options"> &nbsp; <span role="checkbox" className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
                 <input type="checkbox" id="lady" name="lady" value="lady" />
               </span>
             </div>
