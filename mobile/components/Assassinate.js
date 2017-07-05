@@ -1,8 +1,9 @@
 import React from 'react';
 import GoodPlayerCard from './GoodPlayerCard';
+import { ASSASSIN } from '../../characters';
 
 const Assassinate = ({ state, goodPlayers, currentPlayer, assassinate }) => (
-  state === 'assassinate' ?
+  state === 'assassinate' && currentPlayer.special === ASSASSIN ?
     <div className="assassinContainer">
       <div className="row">
         {goodPlayers && goodPlayers.map((player, i) => (<GoodPlayerCard
