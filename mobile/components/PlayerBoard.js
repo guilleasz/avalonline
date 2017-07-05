@@ -66,6 +66,7 @@ const PlayerBoard = ({
       questSuccessVote={gameState.questSuccessVote}
       successQuest={successQuest}
       failQuest={failQuest}
+      currentPlayerRole={currentPlayer.role}
     />
     <VotingCards
       currentPlayer={currentPlayerId}
