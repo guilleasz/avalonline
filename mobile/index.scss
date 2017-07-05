@@ -346,8 +346,6 @@
     }
 }
 
-
-
 .camera-upload {
   margin: 0 auto;
   display: block;
@@ -359,3 +357,25 @@
   display: block;
   text-align: center;
 }
+
+
+//*************************** Join Lobby *****************************//
+
+.joinLobby {
+  background: url("/mobile-background.png");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+    h1 {
+      color: white;
+      font-family: fantasy;
+      text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    }
+    button {
+      margin-left: 10px;
+      font-family: fantasy
+    }
+}
+
+
