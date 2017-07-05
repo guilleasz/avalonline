@@ -223,14 +223,18 @@
 
 .turn:before {
   display: block;
-  width: 100%;
+  width: 30%;
   height: 2em;
   content: " ";
   background: url(/assets/quest_leader.png) no-repeat;
   background-size: contain;
+  margin-left: -20px;
+  margin-right: 8px;
 }
 
-.selected {
+
+
+.selected, .turn {
   display: flex;
 }
 
@@ -322,4 +326,36 @@
   text-align: center;
   font-size: 21px;
   font-family: cursive;
+}
+
+//*************************** Mobile Background  *************************//
+
+.mobile-background {
+  padding-top: 10px;
+  height: 100vh;
+  background-image: url("/mobile-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  font-family: fantasy;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    input[type=text] {
+      color: black
+    }
+}
+
+
+
+.camera-upload {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+.margin-btn {
+  margin: 10px auto;
+  display: block;
+  text-align: center;
 }
