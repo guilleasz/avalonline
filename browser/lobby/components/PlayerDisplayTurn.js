@@ -2,6 +2,7 @@ import React from 'react';
 import loadImage from 'blueimp-load-image';
 import VoteCard from './VoteCard';
 
+let loaded = 0;
 
 const PlayerDisplayTurn = ({
   player,
@@ -10,9 +11,10 @@ const PlayerDisplayTurn = ({
   numPlayers,
   questApprovalVote,
   showCard,
+  totalPics,
 }) => {
   let playerPicture = null;
-  let loaded = false;
+  console.log(totalPics);
   return (
     <div className={`flex-item player-card players_${numPlayers} ${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`}>
       <div className={`${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`} >
@@ -20,8 +22,8 @@ const PlayerDisplayTurn = ({
           {
             player.downloadURL ? (() => {
               loadImage(player.downloadURL, (img) => {
-                if (playerPicture && !loaded) {
-                  loaded = true;
+                if (playerPicture && loaded < totalPics) {
+                  loaded += 1;
                   playerPicture.appendChild(img);
                 }
               }, {
