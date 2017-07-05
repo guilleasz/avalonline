@@ -14,7 +14,6 @@ const PlayerDisplayTurn = ({
   totalPics,
 }) => {
   let playerPicture = null;
-  console.log(totalPics);
   return (
     <div className={`flex-item player-card players_${numPlayers} ${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`}>
       <div className={`${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`} >
