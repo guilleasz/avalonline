@@ -4,11 +4,6 @@
   background-image: url("/browser-background.png");
 }
 
-.mobile-background {
-  height: 100vh;
-  background: url("/mobile-background.png");
-}
-
 .voteCard {
   position: absolute;
   z-index: 9999;
@@ -59,6 +54,11 @@
   font-weight: bold;
   color: white;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .player-picture {
