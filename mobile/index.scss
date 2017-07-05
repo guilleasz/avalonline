@@ -223,14 +223,18 @@
 
 .turn:before {
   display: block;
-  width: 100%;
+  width: 30%;
   height: 2em;
   content: " ";
   background: url(/assets/quest_leader.png) no-repeat;
   background-size: contain;
+  margin-left: -20px;
+  margin-right: 8px;
 }
 
-.selected {
+
+
+.selected, .turn {
   display: flex;
 }
 

@@ -15,6 +15,7 @@ class LobbyContainer extends React.Component {
 
   state = {
     name: '',
+    error: false
   }
 
   getOrientation(file, callback) {
@@ -70,12 +71,21 @@ class LobbyContainer extends React.Component {
   setNickname() {
     const lobbyId = this.props.routeParams.lobbyId;
     const { name } = this.state;
-    const { playerId } = this.props;
-    this.props.firebase.update(`/${lobbyId}/players/${playerId}`, { name });
+    const { playerId, players } = this.props;
+    if (Object.keys(players).every(id => players[id].name !== name)) {
+      this.props.firebase.update(`/${lobbyId}/players/${playerId}`, { name });
+      this.setState({
+        error: false,
+      });
+    } else {
+      this.setState({
+        error: true,
+      });
+    }
   }
 
   handleChange(name) {
-    this.setState({ name });
+    this.setState({ name, error: false });
   }
 
   render() {
@@ -87,6 +97,7 @@ class LobbyContainer extends React.Component {
       nickname={this.props.playerInfo && this.props.playerInfo.name}
       started={this.props.started}
       params={this.props.params}
+      error={this.state.error}
     />);
   }
 }
@@ -95,6 +106,7 @@ const wrappedLobbyContainer = firebaseConnect(['/'])(LobbyContainer);
 
 export default connect(({ firebase, currentPlayer }, { params }) => ({
   playerInfo: dataToJS(firebase, `${params.lobbyId}/players/${currentPlayer}`),
+  players: dataToJS(firebase, `${params.lobbyId}/players`),
   playerId: currentPlayer,
   started: dataToJS(firebase, `${params.lobbyId}/started`),
 }))(wrappedLobbyContainer);
