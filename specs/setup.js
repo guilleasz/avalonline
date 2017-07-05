@@ -15,4 +15,10 @@ global.document = window.document;
 global.navigator = {
   userAgent: 'node.js',
 };
+global.URL = { revokeObjectURL: () => {} };
+global.Blob = () => {
+};
+global.Blob.prototype.slice = () => {
+};
+
 copyProps(window, global);

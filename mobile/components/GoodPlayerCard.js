@@ -14,7 +14,7 @@ const GoodPlayerCard = ({ player, assassinate, currentPlayer, index }) => (
     <p className="name">{player && player.name}</p>
     <div className="player-picture" ref={(elem) => { playerPicture = elem; }} >
       {
-        player.downloadURL ? (() => {
+        player && player.downloadURL ? (() => {
           loadImage(player.downloadURL, (img) => {
             if (playerPicture && !loaded) {
               loaded = true;
