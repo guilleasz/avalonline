@@ -107,7 +107,7 @@
     width: 7vh;
     height: 7vh;
     position: absolute;
-    top: 5px;
+    top: 0px;
 }
 
 .on-quest .player-picture:before {
@@ -120,7 +120,7 @@
   height: 7vh;
   width: 9%;
   position: absolute;
-  top: 5px;
+  top: 0px;
   }
 
 .cursive {
