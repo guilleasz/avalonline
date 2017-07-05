@@ -337,7 +337,12 @@
   font-family: fantasy;
   color: white;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    input[type=text] {
+      color: black
+    }
 }
+
+
 
 .camera-upload {
   margin: 0 auto;

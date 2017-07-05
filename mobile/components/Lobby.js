@@ -6,7 +6,7 @@ const Lobby = ({ handleChange, setNickname, name, nickname, started, params, onU
     <div className="mobile-background">
       <h1>Welcome: {nickname}</h1>
       <h4>Choose your nickname!</h4>
-      <input placeholder="Enter Name" onChange={e => handleChange(e.target.value)} value={name} />
+      <input type="text" placeholder="Enter Name" onChange={e => handleChange(e.target.value)} value={name} />
       <br />
       <button className="margin-btn btn btn-success" onClick={setNickname}>Submit</button>
       <div>
