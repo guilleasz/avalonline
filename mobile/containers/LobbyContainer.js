@@ -54,7 +54,7 @@ class LobbyContainer extends React.Component {
     const lobbyId = this.props.routeParams.lobbyId;
     const file = e.target.files[0];
     this.getOrientation(file, (orientation) => {
-      const storageRef = firebase.storage().ref('images/' + file.name);
+      const storageRef = firebase.storage().ref('images/' + playerId);
       const metadata = {
         contentType: 'image/jpeg',
       };

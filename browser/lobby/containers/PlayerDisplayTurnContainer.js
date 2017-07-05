@@ -7,6 +7,10 @@ class PlayerDisplayTurnContainer extends React.Component {
   render() {
     const { players, turnOrder, questLeader, questPlayers, questApprovalVote, showCard } = this.props;
     const numPlayers = Object.keys(players).length;
+    let totalPics = 0;
+    Object.keys(players).forEach((player) => {
+      if (players[player].downloadURL) totalPics += 1;
+    });
     return (
       <div className="player-card-container">
         <div className="flex-container">
@@ -18,6 +22,7 @@ class PlayerDisplayTurnContainer extends React.Component {
             onQuest={questPlayers && Object.keys(questPlayers).indexOf(id) >= 0}
             questApprovalVote={questApprovalVote && questApprovalVote[id]}
             showCard={showCard}
+            totalPics={totalPics}
           />))}
         </div>
       </div>
