@@ -75,7 +75,7 @@ describe('QuestVoteCards Component', () => {
     wrapper.find('.successQuest').simulate('click');
     expect(spy).to.have.been.called; // eslint-disable-line no-unused-expressions
   });
-  it('should execute the function failQuest if .failQuest is clicked', () => {
+  it('should execute the function failQuest if .failQuest is clicked and player is bad', () => {
     const spy = sinon.spy();
     const wrapper = shallow(<QuestVoteCards
       currentPlayer="player1"
@@ -83,8 +83,22 @@ describe('QuestVoteCards Component', () => {
       state="questing"
       questSuccessVote={{ player2: false }}
       failQuest={spy}
+      currentPlayerRole="bad"
     />);
     wrapper.find('.failQuest').simulate('click');
     expect(spy).to.have.been.called; // eslint-disable-line no-unused-expressions
+  });
+  it('should not execute the function failQuest if .failQuest is clicked and player is good', () => {
+    const spy = sinon.spy();
+    const wrapper = shallow(<QuestVoteCards
+      currentPlayer="player1"
+      questPlayers={{ player1: true, player2: true }}
+      state="questing"
+      questSuccessVote={{ player2: false }}
+      failQuest={spy}
+      currentPlayerRole="good"
+    />);
+    wrapper.find('.failQuest').simulate('click');
+    expect(spy).to.not.have.been.called; // eslint-disable-line no-unused-expressions
   });
 });

@@ -21,7 +21,7 @@ describe('PlayerBoard', () => {
       player3: { name: 'Jacob', role: 'bad' },
     },
     turnOrder: ['player3', 'player2', 'player1'],
-    currentPlayer: { name: 'Guille' },
+    currentPlayer: { name: 'Guille', role: 'good' },
     currentPlayerId: 'player1',
     gameState: {
       state: 'voting',
@@ -110,6 +110,10 @@ describe('PlayerBoard', () => {
     expect(wrapper.find(QuestVoteCards).prop('state')).to.equal('voting');
     expect(wrapper.find(QuestVoteCards).prop('questSuccessVote').player1).to.equal(true);
     expect(wrapper.find(QuestVoteCards).prop('questPlayers').player1).to.equal(true);
+  });
+  it('should pass the currentPlayer role', () => {
+    const wrapper = shallow(<PlayerBoard {...props} />);
+    expect(wrapper.find(QuestVoteCards).prop('currentPlayerRole')).to.equal('good');
   });
   it('should pass the failQuest and successQuest fn', () => {
     const wrapper = shallow(<PlayerBoard {...props} />);
