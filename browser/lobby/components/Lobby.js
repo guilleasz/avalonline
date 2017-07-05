@@ -97,7 +97,7 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
             </div>
             <div className="input-group">
               <span className="input-group-addon">
-                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
+                <label htmlFor="lady" className="game-options"> &nbsp; <span role="checkbox" className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
                 <input type="checkbox" id="lady" name="lady" value="lady" />
               </span>
             </div>
