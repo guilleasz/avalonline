@@ -289,3 +289,14 @@ input[type='checkbox']:checked {
 .buffer-vote-right {
   width: 40%;
 }
+
+.lobbyhome {
+  text-align: center;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  color: white;
+}
+
+#title {
+  margin: 0;
+  border: 10px transparent;
+}
