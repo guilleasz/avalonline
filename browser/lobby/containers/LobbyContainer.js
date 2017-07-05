@@ -10,6 +10,7 @@ class LobbyContainer extends React.Component {
     this.state = {
       selectedChar: '',
       animatedPlayers: [],
+      error: '',
     };
     this.startGame = this.startGame.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,14 +26,21 @@ class LobbyContainer extends React.Component {
 
   startGame(goodChars, badChars, lady) {
     const { lobbyId, players, firebase } = this.props;
-
-    setupPlayerRoles(players, goodChars, badChars);
+    let error = false;
+    try {
+      setupPlayerRoles(players, goodChars, badChars);
+    } catch (e) {
+      error = true;
+      this.setState({ error: e });
+    }
     const gameState = setupInitalGameState(players, lady);
-    firebase.update(`/${lobbyId}/`, {
-      started: true,
-      gameState,
-      players,
-    });
+    if (!error) {
+      firebase.update(`/${lobbyId}/`, {
+        started: true,
+        gameState,
+        players,
+      });
+    }
   }
 
   handleSubmit(e) {
@@ -48,7 +56,7 @@ class LobbyContainer extends React.Component {
 
   render() {
     const { players, lobbyId, started } = this.props;
-    const { selectedChar } = this.state;
+    const { selectedChar, error } = this.state;
     return (<Lobby
       started={started}
       players={players}
@@ -58,6 +66,7 @@ class LobbyContainer extends React.Component {
       selectChar={this.selectChar}
       animatedPlayers={this.state.animatedPlayers}
       addPlayer={this.addPlayer}
+      error={error}
     />);
   }
 }
