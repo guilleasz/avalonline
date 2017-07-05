@@ -50,8 +50,8 @@
 }
 
 .goodPlayerCard{
-  height: 150px;
   border: 1px solid #63513f;
+  padding-bottom: 10px;
 }
 
 
@@ -280,6 +280,13 @@
   border-top-right-radius: 10px;
   background: #66d9ef;
   color: green;
+}
+
+.toggleInfo {
+  background: transparent;
+  border: 0;
+  margin: 0 auto;
+  display: block;
 }
 
 //**************************** On Quest ***********************//

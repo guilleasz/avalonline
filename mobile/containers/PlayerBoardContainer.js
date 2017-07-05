@@ -27,7 +27,7 @@ class PlayerBoardContainer extends React.Component {
   state = {
     confirmLadyWindow: false,
     ladyWindow: false,
-    seeCard: true,
+    seeCard: false,
     animateCard: true,
     hide: false,
   }

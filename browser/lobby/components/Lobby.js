@@ -6,14 +6,14 @@ import { MORDERED, MORGANA, PERCIVAL, OBERON, LADY } from '../../../characters';
 
 const autoNameCheck = true;
 
-const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer }) => (
+const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectChar, animatedPlayers, addPlayer, error }) => (
   !started ?
     <div className="row lobby-background">
       <div className="col-sm-8 col-sm-offset-2">
         <div className="page-header">
-          <h1 className="cursive together">Visit&nbsp;</h1>
-          <h1 className="cursive bold together">avalon-online.herokuapp.com/mobile/&nbsp;</h1>
-          <h1 className="cursive together">and enter code:&nbsp;</h1>
+          <h1 className="cursive together">Join the lobby:&nbsp;</h1>
+          <h1 className="cursive bold together">avalon-online.herokuapp.com/mobile</h1>
+          <h1 className="cursive together">&nbsp;And Enter Code &nbsp;</h1>
           <h1 className="cursive bold together">{lobbyId}</h1>
         </div>
         <div>
@@ -65,8 +65,8 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
           </div>
         </div>
         <form onSubmit={handleSubmit} className="cursive game-options">
-          <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button>
-          <legend className="legend">Choose Game Options </legend>
+          {players && Object.keys(players).length > 4 ? <button type="submit" className="btn btn-primary btn-lg col-xs-4 col-xs-offset-4 start-game">Start Adventure!</button> : null}
+          <legend className="legend">Choose Game Options</legend>
           <div className="col-xs-4">
             {selectedChar ? <h2>{charInfo[selectedChar]}</h2> : null}
           </div>
@@ -97,7 +97,7 @@ const Lobby = ({ players, lobbyId, handleSubmit, started, selectedChar, selectCh
             </div>
             <div className="input-group">
               <span className="input-group-addon">
-                <label className="game-options"> &nbsp; <span className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
+                <label htmlFor="lady" className="game-options"> &nbsp; <span role="checkbox" className="glyphicon glyphicon-question-sign" onClick={() => selectChar(LADY)} /> &nbsp;Lady of the Lake &nbsp; </label>
                 <input type="checkbox" id="lady" name="lady" value="lady" />
               </span>
             </div>

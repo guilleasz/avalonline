@@ -5,9 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "test": "mocha --require specs/setup.js --compilers js:babel-core/register -w \"specs/**/*.spec.js\" ",
-    "build": "webpack -w",
-    "postinstall": "npm run build",
-    "start": "node server"
+    "start": "webpack -w & node server"
   },
   "repository": {
     "type": "git",
@@ -15,6 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "blueimp-load-image": "^2.12.2",
     "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "bootstrap-loader": "^2.1.0",

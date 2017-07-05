@@ -25,11 +25,12 @@ const PlayerCard = ({
               alt={currentPlayer.special}
               src={`/assets/${currentPlayer.special}.png`}
             /> :
-              <img
-                className="img-responsive"
-                alt={currentPlayer.special}
-                src={`/assets/${currentPlayer.role}-guy_${currentPlayer.charIndex}.png`}
-              />
+            <img
+              className="img-responsive"
+              alt={currentPlayer.role}
+              src={`/assets/${currentPlayer.role}_guy_${currentPlayer.charIndex}.png`}
+            />
+
           }
           <p>{
             currentPlayer && currentPlayer.special

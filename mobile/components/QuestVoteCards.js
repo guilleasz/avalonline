@@ -7,6 +7,7 @@ const QuestVoteCards = ({
   questSuccessVote,
   failQuest,
   successQuest,
+  currentPlayerRole,
 }) => (
   state === 'questing' &&
   questPlayers[currentPlayer] &&
@@ -15,7 +16,10 @@ const QuestVoteCards = ({
       <button onClick={successQuest} className="questVoteCard successQuest">
         <img alt="success" className="img-responsive" src="/assets/quest_success.png" />
       </button>
-      <button onClick={failQuest} className="questVoteCard failQuest">
+      <button
+        onClick={currentPlayerRole !== 'good' && failQuest}
+        className="questVoteCard failQuest"
+      >
         <img alt="approve" className="img-responsive" src="/assets/quest_fail.png" />
       </button>
     </div>
