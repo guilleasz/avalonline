@@ -9,14 +9,14 @@ const Lobby = ({
   started,
   params,
   onUploadFile,
-  error
+  error,
 }) => (
   !started ?
     <div className="mobile-background">
       <h1>Welcome: {nickname}</h1>
       <h4>Choose your nickname!</h4>
-      <input type="text" placeholder="Enter Name" onChange={e => handleChange(e.target.value)} value={name} />
-      <p style={{color: 'red'}}>{error ? 'Nickname is already picked' : null}</p>
+      <input maxLength={8} type="text" placeholder="Enter Name" onChange={e => handleChange(e.target.value)} value={name} />
+      <p style={{ color: 'red' }}>{error ? 'Nickname is already picked' : null}</p>
       <button className="margin-btn btn btn-success" onClick={setNickname}>Submit</button>
       <div>
         <h4>Upload a Selfie!</h4>
