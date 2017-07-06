@@ -72,7 +72,7 @@ class LobbyContainer extends React.Component {
     const lobbyId = this.props.routeParams.lobbyId;
     const { name } = this.state;
     const { playerId, players } = this.props;
-    if (Object.keys(players).every(id => players[id].name !== name)) {
+    if (players && Object.keys(players).every(id => players[id].name !== name)) {
       this.props.firebase.update(`/${lobbyId}/players/${playerId}`, { name });
       this.setState({
         error: false,
