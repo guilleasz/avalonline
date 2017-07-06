@@ -61,7 +61,7 @@ export const setupInitalGameState = (players, ladyBool) => {
   const numOfRejectsNeeded = 1;
   const numPlayersOnQuest = howManyPlayersOnQuest(totalPlayers, 1);
   const questLeader = 0;
-  const lady = ladyBool ? playerIds[totalPlayers - 1] : undefined;
+  const lady = ladyBool ? playerIds[totalPlayers - 1] : false;
   const voteFails = 0;
   return { turnOrder, state, numOfRejectsNeeded, numPlayersOnQuest, questLeader, lady, voteFails };
 };
