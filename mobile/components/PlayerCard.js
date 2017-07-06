@@ -23,7 +23,7 @@ const PlayerCard = ({
             <img
               className="img-responsive"
               alt={currentPlayer.special}
-              src={`/assets/${currentPlayer.special}.png`}
+              src={`/assets/${currentPlayer.special.toLowerCase()}.png`}
             /> :
             <img
               className="img-responsive"

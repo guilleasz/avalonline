@@ -44,14 +44,16 @@
   color: white;
 }
 
-.assassinContainer .row {
-  margin-left: 0;
-  margin-right: 0;
+.assassinContainer .flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .goodPlayerCard{
   border: 1px solid #63513f;
   padding-bottom: 10px;
+  width: 33%;
 }
 
 
@@ -236,6 +238,10 @@
 
 .selected, .turn {
   display: flex;
+}
+
+.selected.turn:before {
+  width: 80%
 }
 
 .selected:after {
