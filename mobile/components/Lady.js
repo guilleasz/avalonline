@@ -4,7 +4,7 @@ const Lady = ({ display, player, closeLady }) => (
   display ?
     <div
       style={{
-        backgroundImage: `url(${player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.jpg'})`,
+        backgroundImage: `url(${player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.png'})`,
       }}
       className="ladyCard"
     >
@@ -13,7 +13,7 @@ const Lady = ({ display, player, closeLady }) => (
       </p>
       <div>
         <img
-          src={player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.jpg'}
+          src={player && player.role === 'bad' ? '/assets/evil-card.png' : '/assets/good_card_back.png'}
           alt={player && player.role}
           className="img-responsive"
         />

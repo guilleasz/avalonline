@@ -22,12 +22,14 @@ class PlayerBoardContainer extends React.Component {
     this.assassinate = this.assassinate.bind(this);
     this.toggleCard = this.toggleCard.bind(this);
     this.cardHasAnimate = this.cardHasAnimate.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
   state = {
     confirmLadyWindow: false,
     ladyWindow: false,
-    seeCard: true,
+    seeCard: false,
     animateCard: true,
+    hide: false,
   }
 
   addToQuest(playerId) {
@@ -42,11 +44,11 @@ class PlayerBoardContainer extends React.Component {
 
   confirmQuest() {
     const { params, firebase, gameState } = this.props;
-    const { voteHistory } = gameState;
-    if (voteHistory && voteHistory.length === 4) {
+    const { voteFails } = gameState;
+    if (voteFails === 4) {
       firebase.update(`/${params.lobbyId}/gameState/`, {
         state: 'questing',
-        voteHistory: [...voteHistory, 'pass'] });
+      });
     } else {
       firebase.update(`/${params.lobbyId}/gameState/`, { state: 'voting' });
     }
@@ -92,9 +94,10 @@ class PlayerBoardContainer extends React.Component {
     });
   }
   showLady() {
-    const { params, firebase } = this.props;
+    const { params, firebase, players, currentPlayerId, gameState } = this.props;
     firebase.update(`/${params.lobbyId}/gameState`, {
       state: 'choosing',
+      pickLady: `${players[currentPlayerId].name} picked ${players[gameState.lady].name} to lady`,
     });
     this.setState({
       confirmLadyWindow: false,
@@ -114,6 +117,10 @@ class PlayerBoardContainer extends React.Component {
   }
 
   closeLady() {
+    const { params, firebase } = this.props;
+    firebase.update(`/${params.lobbyId}/gameState`, {
+      pickLady: null,
+    });
     this.setState({
       ladyWindow: false,
     });
@@ -145,6 +152,12 @@ class PlayerBoardContainer extends React.Component {
     });
   }
 
+  toggleInfo() {
+    this.setState({
+      hideInfo: !this.state.hideInfo,
+    });
+  }
+
   render() {
     const { players, currentPlayerId, gameState } = this.props;
     return (<PlayerBoard
@@ -171,6 +184,8 @@ class PlayerBoardContainer extends React.Component {
       seeCard={this.state.seeCard}
       animateCard={this.state.animateCard}
       cardHasAnimate={this.cardHasAnimate}
+      hideInfo={this.state.hideInfo}
+      toggleInfo={this.toggleInfo}
     />);
   }
 }

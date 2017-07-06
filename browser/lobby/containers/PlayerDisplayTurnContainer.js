@@ -4,16 +4,25 @@ import { firebaseConnect, dataToJS } from 'react-redux-firebase';
 import PlayerDisplayTurn from '../components/PlayerDisplayTurn';
 
 class PlayerDisplayTurnContainer extends React.Component {
-
   render() {
-    const { players, turnOrder, questLeader } = this.props;
+    const { players, turnOrder, questLeader, questPlayers, questApprovalVote, showCard } = this.props;
+    const numPlayers = Object.keys(players).length;
+    let totalPics = 0;
+    Object.keys(players).forEach((player) => {
+      if (players[player].downloadURL) totalPics += 1;
+    });
     return (
       <div className="player-card-container">
         <div className="flex-container">
           { turnOrder.map((id, i) => (<PlayerDisplayTurn
             key={id}
             player={players[id]}
+            numPlayers={numPlayers}
             isQuestLeader={questLeader === i}
+            onQuest={questPlayers && Object.keys(questPlayers).indexOf(id) >= 0}
+            questApprovalVote={questApprovalVote && questApprovalVote[id]}
+            showCard={showCard}
+            totalPics={totalPics}
           />))}
         </div>
       </div>
@@ -27,5 +36,7 @@ export default connect(({ firebase }, ownProps) => ({
   players: dataToJS(firebase, `${ownProps.lobbyId}/players`),
   turnOrder: dataToJS(firebase, `${ownProps.lobbyId}/gameState/turnOrder`),
   questLeader: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questLeader`),
+  questPlayers: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questPlayers`),
+  questApprovalVote: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questApprovalVote`),
   lobbyId: ownProps.lobbyId,
 }))(wrappedPlayerDisplayTurnContainer);

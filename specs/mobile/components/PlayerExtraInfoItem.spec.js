@@ -5,6 +5,14 @@ import PlayerExtraInfoItem from '../../../mobile/components/PlayerExtraInfoItem'
 import * as characters from '../../../characters';
 
 describe('PlayerExtraInfoItem component', () => {
+  it('should not render if the hideInfo is true', () => {
+    const wrapper = shallow(<PlayerExtraInfoItem
+      currentPlayerRole="good"
+      playerRole="good"
+      hideInfo
+    />);
+    expect(wrapper.find('.info').length).to.equal(0);
+  });
   describe('Good Guys', () => {
     it('should not be visible to anyone', () => {
       const { PERCIVAL, MERLIN } = characters;

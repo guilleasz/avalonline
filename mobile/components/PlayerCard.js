@@ -13,7 +13,7 @@ const PlayerCard = ({
   currentPlayer ?
     <Anime
       easing="easeInQuad"
-      translateY={seeCard ? [-550, 0] : [0, -550]}
+      translateY={seeCard ? [-2000, 0] : [0, -2000]}
       autoplay={animateCard}
       complete={cardHasAnimate}
     >
@@ -23,13 +23,14 @@ const PlayerCard = ({
             <img
               className="img-responsive"
               alt={currentPlayer.special}
-              src={`/assets/${currentPlayer.special}.jpg`}
+              src={`/assets/${currentPlayer.special}.png`}
             /> :
-              <img
-                className="img-responsive"
-                alt={currentPlayer.special}
-                src={`/assets/${currentPlayer.role}-guy_${currentPlayer.charIndex}.jpg`}
-              />
+            <img
+              className="img-responsive"
+              alt={currentPlayer.role}
+              src={`/assets/${currentPlayer.role}_guy_${currentPlayer.charIndex}.png`}
+            />
+
           }
           <p>{
             currentPlayer && currentPlayer.special

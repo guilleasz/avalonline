@@ -22,7 +22,7 @@ describe('Lady Component', () => {
   });
   it('should render Good if the role of player is good', () => {
     const wrapper = shallow(<Lady display player={{ role: 'good' }} />);
-    expect(wrapper.find('img').prop('src')).to.equal('/assets/good_card_back.jpg');
+    expect(wrapper.find('img').prop('src')).to.equal('/assets/good_card_back.png');
   });
   it('should render Evil if the role of player is bad', () => {
     const wrapper = shallow(<Lady display player={{ role: 'bad' }} />);

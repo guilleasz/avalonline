@@ -1,18 +1,50 @@
 import React from 'react';
+import loadImage from 'blueimp-load-image';
+import VoteCard from './VoteCard';
 
-const PlayerDisplayTurn = ({ player, isQuestLeader }) => (
-  <div className={isQuestLeader ? 'flex-item player-card quest-leader' : 'flex-item player-card'}>
-    <div className="ant-card ant-card-bordered">
-      <div className="ant-card-body">
-        <div className="custom-image">
-          <img alt="Player" width="100%" src="/assets/card_back_player.png" />
+let loaded = 0;
+
+const PlayerDisplayTurn = ({
+  player,
+  isQuestLeader,
+  onQuest,
+  numPlayers,
+  questApprovalVote,
+  showCard,
+  totalPics,
+}) => {
+  let playerPicture = null;
+  return (
+    <div className={`flex-item player-card players_${numPlayers} ${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`}>
+      <div className={`${isQuestLeader ? 'quest-leader' : ''} ${onQuest ? 'on-quest' : ''}`} >
+        <div className="player-picture" ref={(elem) => { playerPicture = elem; }} >
+          {
+            player.downloadURL ? (() => {
+              loadImage(player.downloadURL, (img) => {
+                if (playerPicture && loaded < totalPics) {
+                  loaded += 1;
+                  playerPicture.appendChild(img);
+                }
+              }, {
+                maxHeight: 500,
+                maxWidth: 500,
+                orientation: player.orientation ? player.orientation : true,
+              });
+              return null;
+            })()
+            :
+            <img alt="Player" width="100%" src="/assets/card_back_player.png" />
+          }
         </div>
-        <div className="custom-card">
-          <h3>{player.name}</h3>
+        <VoteCard
+          questApprovalVote={questApprovalVote}
+          showCard={showCard}
+        />
+        <div className="player-card-name">
+          <div>{player.name}</div>
         </div>
       </div>
     </div>
-  </div>
-);
-
+  );
+};
 export default PlayerDisplayTurn;

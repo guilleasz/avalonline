@@ -50,8 +50,8 @@
 }
 
 .goodPlayerCard{
-  height: 150px;
   border: 1px solid #63513f;
+  padding-bottom: 10px;
 }
 
 
@@ -150,8 +150,7 @@
 
 .votingCard {
   text-align: center;
-  width: 100px;
-  height: 100px;
+  width: 140px;
   margin: 30px;
   border: 0;
   background: transparent;
@@ -159,6 +158,7 @@
 }
 
 .votingCard[disabled] {
+  width: 90px;
   cursor: not-allowed;
   opacity: 0.6
 }
@@ -223,14 +223,18 @@
 
 .turn:before {
   display: block;
-  width: 100%;
+  width: 30%;
   height: 2em;
   content: " ";
   background: url(/assets/quest_leader.png) no-repeat;
   background-size: contain;
+  margin-left: -20px;
+  margin-right: 8px;
 }
 
-.selected {
+
+
+.selected, .turn {
   display: flex;
 }
 
@@ -281,3 +285,97 @@
   background: #66d9ef;
   color: green;
 }
+
+.toggleInfo {
+  background: transparent;
+  border: 0;
+  margin: 0 auto;
+  display: block;
+}
+
+//**************************** On Quest ***********************//
+
+.onQuest {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  width: 50%;
+  border: 5px dashed white;
+  padding: 30px 10px;
+  text-align: center;
+  font-size: 21px;
+  font-family: cursive;
+}
+
+
+//**************************** Lady's Pick ***********************//
+
+.ladysPick {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  width: 50%;
+  border: 5px dashed white;
+  padding: 30px 10px;
+  text-align: center;
+  font-size: 21px;
+  font-family: cursive;
+}
+
+//*************************** Mobile Background  *************************//
+
+.mobile-background {
+  padding-top: 10px;
+  height: 100vh;
+  background-image: url("/mobile-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  font-family: fantasy;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    input[type=text] {
+      color: black
+    }
+}
+
+.margin-btn {
+  margin: 10px auto;
+  display: block;
+  text-align: center;
+}
+
+.camera-upload {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+
+//*************************** Join Lobby *****************************//
+
+.joinLobby {
+  background: url("/mobile-background.png");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+    h1 {
+      color: white;
+      font-family: fantasy;
+      text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    }
+    button {
+      margin-left: 10px;
+      font-family: fantasy
+    }
+}
+
+
