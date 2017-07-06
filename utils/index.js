@@ -54,13 +54,14 @@ export const howManyPlayersOnQuest = (totalPlayers, round) => {
 export const questNeedsTwoFails = (totalPlayers, round) => totalPlayers >= 7 && round === 4;
 
 export const setupInitalGameState = (players, ladyBool) => {
-  const totalPlayers = Object.keys(players).length;
-  const turnOrder = shuffle(Object.keys(players));
+  const playerIds = Object.keys(players);
+  const totalPlayers = playerIds.length;
+  const turnOrder = shuffle(playerIds);
   const state = 'choosing';
   const numOfRejectsNeeded = 1;
   const numPlayersOnQuest = howManyPlayersOnQuest(totalPlayers, 1);
   const questLeader = 0;
-  const lady = ladyBool ? totalPlayers - 1 : false;
+  const lady = ladyBool ? playerIds[totalPlayers - 1] : undefined;
   const voteFails = 0;
   return { turnOrder, state, numOfRejectsNeeded, numPlayersOnQuest, questLeader, lady, voteFails };
 };
