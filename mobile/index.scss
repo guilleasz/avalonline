@@ -223,14 +223,18 @@
 
 .turn:before {
   display: block;
-  width: 100%;
+  width: 30%;
   height: 2em;
   content: " ";
   background: url(/assets/quest_leader.png) no-repeat;
   background-size: contain;
+  margin-left: -20px;
+  margin-right: 8px;
 }
 
-.selected {
+
+
+.selected, .turn {
   display: flex;
 }
 
@@ -337,6 +341,9 @@
   font-family: fantasy;
   color: white;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    input[type=text] {
+      color: black
+    }
 }
 
 .margin-btn {
@@ -350,3 +357,25 @@
   display: block;
   text-align: center;
 }
+
+
+//*************************** Join Lobby *****************************//
+
+.joinLobby {
+  background: url("/mobile-background.png");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+    h1 {
+      color: white;
+      font-family: fantasy;
+      text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    }
+    button {
+      margin-left: 10px;
+      font-family: fantasy
+    }
+}
+
+
