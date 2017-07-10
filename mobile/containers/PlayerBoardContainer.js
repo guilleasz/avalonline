@@ -43,11 +43,12 @@ class PlayerBoardContainer extends React.Component {
   }
 
   confirmQuest() {
-    const { params, firebase, gameState } = this.props;
+    const { params, firebase, gameState, players } = this.props;
     const { voteFails } = gameState;
     if (voteFails === 4) {
       firebase.update(`/${params.lobbyId}/gameState/`, {
         state: 'questing',
+        questApprovalVote: players,
       });
     } else {
       firebase.update(`/${params.lobbyId}/gameState/`, { state: 'voting' });
