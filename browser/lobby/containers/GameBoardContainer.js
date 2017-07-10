@@ -34,7 +34,7 @@ class GameBoardContainer extends React.Component {
         this.setState({
           showCard: true,
         });
-        setTimeout(() => this.analizeVote(), 2000);
+        setTimeout(() => this.analizeVote(), 5000);
       }
       // if all the players in the quest already voted
       if (questSuccessVote &&
