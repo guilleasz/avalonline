@@ -98,7 +98,7 @@ class GameBoardContainer extends React.Component {
       {
         questPlayers,
         questLeader: turnOrder[questLeader],
-        questApprovalVote,
+        questApprovalVote: questApprovalVote || players,
         questResult: [veredict, result],
       },
     );

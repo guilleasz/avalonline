@@ -15,7 +15,25 @@ class LobbyContainer extends React.Component {
 
   state = {
     name: '',
-    error: false
+    error: false,
+  }
+
+
+  onUploadFile(e) {
+    const { firebase, playerId } = this.props;
+    const lobbyId = this.props.routeParams.lobbyId;
+    const file = e.target.files[0];
+    this.getOrientation(file, (orientation) => {
+      const storageRef = firebase.storage().ref('images/' + playerId);
+      const metadata = {
+        contentType: 'image/jpeg',
+      };
+      const uploadTask = storageRef.put(file, metadata);
+      uploadTask.on('state_changed', () => {}, () => {}, () => {
+        const downloadURL = uploadTask.snapshot.downloadURL;
+        firebase.update(`/${lobbyId}/players/${playerId}`, { downloadURL, orientation });
+      });
+    });
   }
 
   getOrientation(file, callback) {
@@ -47,27 +65,6 @@ class LobbyContainer extends React.Component {
     };
     reader.readAsArrayBuffer(file);
   }
-
-  onUploadFile(e) {
-    console.log('uploaded file');
-    const { firebase, playerId } = this.props;
-    const lobbyId = this.props.routeParams.lobbyId;
-    const file = e.target.files[0];
-    this.getOrientation(file, (orientation) => {
-      const storageRef = firebase.storage().ref('images/' + playerId);
-      const metadata = {
-        contentType: 'image/jpeg',
-      };
-      const uploadTask = storageRef.put(file, metadata);
-      uploadTask.on('state_changed', () => {}, (error) => {
-        console.log(error);
-      }, () => {
-        const downloadURL = uploadTask.snapshot.downloadURL;
-        firebase.update(`/${lobbyId}/players/${playerId}`, { downloadURL, orientation });
-      });
-    });
-  }
-
   setNickname() {
     const lobbyId = this.props.routeParams.lobbyId;
     const { name } = this.state;
