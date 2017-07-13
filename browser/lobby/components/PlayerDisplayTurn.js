@@ -1,6 +1,7 @@
 import React from 'react';
 import loadImage from 'blueimp-load-image';
 import VoteCard from './VoteCard';
+import VoteTracker from './VoteTracker';
 
 let loaded = 0;
 
@@ -12,6 +13,9 @@ const PlayerDisplayTurn = ({
   questApprovalVote,
   showCard,
   totalPics,
+  roundNum,
+  gameLog,
+  playerId,
 }) => {
   let playerPicture = null;
   return (
@@ -35,6 +39,10 @@ const PlayerDisplayTurn = ({
             :
             <img alt="Player" width="100%" src="/assets/card_back_player.png" />
           }
+        <VoteTracker
+          prevVote={gameLog && gameLog[`round${roundNum}`]}
+          playerId={playerId}
+        />
         </div>
         <VoteCard
           questApprovalVote={questApprovalVote}
