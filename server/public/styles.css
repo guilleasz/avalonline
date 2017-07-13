@@ -1,4 +1,12 @@
-
+.voteTrack {
+  position: absolute;
+  bottom: 10%;
+  transform: translateY(-100%);
+}
+.voteTrack .col-xs-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
 .lobby-background {
   min-height: 100vh;
   background-image: url("/browser-background.png");
@@ -65,7 +73,7 @@
   width: 100%;
 }
 
-.player-picture * {
+.player-picture canvas {
   height: 100%;
   width: 100%;
 }

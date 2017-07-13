@@ -5,7 +5,16 @@ import PlayerDisplayTurn from '../components/PlayerDisplayTurn';
 
 class PlayerDisplayTurnContainer extends React.Component {
   render() {
-    const { players, turnOrder, questLeader, questPlayers, questApprovalVote, showCard } = this.props;
+    const {
+      players,
+      turnOrder,
+      questLeader,
+      questPlayers,
+      questApprovalVote,
+      showCard,
+      roundHistory,
+      gameLog,
+    } = this.props;
     const numPlayers = Object.keys(players).length;
     let totalPics = 0;
     Object.keys(players).forEach((player) => {
@@ -23,6 +32,9 @@ class PlayerDisplayTurnContainer extends React.Component {
             questApprovalVote={questApprovalVote && questApprovalVote[id]}
             showCard={showCard}
             totalPics={totalPics}
+            roundNum={roundHistory ? roundHistory.length + 1 : 1}
+            gameLog={gameLog}
+            playerId={id}
           />))}
         </div>
       </div>
@@ -38,5 +50,7 @@ export default connect(({ firebase }, ownProps) => ({
   questLeader: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questLeader`),
   questPlayers: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questPlayers`),
   questApprovalVote: dataToJS(firebase, `${ownProps.lobbyId}/gameState/questApprovalVote`),
+  roundHistory: dataToJS(firebase, `${ownProps.lobbyId}/gameState/roundHistory`),
+  gameLog: dataToJS(firebase, `${ownProps.lobbyId}/gameLog`),
   lobbyId: ownProps.lobbyId,
 }))(wrappedPlayerDisplayTurnContainer);
